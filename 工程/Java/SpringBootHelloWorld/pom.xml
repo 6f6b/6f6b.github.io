@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+<!--感觉这东西有点像pods库的poddesc文件-->
+
+
+    <!--    maven工程的唯一标识-->
+    <groupId>org.example</groupId>
+    <!--    产品名字-->
+    <artifactId>SpringBootHelloWorld</artifactId>
+    <!--    版本号-->
+    <version>1.0-SNAPSHOT</version>
+
+    <!--指定打包方式 jar-->
+    <packaging>jar</packaging>
+
+    <!--配置父工程    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.1.RELEASE</version>
+    </parent>
+
+    <!--    依赖-->
+    <dependencies>
+        <!--        web启动器依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+    <!-- Package as an executable jar -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
