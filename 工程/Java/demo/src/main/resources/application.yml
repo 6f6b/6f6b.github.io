@@ -1,0 +1,13 @@
+server:
+  port: 8086
+
+employee01:
+  age: 26
+  subjects: [java,oc,python]
+  dept:
+    depName: 技术部
+    depNo: 120
+  name: liufeng
+
+
+

@@ -274,6 +274,80 @@ server:
 ### 2. YAML语法
 
 1. YMAL以键值对来描述数据：键:(空格)值 **空格一定不能省略**
-
 2. 层级关系通过空格（**不是tab**）来表示 ，只要是左对齐的一列数据，都是同一级别的
-3. 
+
+#### 2.1 值的写法
+
+> (1)字面量（字符串）
+
+直接在值的位置配置属性值即可，默认是字符串，不需要添加双引号
+
+> (2)对象（Map）
+
+```yaml
+employee01:
+ name: 张三
+ age: 20
+ dept: 
+  depNo: 001
+  depName: 技术部门
+```
+
+行内写法
+
+```yaml
+employee01:
+ name: 张三
+ age: 20
+ dept: {depNo:001,depName:技术部门}
+```
+
+> (3)数组、集合
+
+```yaml
+employee01:
+ name: 张三
+ age: 20
+ subjects: 
+  -java
+  -c
+  -php
+```
+
+行内写法
+
+```yaml
+employee01:
+ name: 张三
+ age: 20
+ subjects: [java,c,php]
+```
+
+###3. YAML属性与对象属性的绑定
+
+```java
+/**
+ * 如果需要使用@ConfigurationProperties注解，那么前提是，当对象必须是Spring容器的组件
+ * @ConfigurationProperties：将配置文件中的配置属性与对象中的属性进行关联
+ * prefix：指定配置文件中的哪个配置进行关联（指定下一级怎么指定？）
+ */
+@ConfigurationProperties(prefix = "employee01")
+
+/**
+ * 将Employee所对应的对象添加为Spring容器的组件
+ */
+@Component
+public class Employee {
+    private String name;
+    private Integer age;
+    private String[] subjects;
+    private Dept dept;
+```
+添加下面的依赖，可以使编写配置文件的时候出现提示（需要先完善现骨干的类）
+```xml
+<!--        配置处理器 能够在编写配置文件时出现提示-->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-configuration-processor</artifactId>
+</dependency>
+```
