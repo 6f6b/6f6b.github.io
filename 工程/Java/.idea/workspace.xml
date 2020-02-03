@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="49d91e66-4095-4470-ac4a-e48f7d197dc5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/SpringBootHelloWorld/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBootHelloWorld/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringBootHelloWorld/src/main/java/com/liu/springtest/start/MySpringBootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBootHelloWorld/src/main/java/com/liu/springtest/start/MySpringBootApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringBootHelloWorld/src/main/java/com/liu/springtest/start/configuration/MyConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBootHelloWorld/src/main/java/com/liu/springtest/start/configuration/MyConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringBootHelloWorld/src/main/java/com/liu/springtest/start/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBootHelloWorld/src/main/java/com/liu/springtest/start/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter04/src/cn/java/www/Pig.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter04/src/cn/java/www/Pig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter04/src/com/java/www/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter04/src/com/java/www/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter04/src/com/java/www/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter04/src/com/java/www/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/fengliu/initializer/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/fengliu/initializer/demo/DemoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/fengliu/initializer/demo/proj/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/fengliu/initializer/demo/proj/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/fengliu/initializer/demo/proj/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/fengliu/initializer/demo/proj/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/test/java/com/fengliu/initializer/demo/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/test/java/com/fengliu/initializer/demo/DemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Java/SpringBoot.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Java/SpringBoot.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1WeU8PAxuMbMo4UaAnTCMJ33Slj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49d91e66-4095-4470-ac4a-e48f7d197dc5" name="Default Changelist" comment="" />
+      <created>1579509393505</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579509393505</updated>
+      <workItem from="1579509397377" duration="121000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

@@ -16,7 +16,7 @@ public class MyConfiguration {
     //@Bean相当于在配置文件中配置了一个bean节点
     //方法的返回值相当于class
     //方法名相当于id
-    public MyService myService(){
+    public MyService myService() {
         return new MyService();
     }
 }

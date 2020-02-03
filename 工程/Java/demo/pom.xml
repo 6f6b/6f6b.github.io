@@ -35,7 +35,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<!--        配置处理器 能够在编写配置文件时出现提示-->
+        <!--        配置处理器 能够在编写配置文件时出现提示-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

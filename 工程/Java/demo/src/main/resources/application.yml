@@ -1,13 +1,7 @@
+#application.properties与application.yml仅用来修改SpringBoot的一些默认配置，自定义的配置信息建议单独创建配置文件进行写入
+
 server:
   port: 8086
-
-employee01:
-  age: 26
-  subjects: [java,oc,python]
-  dept:
-    depName: 技术部
-    depNo: 120
-  name: liufeng
 
 
 

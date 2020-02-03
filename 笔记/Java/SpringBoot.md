@@ -328,7 +328,7 @@ employee01:
 ```java
 /**
  * 如果需要使用@ConfigurationProperties注解，那么前提是，当对象必须是Spring容器的组件
- * @ConfigurationProperties：将配置文件中的配置属性与对象中的属性进行关联
+ * @ConfigurationProperties：将配置文件中的配置属性与对象中的属性进行关联（在默认配置文件中去加载）
  * prefix：指定配置文件中的哪个配置进行关联（指定下一级怎么指定？）
  */
 @ConfigurationProperties(prefix = "employee01")
@@ -351,3 +351,118 @@ public class Employee {
   <artifactId>spring-boot-configuration-processor</artifactId>
 </dependency>
 ```
+
+### 4. @ConfigurationProperties VS @Value
+
+| 对比           | @ConfigurationProperties | @Value       |
+| -------------- | ------------------------ | ------------ |
+| 功能           | 批量绑定属性             | 单个属性绑定 |
+| 松散耦合绑定   | 支持                     | 不支持       |
+| spEL表达式     | 不支持                   | 支持         |
+| 复杂对象       | 支持                     | 不支持       |
+| JSR303数据校验 | 支持的                   | 不支持       |
+
+> 松散耦合绑定：比如上面例子中的name改为username,配置文件中改为user_name,那么通过@ConfigurationProperties也是能够将user_name的值绑定到username上去的；但是通过@Value("${employee01.user_name}")并不能把配置文件中username对应的值绑定到username上去。
+
+> JSR303: JSR是Java的服务规范，303是服务规范的编号
+
+### 5. 加载外部属性配置文件
+
+```java
+/**
+ * 将Employee所对应的对象添加为Spring容器的组件
+ */
+@Component
+
+/**
+ * 指定从哪个外部配置文件中加载配置(@PropertySource加载外部配置文件，则文件格式必须是properties，而不能是yaml文件)
+ */
+@PropertySource(value = "classpath:employee.properties")
+
+/**
+ * 如果需要使用@ConfigurationProperties注解，那么前提是，当对象必须是Spring容器的组件
+ * @ConfigurationProperties：将配置文件中的配置属性与对象中的属性进行关联(在默认配置文件中去加载)
+ * prefix：指定配置文件中的哪个配置进行关联（指定下一级怎么指定？）
+ */
+@ConfigurationProperties(prefix = "employee01")
+
+public class Employee {
+  ...
+```
+
+### 6. SpringBoot加载Spring配置文件
+
+SpringBoot推荐使用配置类来代替配置文件，所以SpringBoot应用在启动的时候不会加载Spring的配置文件即applicationContext.xml，如果需要加载，则需要手动配置
+
+> 1. 编写Spring配置文件
+
+> 2. 通过@ImportResource加载指定配置文件
+
+```java
+@SpringBootApplication
+/**
+ * 通过@ImportResource加载指定文件
+ */
+@ImportResource(locations = {"classpath:applicationContext.xml"})
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+
+}
+```
+
+## 三、SpringBoot Web开发
+
+### 1. SpringBoot对静态资源如何处理的（js、css、image）
+
+```java
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    if (!this.resourceProperties.isAddMappings()) {
+        logger.debug("Default resource handling disabled");
+    } else {
+        Duration cachePeriod = this.resourceProperties.getCache().getPeriod();
+        CacheControl cacheControl = this.resourceProperties.getCache().getCachecontrol().toHttpCacheControl();
+        if (!registry.hasMappingForPattern("/webjars/**")) {
+            this.customizeResourceHandlerRegistration(registry.addResourceHandler(new String[]{"/webjars/**"}).addResourceLocations(new String[]{"classpath:/META-INF/resources/webjars/"}).setCachePeriod(this.getSeconds(cachePeriod)).setCacheControl(cacheControl));
+        }
+
+        String staticPathPattern = this.mvcProperties.getStaticPathPattern();
+        if (!registry.hasMappingForPattern(staticPathPattern)) {
+            this.customizeResourceHandlerRegistration(registry.addResourceHandler(new String[]{staticPathPattern}).addResourceLocations(WebMvcAutoConfiguration.getResourceLocations(this.resourceProperties.getStaticLocations())).setCachePeriod(this.getSeconds(cachePeriod)).setCacheControl(cacheControl));
+        }
+
+    }
+}
+```
+
+> 1. webjars
+
+以jar包的方式引入静态资源
+
+```xml
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+```
+
+http://localhost:8080/webjars/jquery/3.4.1/jquery.js
+
+> 2. 其他静态资源
+
+对于 /** 到以下四个位置进行查找处理：
+
+```java
+"classpath:/META-INF/resources/",
+"classpath:/resources/",
+"classpath:/static/", 
+"classpath:/public/
+```
+
+**注意：这四个目录都是resources下的目录**
+
+question:如果各个目录下都有一个同名的文件，那么访问的优先顺序是怎样的？
+

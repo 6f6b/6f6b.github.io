@@ -9,7 +9,7 @@ public class Pig extends Animal {
 
     }
 
-    public void run(){
+    public void run() {
         System.out.println(this.protectedName);
         System.out.println(this.publicNmae);
 

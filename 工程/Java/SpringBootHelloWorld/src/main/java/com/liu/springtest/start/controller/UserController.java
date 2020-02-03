@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
-//    @Autowired
+    //    @Autowired
     private MyService service;
 
     @RequestMapping("sayHello")
     @ResponseBody
-    public String sayHello(){
-        System.out.println("service===="+this.service);
+    public String sayHello() {
+        System.out.println("service====" + this.service);
         return "Hello world";
     }
 }
