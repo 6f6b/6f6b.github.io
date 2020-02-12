@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+session赋值：<p th:text="${session.user}"></p>
+用户名：<p th:text="${user.name}"></p>
+年龄：<p th:text="${user.age}"></p>
+地址：<p th:text="${user.address}"></p>
+地址:[[${user.address}]] <!--行内写法-->
+生日：<p th:text="${#dates.format(user.birthday,'yyyy/mm/dd')}"></p>
+
+<div th:object="${user}">
+    <p>Name: <span th:text="*{name}">Sebastian</span>.</p>
+    <p>age: <span th:text="*{age}">Pepper</span>.</p>
+    <p>address: <span th:text="*{address}">Saturn</span>.</p>
+</div>
+
+</body>
+</html>

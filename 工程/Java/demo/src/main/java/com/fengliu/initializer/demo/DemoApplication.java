@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 /**
  * 通过@ImportResource加载指定文件
  */
-@ImportResource(locations = {"classpath:applicationContext.xml"})
+//@ImportResource(locations = {"classpath:applicationContext.xml"})
 public class DemoApplication {
 
     public static void main(String[] args) {

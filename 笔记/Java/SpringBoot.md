@@ -466,3 +466,141 @@ http://localhost:8080/webjars/jquery/3.4.1/jquery.js
 
 question:如果各个目录下都有一个同名的文件，那么访问的优先顺序是怎样的？
 
+
+
+### 2. 模板引擎Thymeleaf
+
+<img src="/Users/liufeng/Library/Application Support/typora-user-images/image-20200209220421572.png" alt="image-20200209220421572" style="zoom:50%;" />
+
+#### 2.1 如何引用Thymeleaf
+
+```html
+添加Thymeleaf依赖
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+```
+
+<img src="/Users/liufeng/Library/Application Support/typora-user-images/image-20200210202401914.png" alt="image-20200210202401914" style="zoom:30%;" />
+
+默认模板位置：classpath:/templates/
+
+可在SpringBoot配置文件中进行修改
+
+````html
+spring.thymeleaf.prefix= 
+spring.thymeleaf.suffix=
+````
+
+
+
+在HTML中如果需要出现Thymeleaf提示，需要声明命名空间
+
+```
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+```
+
+> 1.属性操作
+
+```html
+  <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+
+```
+
+th可以操作元素的任意属性
+
+> 2.取值
+
+1. 常规取值
+
+```html
+<p th:text="${text}">
+</p>
+```
+
+
+
+2. URL 
+
+```html
+<!-- Will produce 'http://localhost:8080/gtvg/order/details?orderId=3' (plus rewriting) -->
+<!--单个参数-->
+<a href="details.html" 
+   th:href="@{http://localhost:8080/gtvg/order/details(orderId=${o.id})}">view</a>
+
+<!-- Will produce '/gtvg/order/details?orderId=3' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/details(orderId=${o.id})}">view</a>
+
+<!--在中间替换值-->
+<!-- Will produce '/gtvg/order/3/details' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/{orderId}/details(orderId=${o.id})}">view</a>
+
+<!-- 多个参数-->
+<a href="details.html" th:href="@{/order/process(execId=${execId},execType='FAST')}">view</a>
+```
+
+3. 取对象值
+
+```html
+  <div th:object="${session.user}">
+    <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p> <!--取user对象的firstname属性-->
+    <p>Surname: <span th:text="*{lastName}">Pepper</span>.</p>
+    <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+  </div>
+```
+
+...
+
+> 3.条件判断
+
+```html
+用户性别
+<p th:if="${user.sex == 1}">男</p>
+<p th:if="${user.sex == 0}">女</p>
+```
+
+
+
+4.内置对象
+
+- `#ctx`: the context object.
+- `#vars:` the context variables.
+- `#locale`: the context locale.
+- `#request`: (only in Web Contexts) the `HttpServletRequest` object.
+- `#response`: (only in Web Contexts) the `HttpServletResponse` object.
+- `#session`: (only in Web Contexts) the `HttpSession` object.
+- `#servletContext`: (only in Web Contexts) the `ServletContext` object.
+
+```html
+session赋值：<p th:text="${session.user}"></p>
+```
+
+
+
+5.工具类对象
+
+<img src="/Users/liufeng/Library/Application Support/typora-user-images/image-20200211214512562.png" alt="image-20200211214512562" style="zoom:25%;" />
+
+```html
+生日：<p th:text="${#dates.format(user.birthday,'yyyy/mm/dd')}"></p>
+```
+
+6.遍历
+
+```html
+    <tr th:each="user:${users}">
+        <td>[[${user.name}]]</td>
+        <td>[[${user.age}]]</td>
+        <td>[[${user.address}]]</td>
+    </tr>
+```
+
+### 3. SpringBoot对错误页面的处理
+
+SpringBoot应用在启动时，会加载很多自动配置（118个）
+
+```java
+ErrorMvcAutoConfiguration 对页面错误的自动配置
+```
+
