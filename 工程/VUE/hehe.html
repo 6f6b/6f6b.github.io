@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		
+	</head>
+	<body>
+		<div id="app">
+			<template v-if="loginType === 'username'">
+			  <label>Username</label>
+			  <input placeholder="Enter your username">
+			</template>
+			<template v-else>
+			  <label>Email</label>
+			  <input placeholder="Enter your email address">
+			</template>
+			<div v-on:click="clickDiv1()">按钮</div>
+			
+			<div onkeyup="enter" v-on:click="clickDiv1()">dothis</div>
+			
+			<!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+			<!-- 即事件不是从内部元素触发的 -->
+			<div v-on:click="clickDiv2()">dothat</div>
+			
+			<div v-on:click="clickDiv1()">clickDiv1
+				<div v-on:click.capture="clickDiv2()">clickDiv2
+					<div v-on:click="clickDiv3()">clickDiv3</div>
+				</div>
+			</div>
+			<input @keyup.enter="clickDiv1()"></input>
+			<button @click.shift="clickDiv1()">Do something</button>
+			<button @click.right="clickDiv1()">A</button>
+			<br />
+			<input type="checkbox" id="checkbox" v-model="checked" value="true">
+			<label for="checkbox">hell{{ checked }}</label>
+			<div id="app">
+			  <select v-model="selectV">
+				<option disabled value="">请选择</option>
+				<option value="AA">A</option>
+				<option>B</option>
+				<option>C</option>
+			  </select>
+			  <span>Selected: {{ selectV }}</span>
+			</div>
+			<div id="app">
+				<input type="text" v-model.lazy="selectV" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:'#app',
+				data:{
+					toggle:null,
+					loginType:'username',
+					selectV:null
+				},
+				methods:{
+					clickBtn:function (){
+						if (this.loginType == 'username') {
+							this.loginType = 'email'
+						} else{
+							this.loginType = 'username'
+						}
+						var items = []
+						items.sp
+					},
+					clickDiv1:function (){
+						console.log('div1')
+					},
+					clickDiv2:function (){
+						console.log('div2')
+						
+					},
+					clickDiv3:function (){
+						console.log('div3')
+						
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

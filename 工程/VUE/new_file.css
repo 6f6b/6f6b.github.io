@@ -1,0 +1,36 @@
+      .bottomBox{
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+        overflow-x: hidden;
+        .btnsBox{
+          background-color: red;
+          cursor: pointer;
+          padding: 20px;
+          >div{
+            height: 40px;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 5px;
+            margin-right: 20px;
+            &:last-child{
+              margin-right: 0;
+            }
+          }
+          .cancel{
+            color: #999;
+            background-color: #F5F6F7;
+            width: 100%;
+          }
+          .ok{
+            color: white;
+            background-color: $themeColor;
+            width: 100%;
+          }
+          .lonelyOK{
+            color: white;
+            background-color: $themeColor;
+            width: 40%;
+          }
+        }
+      }
