@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>{{msg}}}</h1>
-  </div>
+  <label>
+    <input type="text">
+  </label>
 </template>
 
 <script>

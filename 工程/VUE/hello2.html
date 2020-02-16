@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		
+	</head>
+	<body>
+
+		
+		<div id="app">
+			<blog-post ></blog-post>
+			<button-counter></button-counter>
+			<input type="text" v-model="text" />
+			<!-- <alert-box>hell</alert-box> -->
+			<component is="button-counter">htll</component>
+			<button v-on:click="tap">点击</button>
+		</div>
+		<script type="text/javascript">
+			Vue.component('alert-box', {
+			  template: `
+			    <div class="demo-alert-box">
+			      <strong>Error!</strong>
+
+				  <slot></slot>
+				  <slot></slot>
+			    </div>
+			  `
+			})
+			Vue.component('button-counter', {
+			props:['coun'],
+			  data: function () {
+			    return {
+			      count: this.coun
+			    }
+			  },
+			  template: '<button v-on:click="coun++">You clicked me {{ count }} times.</button>'
+			})
+			Vue.component('blog-post',{
+				props:['title'],
+				data:function (){
+					return {}
+				},
+				template:'<div><h1>{{title}}</h1></div>'
+			})
+			
+			new Vue({
+				el:'#app',
+				data:{
+					text:'liufeng',
+					ajax:{
+						name:'liufeng'
+					}
+				},
+				methods:{
+					tap:function (){
+						var data = {...this.ajax}
+						data.name = 'zhaorui'
+						console.log(this.ajax.name)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

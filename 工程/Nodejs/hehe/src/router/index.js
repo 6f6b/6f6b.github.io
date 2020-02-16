@@ -9,6 +9,12 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+
+    {
+      path: '/c',
+      name: 'C',
+      component: C
+    },
     {
       path: '/',
       name: 'HelloWorld',
@@ -23,11 +29,6 @@ export default new Router({
       path: '/b',
       name: 'B',
       component: B
-    },
-    {
-      path: '/c',
-      name: 'C',
-      component: C
     }
   ]
 })
