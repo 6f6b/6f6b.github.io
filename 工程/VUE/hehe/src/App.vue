@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <transition-button></transition-button>
     <router-view/>
   </div>
 </template>
 
 <script>
+import TransitionButton from './components/transition-button'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {TransitionButton}
 }
 </script>
 
