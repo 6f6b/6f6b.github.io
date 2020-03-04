@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49d91e66-4095-4470-ac4a-e48f7d197dc5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../笔记/Java/SpringBoot.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../笔记/Java/SpringBoot.md" afterDir="false" />
-    </list>
+    <list default="true" id="49d91e66-4095-4470-ac4a-e48f7d197dc5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,6 +70,7 @@
       <updated>1579509393505</updated>
       <workItem from="1579509397377" duration="3000" />
       <workItem from="1579509532863" duration="3791000" />
+      <workItem from="1583150947761" duration="210000" />
     </task>
     <servers />
   </component>
@@ -123,5 +122,13 @@
       <screen x="0" y="23" width="1280" height="737" />
     </state>
     <state x="156" y="23" key="SettingsEditor/0.23.1280.737@0.23.1280.737" timestamp="1579509849708" />
+    <state x="321" y="261" key="com.intellij.ide.util.TipDialog" timestamp="1583150948663">
+      <screen x="0" y="23" width="1280" height="738" />
+    </state>
+    <state x="321" y="261" key="com.intellij.ide.util.TipDialog/0.23.1280.738@0.23.1280.738" timestamp="1583150948663" />
+    <state x="1" y="103" key="new project wizard" timestamp="1583151081338">
+      <screen x="0" y="23" width="1280" height="738" />
+    </state>
+    <state x="1" y="103" key="new project wizard/0.23.1280.738@0.23.1280.738" timestamp="1583151081338" />
   </component>
 </project>
