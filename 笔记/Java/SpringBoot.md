@@ -740,7 +740,17 @@ public void addInterceptors(InterceptorRegistry registry) {
 }
 ```
 
+### 5. SpringBoot配置外嵌Tomcat及对jsp的支持
 
+通过Spring Initializer创建SpringBoot应用时指定打包方式为war包，并添加web.xml文件
+
+## 四、SpringBoot 持久层操作
+
+### 1. SpringBoot与JDBC整合
+
+### 2. SpringBoot整合Druid连接池
+
+### 3. SpringBoot与MyBatis整合
 
 
 
