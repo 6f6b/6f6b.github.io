@@ -6,7 +6,15 @@
 - 线程控制：挂起、停止和恢复
 
 2. 一个应用技术的几个基本条件
+
 3. 为何不建议将版本号用于做功能兼容
+
 4. vue创建一个初等的站点（创建->简单开发->发布）
+
 5. Servlet是个什么东西？
+
 6. Tomcat是什么，以及Tomcat怎么安装（Linux、MacOS）
+
+7. mac idea不显示maven project的问题
+
+   https://blog.csdn.net/lswandt/article/details/100213455

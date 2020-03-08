@@ -748,7 +748,48 @@ public void addInterceptors(InterceptorRegistry registry) {
 
 ### 1. SpringBoot与JDBC整合
 
+> 1. 需要在创建项目的时候，添加MySQL模块、JDBC模块
+> 2. 如果MySQL版本比较低，需要重新指定MySQL驱动版本
+> 3. 在SpringBoot配置文件中修改连接属性
+
+```properties
+spring.datasource.url=jdbc:mysql://www.xxx.com:3306/databasename
+spring.datasource.username=xxx
+spring.datasource.password=xxx
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+```
+
 ### 2. SpringBoot整合Druid连接池
+
+> 1. 添加Druid依赖
+
+> 2. 在配置文件中，指定数据源类型
+
+```properties
+#指定数据源类型（默认类型是HikariDataSource）
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+
+#设置Druid数据源特殊属性
+spring.datasource.initialSize=10
+spring.datasource.maxActive=11
+spring.datasource.maxIdle=10
+spring.datasource.minIdle=5
+```
+
+> 3. 通过自定义配置类,配置DruidDataSource
+
+```java
+@Configuration
+public class MyDataSourceConfiguration {
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DruidDataSource dataSource(){
+        return new DruidDataSource();
+    }
+}
+```
+
+
 
 ### 3. SpringBoot与MyBatis整合
 
