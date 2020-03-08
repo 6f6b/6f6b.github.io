@@ -1,3 +1,9 @@
+
+/**
+ * @author liufeng
+ * @version 1.2
+ */
+
 public class ThreadClass extends Thread {
 
 

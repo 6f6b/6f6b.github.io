@@ -602,5 +602,145 @@ SpringBoot应用在启动时，会加载很多自动配置（118个）
 
 ```java
 ErrorMvcAutoConfiguration 对页面错误的自动配置
+  
+  加载了以下几个重要的组件：
+  DefaultErrorAttributes	错误处理的属性
+  BasicErrorController	基础错误处理器
+  ErrorPageCustomizer	错误页面定制组件
+  DefaultErrorViewResolver 默认的错误视图解析器
+  
+  当系统出现4xx、5xx异常状态码时，会通过ErrorPageCustomizer来定制错误处理的路径
+  
+//发出/error请求，由BasicErrorController进行处理
+public void registerErrorPages(ErrorPageRegistry errorPageRegistry) {
+  ErrorPage errorPage = new 	ErrorPage(this.dispatcherServletPath.getRelativePath(this.properties.getError().getPath()));	errorPageRegistry.addErrorPages(new ErrorPage[]{errorPage});
+}
+
+@RequestMapping(produces = {"text/html"})	//返回HTML（根据Request header中的Accept字段判断）
+public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
+        HttpStatus status = this.getStatus(request);
+        Map<String, Object> model = Collections.unmodifiableMap(this.getErrorAttributes(request, this.isIncludeStackTrace(request, MediaType.TEXT_HTML)));
+        response.setStatus(status.value());
+        ModelAndView modelAndView = this.resolveErrorView(request, response, status, model);
+        return modelAndView != null ? modelAndView : new ModelAndView("error", model);
+    }
+
+@RequestMapping	//返回json数据
+public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
+        HttpStatus status = this.getStatus(request);
+        if (status == HttpStatus.NO_CONTENT) {
+            return new ResponseEntity(statusre
+        } else {
+            Map<String, Object> body = this.getErrorAttributes(request, this.isIncludeStackTrace(request, MediaType.ALL));
+            return new ResponseEntity(body, status);
+        }
+}
+
+如果是客户端请求（iOS、Android）则返回json，如果是浏览器请求则返回ModelAndView
+this.resolveErrorView(request, response, status, model);//通过错误视图解析器解析错误页面视图
+底层调用：resolver.resolveErrorView(request, status, model);
+resolver=>DefaultErrorViewResolver 如何进行错误视图处理？
+                                      
+public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status, Map<String, Object> model) {
+    ModelAndView modelAndView = this.resolve(String.valueOf(status.value()), model);
+    if (modelAndView == null && SERIES_VIEWS.containsKey(status.series())) {
+        modelAndView = this.resolve((String)SERIES_VIEWS.get(status.series()), model);
+    }
+
+    return modelAndView;
+}
+
+//viewName=>4xx,5xx状态码
+private ModelAndView resolve(String viewName, Map<String, Object> model) {
+  	//在error目录下查找以状态码命名的文件
+    String errorViewName = "error/" + viewName;
+  	//可用的模板引擎容器（判断是否有模板引擎）
+    TemplateAvailabilityProvider provider = this.templateAvailabilityProviders.getProvider(errorViewName, this.applicationContext);
+  	//如果有模板引擎容器则直接发起/error/4xx => /templates/+error/4xx +.html
+  	//如果没有模板引擎则会到静态资源目录下查找4xx.html
+    return provider != null ? new ModelAndView(errorViewName, model) : this.resolveResource(errorViewName, model);
+}   
+                                   
 ```
+
+> 自定义错误处理页面
+
+总结：
+
+* 如果存在模板引擎，则错误页面放在templates/error/下面
+* 如果没有模板引擎，则错误页面放在static/error/下面
+
+错误页面的命名方式：以状态码进行命名
+
+如404.html、500.html
+
+也支持通配符，比如：4xx的状态码可以指定4xx.html来对所有4xx状态码进行处理
+
+支持优先匹配原则，如果存在404.html、4xx.html,则404状态码优先匹配404.html
+
+> 自定义错误返回数据
+
+通过themleaf在模板文件中取对应的值即可
+
+### 4. SpringBoot 配置Servlet三大组件
+
+```
+ServletRegistrationBean、FilterRegistrationBean、ServletListenerRegistrationBean
+```
+
+> 1.注册servlet
+
+```java
+在配置类中添加以下配置
+/*注册servlet*/
+@Bean
+public ServletRegistrationBean servletRegistrationBean(){
+    ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new MyServlet(),"/myServlet");
+    return servletRegistrationBean;
+}
+```
+
+> 2. 注册Filter
+
+```java
+/*注册Filter*/
+@Bean
+public FilterRegistrationBean filterRegistrationBean(){
+    //设置过滤器,怎么过滤？
+    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+    filterRegistrationBean.setFilter(new MyFilter());
+    filterRegistrationBean.addUrlPatterns("/myServlet");
+    //Tina
+    return filterRegistrationBean;
+}
+```
+
+> 3. 注册Listener
+
+```java
+/*注册Listener*/
+@Bean
+public ServletListenerRegistrationBean servletListenerRegistrationBean(){
+    ServletListenerRegistrationBean servletListenerRegistrationBean = new ServletListenerRegistrationBean();
+    servletListenerRegistrationBean.setListener(new MyListener());
+    return servletListenerRegistrationBean;
+}
+```
+
+> 4. 拦截器配置
+
+如果在SpringBoot中配置拦截器，只需要添加一个配置类(@Configuration),并且这个配置类实现WebMvcConfigurer这个接口即可
+
+```java
+@Override
+public void addInterceptors(InterceptorRegistry registry) {
+    //配置自定义拦截器，指定该拦截器的拦截路径
+    registry.addInterceptor(new MyIntecepter()).addPathPatterns("/list");
+    //如果有其他拦截器，继续add
+}
+```
+
+
+
+
 
