@@ -18,3 +18,6 @@
 7. mac idea不显示maven project的问题
 
    https://blog.csdn.net/lswandt/article/details/100213455
+   
+8. \#{propertyname}?
+
