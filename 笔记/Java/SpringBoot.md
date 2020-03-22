@@ -47,4 +47,12 @@
 
 23. @SpringBootApplication also provides aliases to customize the attributes of @EnableAutoConfiguration and @ComponentScan.如何使用？
 
-24. 
+24. It is also possible to run a packaged application with remote debugging support enabled. Doing so lets you attach a debugger to your packaged application, as shown in the following example:
+
+    ```java
+    $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \ -jar target/myapplication-0.0.1-SNAPSHOT.jar
+    ```
+
+25. MAVEN_OPTS、JAVA_OPTS？
+26. Java hot-swapping
+27. 
