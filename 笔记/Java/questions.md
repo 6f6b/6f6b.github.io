@@ -2,6 +2,8 @@
 2. 各个浮点类型都不能用来表示货币，那用什么表示？
 3. transient修饰符
 4.  System.out.printf("%1$s %2$tB %2$td, %2$tY", "Due date:", date); B是干嘛的
+5. Mysql、JDBC、Druid、MyBatis之间是什么关系？
+6. 
 
 
 
@@ -35,3 +37,18 @@
    
 8. \#{propertyname}?
 
+9. 注解？
+
+   https://www.runoob.com/w3cnote/java-annotation.html
+
+10. 注解工作原理？
+
+   1. 通过反射或AOP实现其工作逻辑
+
+11. gradle
+
+    基于maven等的自动化构建工具
+
+12. 带参数的Bean,参数是怎么传过去的？
+
+13. 
