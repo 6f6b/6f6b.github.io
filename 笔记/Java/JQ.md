@@ -82,3 +82,69 @@
     ```
 
     22. This technique, called *covariant return type*, means that the return type is allowed to vary in the same direction as the subclass.（协变返回类型）
+
+    23. **静态内部类、内部类、局部类**
+
+    24. why use nested class
+
+        - **It is a way of logically grouping classes that are only used in one place**
+        - **It increases encapsulation**
+        - **It can lead to more readable and maintainable code**:
+
+    25. 静态内嵌类不能访问其包类的成员变量
+
+    26. 静态内嵌类能不能访问包类的静态成员变量？
+
+    27. because an inner class is associated with an instance, it cannot define any static members itself.
+
+    28. 一般内嵌类可以直接访问外部类的成员变量和方法
+
+    29. 一般内嵌类的实例只有在外部类实例化后，通过外部类的实例来实例化内部类，如下
+
+        ```java
+        OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+        ```
+
+    30. 当内嵌类的成员变量或者方法和外部类同名时，在内部类中单纯的使用同名名字来访问变量会导致覆盖（即访问的是内部成员变量），若要访问外部类的成员变量，方法如下
+
+        ```java
+        OutClass.this.fildName
+        ```
+
+    31. serilization of class?
+
+    32. To handle user interface events, you must know how to use inner classes, because the event-handling mechanism makes extensive use of them.(时间处理机制广泛的用到了inner class)
+
+    33. 位于代码块内部，有名字的类为局部类，没有名字的类叫匿名类
+
+    34. 局部类可以访问其外部类的成员变量
+
+    35. 在Javase8以后，局部类可以访问其所在代码块的参数以及局部变量，前提是参数和局部变量都是被final修饰的，或者是effectively final的，因为捕获？怎么讲？
+
+    36. 类似内部类，局部类也不能定义任何的静态成员，如果一个局部类位于外部类的静态方法中，那么这个局部类中只能访问外部类的静态成员
+
+    37. 因为局部类有访问实例变量的权利，所以他就没法被定成静态的了
+
+    38. interface天生静态，所以不能在方法中定义interface
+
+    39. 当局部类其成员为*constant variable*的时候，其成员可以使静态的
+
+    40. A *constant variable* is a variable of primitive type or type `String` that is declared final and initialized with a compile-time constant expression. A compile-time constant expression is typically a string or an arithmetic expression that can be evaluated at compile time.
+
+    41. **匿名类**
+
+    42. he anonymous class expression consists of the following:
+
+        - The `new` operator
+        - The name of an interface to implement or a class to extend. In this example, the anonymous class is implementing the interface `HelloWorld`.
+        - Parentheses that contain the arguments to a constructor, just like a normal class instance creation expression. **Note**: When you implement an interface, there is no constructor, so you use an empty pair of parentheses, as in this example.
+        - A body, which is a class declaration body. More specifically, in the body, method declarations are allowed but statements are not.
+
+    43. However, you cannot declare constructors in an anonymous class.局部类中呢？
+
+    44. 匿名类适用于：1-方法中仅有一个类，2-有多个函数实现（只有一个函数实现可以用lambda表达式替代）
+
+    45. 匿名类中不能定义构造方法，那么内部类和局部类呢？->可以定义
+
+    46. 
+
