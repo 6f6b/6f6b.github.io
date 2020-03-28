@@ -30,6 +30,8 @@ package com.company;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import java.util.function.Consumer;
+
 public class DataStructure {
 
     // Create an array
@@ -41,6 +43,14 @@ public class DataStructure {
         for (int i = 0; i < SIZE; i++) {
             arrayOfInts[i] = i;
         }
+    }
+
+    public void pri(int x){
+
+    }
+
+    void invoke(Runnable r) {
+        r.run();
     }
 
     public void printEven() {
@@ -61,7 +71,11 @@ public class DataStructure {
     }
 
     public void print(java.util.function.Function <Integer, Boolean> iterator){
-        iterator.
+        for (Integer inte : arrayOfInts) {
+            if (iterator.apply(inte)){
+                System.out.println(inte.toString()+"$$");
+            }
+        }
     }
     interface DataStructureIterator extends java.util.Iterator<Integer> { }
 
@@ -95,26 +109,28 @@ public class DataStructure {
         // Fill the array with integer values and print out only
         // values of even indices
         DataStructure ds = new DataStructure();
-        ds.print(new DataStructureIterator() {
-            private int nextIndex = 0;
-
-            public boolean hasNext() {
-
-                // Check if the current element is the last in the array
-                return (nextIndex <= SIZE - 1);
-            }
-
-            public Integer next() {
-
-                // Record a value of an even index of the array
-                Integer retValue = Integer.valueOf(arrayOfInts[nextIndex]);
-
-                // Get the next even element
-                nextIndex += 2;
-                return retValue;
-            }
-        });
+//        ds.print(new DataStructureIterator() {
+//            private int nextIndex = 0;
+//
+//            public boolean hasNext() {
+//
+//                // Check if the current element is the last in the array
+//                return (nextIndex <= SIZE - 1);
+//            }
+//
+//            public Integer next() {
+//
+//                // Record a value of an even index of the array
+//                Integer retValue = Integer.valueOf(arrayOfInts[nextIndex]);
+//
+//                // Get the next even element
+//                nextIndex += 2;
+//                return retValue;
+//            }
+//        });
 //        ds.print(new EvenIterator());
 //        ds.printEven();
+        ds.print(inte->inte%2 == 0 ? true : false);
+        ds.print(inte->inte%2 == 1 ? true : false);
     }
 }
