@@ -61,7 +61,6 @@ public class DataStructure {
     }
 
     public void print(java.util.function.Function <Integer, Boolean> iterator){
-        iterator.
     }
     interface DataStructureIterator extends java.util.Iterator<Integer> { }
 
