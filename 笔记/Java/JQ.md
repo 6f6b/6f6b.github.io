@@ -273,3 +273,37 @@
 2. Java不让使用多继承的原因是避免产生继承多个field
 3. The Java compiler provides some rules to determine which default method a particular class uses.（how？）
 4. 
+final关键字对于方法而言，标志这个方法不能被重写；对于类而言，标志这个类不能被继承
+2. 一般来讲，被构造方法调用的方法我们都建议用final修饰，以避免在子类中修改后导致出错
+3. 一个抽象类中可能包含抽象方法，也可能包含非抽象方法，抽象类不能被实例化，但是可以被继承（一个包含抽象方法的类一定是抽象类）
+
+
+
+##### 泛型
+
+1. 泛型增加代码稳定性，如何增加？（making more of your bugs detectable at compile time）
+
+2. 为什么要使用泛型
+
+   1. Stronger type checks at compile time.（具体如何进行的？）
+
+   2. 消除类型转换
+
+      ```java
+      The following code snippet without generics requires casting:
+      List list = new ArrayList();
+      list.add("hello");
+      String s = (String) list.get(0);
+      When re-written to use generics, the code does not require casting:
+      List<String> list = new ArrayList<String>();
+      list.add("hello");
+      String s = list.get(0);   // no cast
+      ```
+
+   3. 实现通用算法
+
+
+
+额外的学习内容
+
+https://docs.oracle.com/javase/tutorial/extra/
