@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     interface I1{
         void sayHello();
@@ -8,7 +11,6 @@ public class Main {
 //        OuterStaticClass
 //        Problem problem = new Problem();
         InterfaceTest.sayHello();
-
         long n = 461012;
 //        String str = "sdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjklsdfghjkl"
 //        + "niubi";
@@ -33,6 +35,13 @@ public class Main {
         class C3<T extends C2 & I1>{
             
         }
+        class WildcardError {
 
+            void foo(List<?> i) {
+                Object o =  i.get(0);
+                List<String> strings = new ArrayList<String>() ;
+                String[] strs = {};
+            }
+        }
     }
 }

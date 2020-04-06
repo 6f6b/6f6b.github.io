@@ -8,3 +8,7 @@ public class Animal {
         System.out.println("this is a animal");
     }
 }
+
+public class Hello{
+
+}

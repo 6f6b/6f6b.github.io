@@ -159,7 +159,7 @@
 2. 关于内部类的序列化？https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
 3. 局部类跟inner class 一样不能定义静态成员，局部类位于静态方法时，只能访问外部类的静态成员
 
-##### lambda表达式
+##### lambda表达式（需要进一步加强）
 
 1. 说到底，lambda表达式就是一个函数（样子已经给你定好了，怎么实现你来定）
 2. 泛型的作用，约束几个值的类型统一性，但不对值具体是什么类型做约束
@@ -279,7 +279,7 @@ final关键字对于方法而言，标志这个方法不能被重写；对于类
 
 
 
-##### 泛型
+##### 泛型（存在很多疑点）
 
 1. 泛型增加代码稳定性，如何增加？（making more of your bugs detectable at compile time）
 
@@ -301,6 +301,124 @@ final关键字对于方法而言，标志这个方法不能被重写；对于类
       ```
 
    3. 实现通用算法
+   
+3. 泛型放的位置
+
+   1. 类
+
+      ```java
+      public class Hello<T>{...}
+      Hello hello = new <Person>Hello();
+      ```
+
+   2. 接口
+
+      ```java
+      public interface Hello<T>{...}
+      public class Person implementation Hello<He>{...}
+      ```
+
+   3. 方法
+
+      ```java
+      //直接使用类的泛型
+      public class Pair<K, V> {
+          private K key;
+          private V value;
+          public Pair(K key, V value) {
+              this.key = key;
+              this.value = value;
+          }
+      }
+      Pair<Integer, String> p1 = new Pair<>(1, "apple");
+      
+      //直接自己的泛型
+      public class Util {
+          public static <K, V> boolean compare(Pair<K, V> p1, Pair<K, V> p2) {...}
+      }
+      Util.<Integer, String>compare(p1, p2);
+      ```
+
+4. 类型的界分一般性的界，这个用在声明泛型的时候
+
+   ```java
+   //声明泛型
+   public interface Action<T extends HE>{...}
+   
+   //使用泛型(这里的HI也是HE的子类)
+   public class Dog implementation Action<? extends HI>{...}
+   ```
+
+5. 要么定义上限要么定义下限，不能同时定义
+
+6. **Wildcard Guidelines:** 
+
+   - An "in" variable is defined with an upper bounded wildcard, using the `extends` keyword.
+   - An "out" variable is defined with a lower bounded wildcard, using the `super` keyword.
+   - In the case where the "in" variable can be accessed using methods defined in the `Object` class, use an unbounded wildcard.
+   - In the case where the code needs to access the variable as both an "in" and an "out" variable, do not use a wildcard.
+
+7. To use Java generics effectively, you must consider the following restrictions:
+
+   - [Cannot Instantiate Generic Types with Primitive Types](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#instantiate)
+   - [Cannot Create Instances of Type Parameters](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#createObjects)
+   - [Cannot Declare Static Fields Whose Types are Type Parameters](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#createStatic)
+   - [Cannot Use Casts or `instanceof` With Parameterized Types](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#cannotCast)
+   - [Cannot Create Arrays of Parameterized Types](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#createArrays)
+   - [Cannot Create, Catch, or Throw Objects of Parameterized Types](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#cannotCatch)
+   - [Cannot Overload a Method Where the Formal Parameter Types of Each Overload Erase to the Same Raw Type](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#cannotOverload)
+
+##### package
+
+1. package 是一组相关的类或接口的集合
+
+2. `package`关键字开头，后跟包的路径
+
+   ```java
+   package graphics;
+   ```
+
+3. ```java
+   //这导入了Rectangle下的内部类，但是Rectangle并未被导入
+   import graphics.Rectangle.*;
+   ```
+
+4. The prefix `java.awt` (the Java Abstract Window Toolkit) 
+
+5. 包的路径上的层次关系并不意味着有包含关系
+
+6. 引入两个不同的包，但包含两个相同的类时，要使用该类的全称加区分
+
+   ```java
+   import java.awt.*;
+   import graphics
+   graphics.Rectangle rect;
+   ```
+
+7. import static xxxx,引入包下的静态内容（静态方法和静态变量 etc.），这样在使用这些静态成员时就不需要加类前缀了，但应该谨慎使用，用多了降低代码阅读性
+
+8.  Setting the CLASSPATH System Variable
+
+   To display the current `CLASSPATH` variable, use these commands in Windows and UNIX (Bourne shell):
+
+   ```
+   In Windows:   C:\> set CLASSPATH
+   In UNIX:      % echo $CLASSPATH
+   ```
+
+   To delete the current contents of the `CLASSPATH` variable, use these commands:
+
+   ```
+   In Windows:   C:\> set CLASSPATH=
+   In UNIX:      % unset CLASSPATH; export CLASSPATH
+   ```
+
+   To set the `CLASSPATH` variable, use these commands (for example):
+
+   ```
+   In Windows:   C:\> set CLASSPATH=C:\users\george\java\classes
+   In UNIX:      % CLASSPATH=/home/george/java/classes; export CLASSPATH
+   ```
 
 
 
