@@ -83,3 +83,7 @@
 
 7. Part of this mechanism ensures that an event published to the listeners in a child context is also published to the listeners in any ancestor contexts. As a result of this, if your application uses a hierarchy of SpringApplication instances, a listener may receive multiple instances of the same type of application event.
 8.  its application context is injected(这个application context是个什么)
+
+
+
+###
