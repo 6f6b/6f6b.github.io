@@ -55,4 +55,18 @@
 
 25. MAVEN_OPTS、JAVA_OPTS？
 26. Java hot-swapping
-27. 
+
+
+
+
+
+
+
+
+
+maven 和 gradle的区别是什么？
+
+#### 1. Building a RESTful Web Service
+
+1. JSON.jackson自动被包含在webstart中，JSON.jackson用来把对象转换成json
+
