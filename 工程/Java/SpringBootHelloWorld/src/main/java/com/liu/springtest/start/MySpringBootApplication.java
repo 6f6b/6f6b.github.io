@@ -11,6 +11,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class MySpringBootApplication {
     public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class, args);
-        args.length
+
     }
 }

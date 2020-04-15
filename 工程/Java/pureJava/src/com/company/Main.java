@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
+import
 
 public class Main implements PropertyChangeListener {
     public static void main(String[] args) {
@@ -16,5 +17,9 @@ public class Main implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         System.out.println(evt.toString());
+    }
+
+    public void test(){
+
     }
 }
