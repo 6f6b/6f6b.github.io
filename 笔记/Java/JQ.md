@@ -424,6 +424,10 @@ final关键字对于方法而言，标志这个方法不能被重写；对于类
 
 1. A bean is a Java class with method names that follow the JavaBeans guidelines
 
+
+
+JPA：Java Persistent API 即Java持久层的API
+
 额外的学习内容
 
 https://docs.oracle.com/javase/tutorial/extra/
