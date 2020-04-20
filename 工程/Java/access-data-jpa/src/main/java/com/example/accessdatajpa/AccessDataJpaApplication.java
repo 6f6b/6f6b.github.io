@@ -26,7 +26,6 @@ public class AccessDataJpaApplication {
             repository.save(new Customer("Kim", "Bauer"));
             repository.save(new Customer("David", "Palmer"));
             repository.save(new Customer("Michelle", "Dessler"));
-
             // fetch all customers
             log.info("Customers found with findAll():");
             log.info("-------------------------------");
