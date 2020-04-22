@@ -8,19 +8,23 @@
 
 5. 参数顺序对签名有没影响？
 
+   > 类型顺序有影响
+
 6. 少用方法重载，降低可读性
 
 7. `new Bicycle(30, 0, 8)` creates space in memory for the object and initializes its fields.
 
 8. 可变参数：methodName(ArgType... args),这里既可以传一串参数，也可以传一个数组（可变参数是否可以放在中间？）
 
+   > 不可以，必须放在最后
+
 9. Java传参时，无论是基础数据类型还是引用类型传参，都是值传递，也就是在函数内部并不能改变引用的指向
 
 10. 系统如何回收使用完的对象
 
-    An object is **eligible** for garbage collection when there are no more references to that object. References that are held in a variable are usually dropped when the variable goes out of scope. Or, you can explicitly drop an object reference by setting the variable to the special value `null`. Remember that a program can have multiple references to the same object; all references to an object must be dropped before the object is eligible for garbage collection.
+   An object is **eligible** for garbage collection when there are no more references to that object. References that are held in a variable are usually dropped when the variable goes out of scope. Or, you can explicitly drop an object reference by setting the variable to the special value `null`. Remember that a program can have multiple references to the same object; all references to an object must be dropped before the object is eligible for garbage collection.
 
-    The Java runtime environment has a garbage collector that **periodically** frees the memory used by objects that are no longer referenced. The garbage collector does its job automatically when it determines that the time is right. 
+   The Java runtime environment has a garbage collector that **periodically** frees the memory used by objects that are no longer referenced. The garbage collector does its job automatically when it determines that the time is right. 
 
 11. 如果函数的参数名跟成员变量名相同，参数名会覆盖成员变量名，所以得使用this
 
