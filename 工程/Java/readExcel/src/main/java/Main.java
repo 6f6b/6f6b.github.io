@@ -2,6 +2,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +16,59 @@ public class Main {
     public static PrintStream out = System.out;
 
     public static void main(String[] args) {
+        ExcelMapper excelMapper = new ExcelMapper();
+        String tran_path   = "/Users/feng/Desktop/workstation/Tobetranslate/05-Glossary.xlsx";
+        String final_path = "/Users/feng/Desktop/workstation/Files/0103-translates.xlsx";
+        excelMapper.global_add_new(tran_path,final_path);
+        //excelMapper.global_deduplication("/Users/feng/Desktop/workstation/final.xlsx");
+
+//        String fileName = "13-V 1.8 new added";
+//        String newP = String.format("/Users/feng/Desktop/workstation/Tobetranslate/%s.xlsx",fileName);
+//        String originP = String.format("/Users/feng/Desktop/workstation/Tobetranslateorigin/%s.xlsx",fileName);
+//        String toP = "/Users/feng/Desktop/workstation/to.xlsx";
+//        excelMapper.take_duplicate(originP,newP,toP);
+
+//        String oldP = "/Users/feng/Desktop/workstation/now/translates.xlsx";
+//        String newP = "/Users/feng/Desktop/workstation/now/to.xlsx";
+//        excelMapper.replace_tran(oldP,newP);
+
 //        resolveAction();
-        resolveOperation();
-//        String value = "hello\",world\"";
-////        value.replace()
-//        value = value.replace("\"","\\\"");
-//        out.println(value);
+        //resolveOperation();
+//        handleWords();
     }
+
+    //xiu
+    public static void handleWords(){
+        Workbook wb = null;
+        try {
+            String file = "/Users/feng/Desktop/西班牙/开发提供/Resources/global站点翻译资源/language.xlsx";
+            FileInputStream inputStream = new FileInputStream(file);
+            wb = WorkbookFactory.create(inputStream);
+            Sheet sheet = wb.getSheetAt(0);
+
+            // 获得行数
+            int rows = sheet.getLastRowNum();
+            for (int i=1;i<=rows;i++){
+                //out.println(String.format("%d",i));
+                Row row = sheet.getRow(i);
+                Cell cell = row.getCell(2);
+                String va = cell.getStringCellValue();
+                Cell writeCell = row.createCell(3,CellType.STRING);
+                writeCell.setCellValue("(西班牙)"+va);
+                out.println(va);
+            }
+            //输出流
+            FileOutputStream fileout = new FileOutputStream(file);
+            //协出
+            wb.write(fileout);
+            //关闭流
+            fileout.close();
+            out.println("success");
+        }catch (Exception e){
+            out.println(e.getMessage());
+        }
+    }
+
     //操作
     public static void resolveAction(){
         Statement stm = null;
