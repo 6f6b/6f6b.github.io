@@ -17,9 +17,9 @@ public class Main {
 
     public static void main(String[] args) {
         ExcelMapper excelMapper = new ExcelMapper();
-        String tran_path   = "/Users/feng/Desktop/workstation/Tobetranslate/05-Glossary.xlsx";
-        String final_path = "/Users/feng/Desktop/workstation/Files/0103-translates.xlsx";
-        excelMapper.global_add_new(tran_path,final_path);
+//        String tran_path   = "/Users/feng/Desktop/workstation/Tobetranslate/05-Glossary.xlsx";
+//        String final_path = "/Users/feng/Desktop/workstation/Files/0103-translates.xlsx";
+//        excelMapper.global_add_new(tran_path,final_path);
         //excelMapper.global_deduplication("/Users/feng/Desktop/workstation/final.xlsx");
 
 //        String fileName = "13-V 1.8 new added";
@@ -28,9 +28,13 @@ public class Main {
 //        String toP = "/Users/feng/Desktop/workstation/to.xlsx";
 //        excelMapper.take_duplicate(originP,newP,toP);
 
-//        String oldP = "/Users/feng/Desktop/workstation/now/translates.xlsx";
-//        String newP = "/Users/feng/Desktop/workstation/now/to.xlsx";
-//        excelMapper.replace_tran(oldP,newP);
+//        String oldP = "/Users/feng/Desktop/The_first_half_of_documents/0106Glossary_ES.xls";
+//        String newP = "/Users/feng/Desktop/xiba/Files/0103-translates.xlsx";
+//        String toP = "/Users/feng/Desktop/xiba/to.xlsx";
+//        excelMapper.replace_tran(oldP,newP,toP);
+        String des = "/Users/feng/Desktop/xiba/Files/0103-translates.xlsx";
+        String sou = "/Users/feng/Desktop/20200610.xlsx";
+        excelMapper.merge(des,sou);
 
 //        resolveAction();
         //resolveOperation();

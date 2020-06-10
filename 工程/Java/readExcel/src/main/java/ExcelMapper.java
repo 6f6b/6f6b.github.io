@@ -10,69 +10,220 @@ import java.util.regex.Pattern;
 public class ExcelMapper {
     public PrintStream out = System.out;
 
-
-    /*global*/
-    public void replace_tran(String old_trans,String new_trans){
-        Workbook wb_new = null;
-        Workbook wb_old = null;
+    public void merge(String destination,String source){
+        Workbook wb_des = null;
+        Workbook wb_sou = null;
         ZipSecureFile.setMinInflateRatio(-1.0d);
         try {
-            FileInputStream old_input = new FileInputStream(old_trans);
-            wb_old = WorkbookFactory.create(old_input);
-            Sheet old_sheet = wb_old.getSheetAt(0);
-            int old_rows = old_sheet.getLastRowNum();
+            FileInputStream des_input = new FileInputStream(destination);
+            wb_des = WorkbookFactory.create(des_input);
+            Sheet sheet_des = wb_des.getSheetAt(0);
+            int row_num_des = sheet_des.getLastRowNum();
 
-            FileInputStream new_input = new FileInputStream(new_trans);
-            wb_new = WorkbookFactory.create(new_input);
-            Sheet new_sheet = wb_new.getSheetAt(0);
-            int new_rows = new_sheet.getLastRowNum();
+            FileInputStream sou_input = new FileInputStream(source);
+            wb_sou = WorkbookFactory.create(sou_input);
+            Sheet sheet_sou = wb_sou.getSheetAt(0);
+            int row_num_sou = sheet_sou.getLastRowNum();
 
-            for (int i = 1; i <= old_rows; i++) {
-                Row row = old_sheet.getRow(i);
-                if (row == null){continue;}
-                Cell cell = row.getCell(0);
-                if (cell == null){ continue; }
-                String cellValue = cell.getStringCellValue();
-                if (cellValue == null){continue;}
+            for (int i = 0; i <= row_num_sou; i++) {
+                Row row_sou = sheet_sou.getRow(i);
+                if (row_sou == null) {
+                    continue;
+                }
+                Cell cell_sou_en = row_sou.getCell(0);
+                Cell cell_sou_es = row_sou.getCell(1);
 
-                for (int j = 0; j <= new_rows; j++) {
-                    Row newRow = new_sheet.getRow(j);
-                    if (newRow == null){continue;}
-                    Cell oc = newRow.getCell(0);
-                    Cell nc = newRow.getCell(1);
+                if (cell_sou_en == null || cell_sou_es == null) {
+                    continue;
+                }
 
-                    if (oc == null){ continue; }
-                    if (nc == null){ continue; }
+                String sou_en = cell_sou_en.getStringCellValue();
+                String spanish = cell_sou_es.getStringCellValue();
 
-                    String ocValue = oc.getStringCellValue();
-                    String ncValue = nc.getStringCellValue();
+                if (sou_en == null || spanish == null) {
+                    continue;
+                }
 
-                    if (ocValue == null){continue;}
-                    if (ncValue == null){continue;}
+                boolean find = false;
+                int row_index = 0;
 
-                    if (cellValue.trim().equals(ocValue.trim())){
-                        out.println(String.format("旧：%s",cellValue));
-                        out.println(String.format("新：%s",ncValue));
-                        out.println("***************************************");
-                        cell.setCellValue(ncValue);
+                for (int j=0;j<=row_num_des;j++){
+                    Row row_des = sheet_des.getRow(j);
+                    if (row_des == null) {
+                        continue;
                     }
+                    Cell cell_des_en = row_des.getCell(0);
+                    if (cell_des_en == null) {
+                        continue;
+                    }
+
+                    String des_en = cell_des_en.getStringCellValue();
+                    if (sou_en == null) {
+                        continue;
+                    }
+
+                    if (des_en.trim().toUpperCase().equals(sou_en.trim().toUpperCase())){
+                        find = true;
+                        row_index = j;
+                        break;
+                    }
+                }
+                if (find == true){
+                    if (spanish.length() < 1){continue;}
+                    Row row = sheet_des.getRow(row_index);
+                    Cell spanishCell = row.getCell(1);
+                    if (spanishCell == null){
+                        spanishCell = row.createCell(1);
+                    }
+                    spanishCell.setCellValue(spanish);
+                    out.println(String.format("&匹配成功:%s\n西班：%s",sou_en,spanish));
+                    out.println("***********************************");
+                }else{
+                    out.println(String.format("$匹配失败:%s",sou_en));
+                    out.println("###################################");
                 }
             }
 
             //输出流
-            FileOutputStream fileout = new FileOutputStream(old_trans);
+            FileOutputStream fileout = new FileOutputStream(destination);
             //写出
-            wb_old.write(fileout);
+            wb_des.write(fileout);
+            //关闭流
+            fileout.close();
+
+            des_input.close();
+            sou_input.close();
+
+            wb_des.close();
+            wb_sou.close();
+        }catch (Exception e){
+            out.println(String.format("error:%s",e.getMessage()));
+        }
+
+    }
+
+    /*global*/
+    public void replace_tran(String esPath,String englishPath,String toPath){
+        Workbook wb_new = null;
+        Workbook wb_old = null;
+        Workbook wb_to = null;
+        ZipSecureFile.setMinInflateRatio(-1.0d);
+        try {
+            FileInputStream old_input = new FileInputStream(esPath);
+            wb_old = WorkbookFactory.create(old_input);
+            Sheet es_sheet = wb_old.getSheetAt(0);
+            int es_rows = es_sheet.getLastRowNum();
+
+            FileInputStream new_input = new FileInputStream(englishPath);
+            wb_new = WorkbookFactory.create(new_input);
+            Sheet english_sheet = wb_new.getSheetAt(0);
+            int english_rows = english_sheet.getLastRowNum();
+
+            FileInputStream to_input = new FileInputStream(toPath);
+            wb_to = WorkbookFactory.create(to_input);
+            Sheet to_sheet = wb_to.getSheetAt(0);
+
+            for (int j = 0; j <= es_rows; j++) {
+                Row newRow = es_sheet.getRow(j);
+                if (newRow == null) {
+                    continue;
+                }
+                Cell es_english_cell = newRow.getCell(1);
+                if (es_english_cell == null) {
+                    continue;
+                }
+
+                String es_english = es_english_cell.getStringCellValue();
+                if (es_english == null) {
+                    continue;
+                }
+
+                boolean find = false;
+                String spanish = null;
+                int row_index = 0;
+                for (int i = 1; i <= english_rows; i++) {
+                    Row row = english_sheet.getRow(i);
+                    if (row == null){continue;}
+                    Cell english_cell = row.getCell(0);
+                    if (english_cell == null){ continue; }
+                    String englishString = english_cell.getStringCellValue();
+                    if (englishString == null){continue;}
+
+                    if (es_english.trim().equals(englishString.trim())) {
+                        find = true;
+                        spanish = newRow.getCell(2).getStringCellValue();
+                        row_index = i;
+                        break;
+                    }
+                    String new_english = getNewString(to_sheet, es_english);
+//                    out.println(String.format("新：%s",new_english));
+                    if (new_english != null && new_english.equals(englishString.trim())) {
+                        find = true;
+                        spanish = newRow.getCell(2).getStringCellValue();
+                        row_index = i;
+                        break;
+                    }
+                }
+                if (find == false){
+//                    out.println(String.format("%s--没找到匹配值",es_english));
+//                    out.println("$####################################");
+
+                }else{
+                    if (es_english.length() < 1){continue;}
+                    out.println(String.format("英语：%s\n西班牙：%s\nrow:%d",es_english,spanish,row_index));
+                    Row row = english_sheet.getRow(row_index);
+                    Cell spanishCell = row.getCell(1);
+                    if (spanishCell == null){
+                        spanishCell = row.createCell(1);
+                    }
+                    spanishCell.setCellValue(spanish);
+                    out.println("$********************************************");
+
+                }
+            }
+
+            //输出流
+            FileOutputStream fileout = new FileOutputStream(englishPath);
+            //写出
+            wb_new.write(fileout);
             //关闭流
             fileout.close();
 
             new_input.close();
             old_input.close();
+            to_input.close();
+
             wb_new.close();
             wb_old.close();
+            wb_to.close();
         }catch (Exception e){
             out.println(String.format("error:%s",e.getMessage()));
         }
+    }
+
+    public String getNewString(Sheet to_sheet,String old){
+        int to_rows = to_sheet.getLastRowNum();
+        for (int k = 0; k <= to_rows; k++) {
+            Row to_row = to_sheet.getRow(k);
+            if (to_row == null) {
+                continue;
+            }
+            Cell to_cell_old = to_row.getCell(0);
+            Cell to_cell_new = to_row.getCell(1);
+            if (to_cell_old == null || to_cell_new == null) {
+                continue;
+            }
+            String to_old_value = to_cell_old.getStringCellValue();
+            String to_new_value = to_cell_new.getStringCellValue();
+            if (to_old_value == null || to_new_value == null) {
+                continue;
+            }
+
+            if (old.trim().equals(to_old_value.trim())) {
+                return to_new_value;
+            }
+        }
+        return null;
     }
 
     //添加新的翻译内容
