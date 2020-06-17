@@ -2,7 +2,7 @@
 
    > 镜像其实就是一种文件格式，而且有很多种，就好比图片有PNG、JPG等等。镜像更多的反映的是一种压缩形式，它将多个文件搞成一个文件，就形成了镜像文件，它的格式有iso、bin等等
 
-2. 容器和镜像的关系
+2. 容器和镜像的关系？
 
 3. iso文件是什么
 
@@ -20,4 +20,22 @@
 
    > Compact Disc - ROM，CD是光盘的意思，也就是一个压缩的圆盘，综合来讲就是说CD是个只读内存
 
-7. 
+7. Host 是什么？
+
+   > Host 是一个主机，Virtual Host是虚拟主机，一般就是说在一台机器(Host)上装上Apache或者其他服务器软件，在Apache中配上多个站点(Virtual Host)
+
+8. Host Name是什么
+
+   > 站点的名称，就是<Virtual Host>内的Server Name
+
+9. DNS ？
+
+   > Domain Name System 域名解析系统，该系统将域名映射到对应的IP地址
+
+10. ISP？
+
+    > Internet Service Provider
+
+11. CDN
+
+    > Content Distribution Network
