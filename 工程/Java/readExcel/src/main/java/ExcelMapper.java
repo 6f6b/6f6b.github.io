@@ -10,6 +10,17 @@ import java.util.regex.Pattern;
 public class ExcelMapper {
     public PrintStream out = System.out;
 
+    public String getStringValueWith(Cell cell){
+        String str;
+        try{
+            str = cell.getStringCellValue();
+        }catch (Exception e){
+            Integer intv = (int)cell.getNumericCellValue();
+            str = String.format("%d",intv);
+        }
+        return str;
+    }
+
     public void merge(String destination,String source){
         Workbook wb_des = null;
         Workbook wb_sou = null;
@@ -25,7 +36,62 @@ public class ExcelMapper {
             Sheet sheet_sou = wb_sou.getSheetAt(0);
             int row_num_sou = sheet_sou.getLastRowNum();
 
-            for (int i = 0; i <= row_num_sou; i++) {
+
+            for (int i = 0; i <= row_num_des; i++) {
+                Row row_des = sheet_des.getRow(i);
+                if (row_des == null) {
+                    continue;
+                }
+                Cell cell_des_en = row_des.getCell(2);
+                if (cell_des_en == null) {
+                    continue;
+                }
+
+                int index = 3;
+                Cell cell_des_span = row_des.getCell(index);
+                if (cell_des_span == null){
+                    cell_des_span = row_des.createCell(index);
+                }
+
+                String des_en = getStringValueWith(cell_des_en);
+                if (des_en == null) {
+                    continue;
+                }
+                String des_span = getStringValueWith(cell_des_span);
+//                if (des_en.length() > 2){
+//                    cell_des_span.setCellValue(des_en+"$");
+//                }
+
+                if (des_span == null || des_span.length() < 1){
+                    out.println(String.format("*******************原始英:%s",des_en));
+                    for (int j=0;j<=row_num_sou;j++) {
+                        Row row_sou = sheet_sou.getRow(j);
+
+                        Cell cell_sou_en = row_sou.getCell(0);
+                        if (cell_sou_en == null) {
+                            continue;
+                        }
+
+                        Cell cell_sou_span = row_sou.getCell(1);
+                        if (cell_sou_span == null) {
+                            continue;
+                        }
+
+                        String sou_en = getStringValueWith(cell_sou_en);
+                        String sou_span = getStringValueWith(cell_sou_span);
+                        float leven = levenshtein(sou_en.trim().toUpperCase(),des_en.trim().toUpperCase());
+                        if (leven >= 1.0){
+                            cell_des_span.setCellValue(sou_span);
+                        }
+                        if (leven >= 0.2 && leven < 1.0){
+                            out.println(String.format("相似-%f\n->英:%s\n->西:%s",leven,sou_en,sou_span));
+                        }
+                    }
+                }
+
+            }
+
+            /*for (int i = 0; i <= row_num_sou; i++) {
                 Row row_sou = sheet_sou.getRow(i);
                 if (row_sou == null) {
                     continue;
@@ -82,7 +148,7 @@ public class ExcelMapper {
                     out.println(String.format("$匹配失败:%s",sou_en));
                     out.println("###################################");
                 }
-            }
+            }*/
 
             //输出流
             FileOutputStream fileout = new FileOutputStream(destination);
@@ -301,7 +367,7 @@ public class ExcelMapper {
      * @param str1
      * @param str2
      */
-    public void levenshtein(String str1,String str2) {
+    public float levenshtein(String str1,String str2) {
         //计算两个字符串的长度。
         int len1 = str1.length();
         int len2 = str2.length();
@@ -333,12 +399,13 @@ public class ExcelMapper {
         //System.out.println("差异步骤："+dif[len1][len2]);
         //计算相似度
         float similarity =1 - (float) dif[len1][len2] / Math.max(str1.length(), str2.length());
-        if (similarity >= 0.7 && similarity != 1.0 && similarity < 0.75){
-            out.println("*****************************************************");
-            out.println(str1);
-            out.println(str2);
-            System.out.println("相似度："+similarity);
-        }
+        return similarity;
+//        if (similarity >= 0.7 && similarity != 1.0 && similarity < 0.75){
+//            out.println("*****************************************************");
+//            out.println(str1);
+//            out.println(str2);
+//            System.out.println("相似度："+similarity);
+//        }
     }
 
     //得到最小值
