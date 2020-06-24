@@ -36,8 +36,8 @@ public class Main {
 //        String sou = "/Users/feng/Desktop/WORK/0103.xlsx";
 //        excelMapper.merge(des,sou);
 
-        resolveAction();
-//        resolveOperation();
+//        resolveAction();
+        resolveOperation();
 //        handleWords();
     }
 
