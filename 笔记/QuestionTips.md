@@ -39,3 +39,9 @@
 11. CDN
 
     > Content Distribution Network
+    
+12. POJOs
+
+13. DAOs
+
+    > data access objects，也就是我们熟知的数据模型
