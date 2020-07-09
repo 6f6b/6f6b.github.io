@@ -134,6 +134,46 @@ AOP auto-proxying是个什么东西？
 
 Because AOP auto-proxying is implemented as a BeanPostProcessor itself 怎么理解？
 
+Bean(Factory)PostProcessor 设置懒加载是没有效的，因为没有懒加载的使用场景，如果你要用这两个东西，那必定是要尽可能早的初始化他们
+
+当使用BeanFactoryPostProcessor的实现类如BeanPropertySourcePlaceholderConfigure来外部化bean的属性的时候，如果定义了多个properties文件，并且有多个相同的key时，占位符使用谁的值呢？
+
+> ​	In case of multiple `PropertyOverrideConfigurer` instances that define different values for the same bean property, the last one wins, due to the overriding mechanism.这可以解答上面的问题，但是新的问题又来了，the last one wins，who is the last？
+
+`context` namespace是个什么东西？它与<context:property-placeholder location="classpath:com/something/jdbc.properties"/> 有什么关联？
+
+it checks against Spring `Environment` properties and regular Java `System` properties.这里的Spring `Environment` properties指什么，在哪里可以看到？同问Java `System` properties
+
+If an overriding `Properties` file does not have an entry for a certain bean property,
+
+
+
+基于xml的容器配置和基于注解的容器配置孰优孰劣？
+
+简单地说：看情况
+
+详细的说：各有各的好处、各有各的缺点
+
+注解：
+
+1. 由于注解在其定义中提供了大量的上下文，使得用注解进行配置时更加简短和精炼
+
+Xml:
+
+1. 优点在于可以在不用接触源码或重新编译的源码的情况下连接组件
+
+
+
+ It is worth pointing out that through its [JavaConfig](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-java) option, Spring lets annotations be used in a non-invasive way,without touching the target components source code and that通过JavaConfig可以以一种非侵入性的方式使用注解，怎么实现的？侵入性是什么？有什么危害？
+
+
+
+ JSR-250 annotations是什么？
+
+if you put `<context:annotation-config/>` in a `WebApplicationContext` for a `DispatcherServlet`,怎么理解？
+
+WebApplicationContext 和 DispatcherServlet的关系
+
 
 
 
