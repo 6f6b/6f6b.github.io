@@ -134,7 +134,9 @@ AOP auto-proxying是个什么东西？
 
 Because AOP auto-proxying is implemented as a BeanPostProcessor itself 怎么理解？
 
+While it is technically possible to work with bean instances within a `BeanFactoryPostProcessor` (for example, by using `BeanFactory.getBean()`) BeanFactory是什么？
 
+Bean definitions in one container ，多个container怎么体现？一个bean定义在一个container中怎么体现
 
 
 
