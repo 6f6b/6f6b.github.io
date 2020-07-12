@@ -69,6 +69,10 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 ## Spring (Core Technologies) 
 
+You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+
+
+
 xml已作为一种传统的旧的提供元数据的格式，提供少量的xml文件来声明使用注解或者Java代码作为配置元数据格式
 
 
