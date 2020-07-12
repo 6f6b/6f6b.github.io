@@ -185,7 +185,31 @@ Bean definitions in one container ，多个container怎么体现？一个bean定
 
 
 
+@Autowire用在一般方法上表示什么意思？容器自动调用吗？
+
+@Priority注解不能用在方法上，他要表达的语义可以通过@Order和@Primary的结合来表达，那么@Priority究竟表达的是什么语义呢？@Order和@Primary又分别表达什么语义呢？
+
+当有多个构造函数的时候，容器解析算法是怎么样的？（即怎么决定使用哪一个构造函数）
+
+
+
+对于@Autowire在构造函数和工厂函数上的应用，我的理解是这样的：默认情况下单个或多个构造函数都是需要具备参数所需的bean，否则将返回一个空的实例，当加上@Autowire注解后，多个构造函数的情况仍然不变（基于容器的解析算法导致），而单个构造函数的情况下某些参数的bean匹配不上时，构造函数仍然可以成功调用
+
+
+
+Consider factoring out the affected methods to a separate delegate bean in such a scenario. Alternatively, you can use `@Resource`, which may obtain a proxy back to the current bean by its unique name.怎么理解？
+
+
+
+@Autowire与@Qualifire的结合使用，结合场景？
+
+the automatic translation of exceptions？
+
+
+
 有些东西能够容易的被理解，但是要怎么的去持久的记住它呢？
+
+能够保持长时间的专注是一种非常难得和宝贵的能力！
 
 
 
