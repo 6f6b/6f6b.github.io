@@ -138,6 +138,8 @@ AOP auto-proxying是个什么东西？
 
 Because AOP auto-proxying is implemented as a BeanPostProcessor itself 怎么理解？
 
+While it is technically possible to work with bean instances within a `BeanFactoryPostProcessor` (for example, by using `BeanFactory.getBean()`) BeanFactory是什么？
+
 Bean(Factory)PostProcessor 设置懒加载是没有效的，因为没有懒加载的使用场景，如果你要用这两个东西，那必定是要尽可能早的初始化他们
 
 当使用BeanFactoryPostProcessor的实现类如BeanPropertySourcePlaceholderConfigure来外部化bean的属性的时候，如果定义了多个properties文件，并且有多个相同的key时，占位符使用谁的值呢？
@@ -179,6 +181,7 @@ if you put `<context:annotation-config/>` in a `WebApplicationContext` for a `Di
 WebApplicationContext 和 DispatcherServlet的关系
 
 
+Bean definitions in one container ，多个container怎么体现？一个bean定义在一个container中怎么体现
 
 
 
