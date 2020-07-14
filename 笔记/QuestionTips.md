@@ -49,3 +49,10 @@
 14. JNDI
 
     > JNDI(Java Naming and Directory Interface,Java命名和目录接口)是[SUN公司](https://baike.baidu.com/item/SUN公司)提供的一种标准的Java命名系统接口
+    
+15. RPC
+
+    > Remote Procedure Control 远程过程调用
+    >
+    > https://www.jianshu.com/p/2accc2840a1b
+
