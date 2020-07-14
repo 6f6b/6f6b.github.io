@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Component
 @Service
+@Ap
 public class TestBean {
     private String name;
     public TestBean() {
