@@ -49,3 +49,7 @@
 14. JNDI
 
     > JNDI(Java Naming and Directory Interface,Java命名和目录接口)是[SUN公司](https://baike.baidu.com/item/SUN公司)提供的一种标准的Java命名系统接口
+
+15. CGLIB
+
+    > *CGLib* (Code Generation Library) 是一个强大的,高性能,高质量的Code生成类库。

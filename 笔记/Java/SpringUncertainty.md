@@ -207,6 +207,32 @@ the automatic translation of exceptions？
 
 
 
+给自动检测的组件进行命名，默认的命名策略是什么？如何自定义命名？为什么要自定义命名？
+
+> 对于Stereotype Annotation修饰的组件，可以使用这些注解的value来进行命名，若没有对其命名，则策略为使用首字母小写的类名来进行命名（若不同包中有相同类名时怎么命名？），因为想，所以自定义命名。
+
+
+
+ When working with this mode in your IDE, the `spring-context-indexer` must be registered as an annotation processor to make sure the index is up-to-date when candidate components are updated.
+
+must be registered as an annotation processor如何理解？这个annotation processor 如何确保index是最新的？这个annotation processor 如何生成index？
+
+ The index is enabled automatically when a `META-INF/spring.components` is found on the classpath. If an index is partially available for some libraries (or use cases) but could not be built for the whole application怎么理解？
+
+
+
+injection point ，什么是Injection point?
+
+
+
+如果学了一大半完全从头来过也是一件比较恼火的事，很打击人，但如果不重头再来一遍则难以加深理解，并且容易忘记，而且不利于后续内容的学习。所以最好的方式还是在学的过程中做好以下几点
+
+1. 尽可能能的深入理解看到的内容
+2. 梳理脉络，进行总结、做笔记
+3. 看了一小部分后回头来回顾以下
+
+
+
 有些东西能够容易的被理解，但是要怎么的去持久的记住它呢？
 
 能够保持长时间的专注是一种非常难得和宝贵的能力！
