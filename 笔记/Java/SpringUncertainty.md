@@ -225,6 +225,41 @@ injection point ，什么是Injection point?
 
 
 
+lite `@Bean` methods cannot declare inter-bean dependencies，什么是inter-bean dependencies
+
+Each such method is literally only a factory method for a particular bean reference(这里的particular bean reference是否指的就是该方法返回的实例？), without any special runtime semantics（怎么理解？）. The positive side-effect here is that **no CGLIB subclassing has to be applied at runtime**（粗体是什么意思？为什么它就是积极的了？）, so there are no limitations in terms of class design（为什么这样就没有limitation？如果有，limitation是什么？） (that is, the containing class may be `final` and so forth 这跟前面的语句有什么关联？).
+
+
+
+In common scenarios, `@Bean` methods are to be declared within `@Configuration` classes, ensuring that “full” mode is always used and that cross-method references therefore get redirected to the container’s lifecycle management. This prevents the same `@Bean` method from accidentally being invoked through a regular Java call, which helps to reduce subtle bugs that can be hard to track down when operating in “lite” mode.
+
+1. 什么是full model？
+2.  cross-method references是什么？是@Bean方法中调用了其他@Bean方法吗？
+3. 为什么在full model下cross-method references就会重定向到容器的生命周期管理中？这里的重定向又是具体指什么？
+4. the same @Bean method是什么意思？
+5. 阻止了he same @Bean method通过正常的Java调用，为什么要阻止？怎么阻止的？
+6.  reduce subtle bugs，为什么在 lite model下就会产生subtle bugs？
+
+
+
+依文档来看，当@Bean的返回类型不够完全的时候，匹配结果取决于匹配的时候该Bean实例是否已经实例化了，
+
+这是全类型匹配不完全类型的情况，那么当一个不全类型匹配全类型又是怎么样一种流程呢？
+
+
+
+ If you consistently refer to your types by a declared service interface, your `@Bean` return types may safely join that design decision（怎么理解这句话？）. However, for components that implement several interfaces or for components potentially referred to by their implementation type, it is safer to declare the most specific return type possible (at least as specific as required by the injection points that refer to your bean)
+
+
+
+依赖注入带来的好处：
+
+1. 使得代码更加的干净
+2. 有效解耦（不需要查找依赖或者关注依赖从何而来）
+3. 更加容易进行单元测试
+
+
+
 如果学了一大半完全从头来过也是一件比较恼火的事，很打击人，但如果不重头再来一遍则难以加深理解，并且容易忘记，而且不利于后续内容的学习。所以最好的方式还是在学的过程中做好以下几点
 
 1. 尽可能能的深入理解看到的内容

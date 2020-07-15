@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @ComponentScan
 @Service
 @Configuration
+@Autowired
 public class Boot {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/apps.xml");
