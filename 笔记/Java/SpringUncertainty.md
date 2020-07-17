@@ -225,6 +225,14 @@ injection point ，什么是Injection point?
 
 
 
+什么是lite @Bean method？
+
+> 当@Bean method位于一个没有被@Configuration缩注释的类中时，这个method就叫lite @Bean method
+
+ inter-bean dependencies.是什么？
+
+
+
 lite `@Bean` methods cannot declare inter-bean dependencies，什么是inter-bean dependencies
 
 Each such method is literally only a factory method for a particular bean reference(这里的particular bean reference是否指的就是该方法返回的实例？), without any special runtime semantics（怎么理解？）. The positive side-effect here is that **no CGLIB subclassing has to be applied at runtime**（粗体是什么意思？为什么它就是积极的了？）, so there are no limitations in terms of class design（为什么这样就没有limitation？如果有，limitation是什么？） (that is, the containing class may be `final` and so forth 这跟前面的语句有什么关联？).
@@ -252,11 +260,25 @@ In common scenarios, `@Bean` methods are to be declared within `@Configuration` 
 
 
 
+ If a `@Configuration` class is marked with `@Profile`, all of the `@Bean` methods and `@Import` annotations associated with that class are bypassed unless one or more of the specified profiles are active.怎么active one or more Profiles？active more profiles会不会有问题？
+
+
+
+当一个配置类中有多个方法名相同的重载方法时，这些方法上的@Profile中的condition需要是一致的，如果不一致的话only the condition on the first declaration among the overloaded methods matters.？如果一致的话，使用哪个方法按照spring的解析算法来决定
+
+
+
+ The `@PropertySource` annotation is repeatable, according to Java 8 conventions. However, all such `@PropertySource` annotations need to be declared at the same level（same level是指？）, either directly on the configuration class or as meta-annotations within the same custom annotation. Mixing direct annotations and meta-annotations is not recommended, since direct annotations effectively override meta-annotations.
+
+
+
 依赖注入带来的好处：
 
 1. 使得代码更加的干净
 2. 有效解耦（不需要查找依赖或者关注依赖从何而来）
 3. 更加容易进行单元测试
+
+
 
 
 
