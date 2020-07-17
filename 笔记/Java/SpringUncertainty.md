@@ -272,12 +272,33 @@ In common scenarios, `@Bean` methods are to be declared within `@Configuration` 
 
 
 
+In particular, make sure to always do it for a `DataSource`, as it is known to be problematic on Java EE application servers.这里的do it是指@Bean(destroyMethod="")，这里的problematic是指什么？
+
+
+
+scoped-proxy
+
+As noted earlier, [lookup method injection](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-method-injection) is an advanced feature that you should use rarely. It is useful in cases where a singleton-scoped bean has a dependency on a prototype-scoped bean，为什么
+
+
+
+
+
+Make sure that the dependencies you inject that way are of the simplest kind only. `@Configuration` classes are processed quite early during the initialization of the context, and forcing a dependency to be injected this way may lead to unexpected early initialization. Whenever possible, resort to parameter-based injection, as in the preceding example.
+
+Also, be particularly careful with `BeanPostProcessor` and `BeanFactoryPostProcessor` definitions through `@Bean`. Those should usually be declared as `static @Bean` methods, not triggering the instantiation of their containing configuration class. Otherwise, `@Autowired` and `@Value` may not work on the configuration class itself, since it is possible to create it as a bean instance earlier than [`AutowiredAnnotationBeanPostProcessor`](https://docs.spring.io/spring-framework/docs/5.2.7.RELEASE/javadoc-api/org/springframework/beans/factory/annotation/AutowiredAnnotationBeanPostProcessor.html).
+
+
+
+property-placeholder 在xml和Annotation中的使用方式？
+
+
+
 依赖注入带来的好处：
 
 1. 使得代码更加的干净
 2. 有效解耦（不需要查找依赖或者关注依赖从何而来）
 3. 更加容易进行单元测试
-
 
 
 
