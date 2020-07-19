@@ -292,6 +292,18 @@ Also, be particularly careful with `BeanPostProcessor` and `BeanFactoryPostProce
 
 property-placeholder 在xml和Annotation中的使用方式？
 
+Spring also provides the `HierarchicalMessageSource` interface, which can resolve messages hierarchically.（最后一句怎么理解？）
+
+The example assumes that you have three resource bundles called `format`, `exceptions` and `windows` defined in your classpath.resource bundles是什么？classpath是什么？
+
+
+
+The event type can also be narrowed through generics as long as the actual event type resolves your generic parameter in its implementation hierarchy.
+
+
+
+RAR deployment is a more natural alternative to a scenario of deploying a headless WAR file 为什么说rar是一种更自然的方案？为什么说war file是headless
+
 
 
 依赖注入带来的好处：
