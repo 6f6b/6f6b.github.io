@@ -306,6 +306,29 @@ RAR deployment is a more natural alternative to a scenario of deploying a headle
 
 
 
+Application-level beans may use the same callback interfaces but typically prefer declarative dependency injection instead, either through annotations or through programmatic configuration.（Application-level beans是指什么样的bean？还有其他level的bean吗？）
+
+
+
+ Within an `ApplicationContext` (such as the `GenericApplicationContext` implementation), several kinds of beans are detected by convention (that is, by bean name or by bean type — in particular, post-processors), while a plain `DefaultListableBeanFactory` is agnostic about any special beans.最后这一句话是什么意思？
+
+
+
+core container的all common purposes:
+
+1. loading of configuration files
+2.  triggering a classpath scan
+3. programmatically registering bean definitions and annotated classes
+4.  (as of 5.0) registering functional bean definitions.
+
+
+
+为什么单独使用DefaultListableBeanFactory时post-processors默认不会被侦测和激活？其他bean是否也是这样？
+
+ServletContext
+
+
+
 依赖注入带来的好处：
 
 1. 使得代码更加的干净
