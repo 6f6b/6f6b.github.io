@@ -327,6 +327,8 @@ core container的all common purposes:
 
 ServletContext
 
+a Spring IoC container ultimately uses standard JavaBeans `PropertyEditor` implementations to convert these strings to the complex type of the property怎么决定选用哪一个PropertyEditor实现来进行转换
+
 
 
 依赖注入带来的好处：
