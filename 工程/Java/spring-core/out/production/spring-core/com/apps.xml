@@ -15,9 +15,19 @@
 <!--        <constructor-arg value="dev"/>-->
 <!--    </bean>-->
 
-    <beans profile="development">
+    <beans>
         <bean name="customEnvironment" class="com.CustomEnvironment">
             <constructor-arg value="dev"/>
         </bean>
+        <bean name="person" class="com.Person">
+            <property name="dog" value="Hello"></property>
+        </bean>
+<!--        <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
+<!--            <property name="customEditors">-->
+<!--                <map>-->
+<!--                    <entry key="com.Dog" value="com.DogPropertyEditor"></entry>-->
+<!--                </map>-->
+<!--            </property>-->
+<!--        </bean>-->
     </beans>
 </beans>
