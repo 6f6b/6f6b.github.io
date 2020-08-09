@@ -93,7 +93,7 @@ public class LeetCode {
                         if (seq.size() > 0){
                             int addN = retrieveAddOperationNumWith(seq);
                             int changeN = retrieveChangeOperationNumWith(seq);
-                            if (addNum >= changeN){return addNum;}
+                            if (addNum >= addN){return addNum;}
                             else{
 
                             }
@@ -161,6 +161,19 @@ public class LeetCode {
 
     int retrieveChangeOperationNumWith(ArrayList<Integer> seq,int addNum){
         return 1;
+    }
+
+    public int retrieveChangeAfterAddOperationNumWith(ArrayList<Integer> seq,int addNum){
+        if (addNum == 0){
+            return retrieveChangeOperationNumWith(seq);
+        }
+
+        for (int i = 0; i < seq.size(); i++) {
+            int n = seq.get(i);
+//            op += n/3;
+        }
+        //to delete
+        return 0;
     }
 
     //变需要的最少次数

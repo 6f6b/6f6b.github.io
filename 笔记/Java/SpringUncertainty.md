@@ -69,25 +69,48 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 ## Spring (Core Technologies) 
 
+1. Spring是一个框架，这个框架有什么用？
+
+   > 1. 使得创建企业级Java应用变得更加容易
+   > 2. 支持大量的应用场景
+   > 3. 拥有庞大的并活跃的社区，使得Spring能够在非常长的时间内不断演变
+   > 4. The term "Spring" means different things in different contexts.
+
+2. Spring的设计哲学
+
+   > 1. 使你决定要使用哪个外部框架这件事尽可能靠后，并通过配置进行修改即可，而无需修改代码
+   > 2. 兼容并包、灵活
+   > 3. 向后兼容，每次升级只进行小的改动
+   > 4. 花费大量时间进行小心的设计api
+   > 5. 高质量代码
+
+3. The `org.springframework.context.ApplicationContext` interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans. The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code. It lets you express the objects that compose your application and the rich interdependencies between those objects.
+
+   > ApplicationContext就代表Spring的IOC容器，它负责对bean进行实例化、配置、组装，那么怎么进行实例化、配置、组装呢？这就通过读取配置元数据来进行指导，配置元数据通过xml、Java注解、Java代码来进行表现。
+
+4. xml已作为一种传统的旧的提供元数据的格式，提供少量的xml文件来声明使用注解或者Java代码作为配置元数据格式
+
+   > 也就是说你如果要使用Java注解或Java代码来作为配置元数据格式的话，必须还得通过xml声明了才得行
+
+5. local file system 和 Java的CLASSPATH的区别是什么？
+
+   > 两个都是path，也就是说两个都是指路径，只不过这两个路径的值不一样？？
+
+6. @Bean通常作用在一个被@Configuration注解的类的方法上（这样的类称为配置类）
+
+7. AspectJ
+
+   > 可理解为Java演化出来的一个新的语言，用于进行AOP开发
+
+8. it is better form not to use the slash at all 定义资源路径的时候前面最好不加斜杠
+
+9. 
+
 You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
 
 
 
-xml已作为一种传统的旧的提供元数据的格式，提供少量的xml文件来声明使用注解或者Java代码作为配置元数据格式
-
-
-
-@Bean通常作用在一个被@Configuration注解的类的方法上（这样的类称为配置类）
-
-Service Layers、Data Access Objects(DAO)、presentation Objects
-
-Hibernate、SessionFactories、JMS `Queues`
-
-AspectJ
-
-it is better form not to use the slash at all 定义资源路径的时候前面最好不加斜杠
-
-##### Groovy
+Groovy是个什么东西？
 
 Bean实例化的时候提供参数、以及设置属性的机制需要查看依赖注入
 
@@ -328,6 +351,10 @@ core container的all common purposes:
 ServletContext
 
 a Spring IoC container ultimately uses standard JavaBeans `PropertyEditor` implementations to convert these strings to the complex type of the property怎么决定选用哪一个PropertyEditor实现来进行转换
+
+
+
+There are pros and cons for considering validation as business logic（为什么有优点又有缺点？优点是什么？缺点是什么？）, and Spring offers a design for validation (and data binding) that does not exclude either one of them. Specifically, validation should not be tied to the web tier （为什么？）and should be easy to localize, and it should be possible to plug in any available validator. Considering these concerns, Spring provides a `Validator` contract that is both basic and eminently usable in every layer of an application.（一个application 分为哪些层？怎么体现的？）
 
 
 

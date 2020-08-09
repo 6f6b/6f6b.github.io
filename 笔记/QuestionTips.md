@@ -59,3 +59,15 @@
 15. CGLIB
 
     > *CGLib* (Code Generation Library) 是一个强大的,高性能,高质量的Code生成类库。
+    
+17. Hibernate
+
+    > 是一个框架，它对JDBC进行了非常轻量级的封装，使得开发人员操纵数据库可以按照对象思维来进行操作。类似于iOS开发中的Realm。
+
+18. JMS
+
+    > Java Message Service 
+
+19. DSL
+
+    > Domain Specific Language 领域特定语言

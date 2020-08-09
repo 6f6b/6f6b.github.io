@@ -5,13 +5,14 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import java.util.List;
 
 public class Person {
-    public List<Dog> dogs;
+    public String name;
+    public Dog dog;
 
-    public List<Dog> getDogs() {
-        return dogs;
+    public void setDog(Dog dog) {
+        this.dog = dog;
     }
 
-    public void setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
+    public void setName(String name) {
+        this.name = name;
     }
 }
