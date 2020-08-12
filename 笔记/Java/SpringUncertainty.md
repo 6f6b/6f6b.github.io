@@ -104,9 +104,15 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 8. it is better form not to use the slash at all 定义资源路径的时候前面最好不加斜杠
 
-9. 
+9. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
 
-You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+   > ?
+
+10. Bean的个性化定制
+
+    > 1. bean的声明周期回调
+    >    1. 初始化
+    >    2. 销毁
 
 
 

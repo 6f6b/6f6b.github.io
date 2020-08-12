@@ -9,4 +9,12 @@
         <property name="name" value="毛泽东"></property>
         <property name="dog" ref="dog"></property>
     </bean>
+    <bean id="commandManager" name="commandManager" class="com.CommandManager">
+        <lookup-method name="createCommand" bean="command"></lookup-method>
+    </bean>
+
+    <bean id="command" name="command" class="com.Command">
+        <property name="name" value="Command1"></property>
+    </bean>
+
 </beans>
