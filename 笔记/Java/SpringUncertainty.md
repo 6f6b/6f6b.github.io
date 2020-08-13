@@ -68,8 +68,7 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 
 ## Spring (Core Technologies) 
-
-1. Spring是一个框架，这个框架有什么用？
+1. #####Spring Overview，Spring是一个框架，这个框架有什么用？
 
    > 1. 使得创建企业级Java应用变得更加容易
    > 2. 支持大量的应用场景
@@ -84,37 +83,59 @@ JDBC、hibernate、Mybatis、数据库的CRUD
    > 4. 花费大量时间进行小心的设计api
    > 5. 高质量代码
 
-3. The `org.springframework.context.ApplicationContext` interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans. The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code. It lets you express the objects that compose your application and the rich interdependencies between those objects.
+3. ##### 容器
+
+   > 1. 容器用到的配置元数据
+   > 2. 容器的实例化
+   > 3. 容器的使用
+
+4. The `org.springframework.context.ApplicationContext` interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans. The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code. It lets you express the objects that compose your application and the rich interdependencies between those objects.
 
    > ApplicationContext就代表Spring的IOC容器，它负责对bean进行实例化、配置、组装，那么怎么进行实例化、配置、组装呢？这就通过读取配置元数据来进行指导，配置元数据通过xml、Java注解、Java代码来进行表现。
 
-4. xml已作为一种传统的旧的提供元数据的格式，提供少量的xml文件来声明使用注解或者Java代码作为配置元数据格式
+5. xml已作为一种传统的旧的提供元数据的格式，提供少量的xml文件来声明使用注解或者Java代码作为配置元数据格式
 
    > 也就是说你如果要使用Java注解或Java代码来作为配置元数据格式的话，必须还得通过xml声明了才得行
 
-5. local file system 和 Java的CLASSPATH的区别是什么？
+6. local file system 和 Java的CLASSPATH的区别是什么？
 
    > 两个都是path，也就是说两个都是指路径，只不过这两个路径的值不一样？？
 
-6. @Bean通常作用在一个被@Configuration注解的类的方法上（这样的类称为配置类）
+7. @Bean通常作用在一个被@Configuration注解的类的方法上（这样的类称为配置类）
 
-7. AspectJ
+8. AspectJ
 
    > 可理解为Java演化出来的一个新的语言，用于进行AOP开发
 
-8. it is better form not to use the slash at all 定义资源路径的时候前面最好不加斜杠
+9. it is better form not to use the slash at all 定义资源路径的时候前面最好不加斜杠
 
-9. 
+10. #####Bean
 
-You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+   > 1. bean的名字
+   > 2. 实例化
+   >    1. 构造函数
+   >    2. 静态工厂方法
+   >    3. 实例工厂方法
 
+11. Bean Overview
 
+    > 在容器中，那些bean的定义(通过xml、Annotation、Javacode)表现为一个个的BeanDefinition对象，这些对象包含(不限于)以下信息
+    >
+    > 1. bean的完整类名
+    > 2. bean的行为(域、生命周期、回调 ...)配置元素
+    > 3. 对其他bean的引用
 
-Groovy是个什么东西？
+12. ##### Dependency Injection
 
-Bean实例化的时候提供参数、以及设置属性的机制需要查看依赖注入
+    > 依赖注入是一个处理过程，这个过程就是容器给bean注入依赖，那么他怎么注入呢？根据什么来注入呢？答案是根据构造函数中的参数、工厂方法中的参数、实例化后设置的bean的属性
 
-依赖注入原理、依赖注入目的
+13. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+
+14. 依赖注入原理、依赖注入目的
+
+    > 原理：通过解析配置元数据来动态的生成相应的实例
+    >
+    > 目的：使用依赖由主动变被动，形成一种松散耦合结构
 
 
 

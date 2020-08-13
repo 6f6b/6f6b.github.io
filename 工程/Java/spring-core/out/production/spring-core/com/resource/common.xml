@@ -7,6 +7,8 @@
 
     <bean id="maozedong" class="com.Person">
         <property name="name" value="毛泽东"></property>
-        <property name="dog" ref="dog"></property>
+        <property name="dog" ref="dog2"></property>
     </bean>
+
+    <bean id="postProccessor" class="com.PostProccessor"></bean>
 </beans>

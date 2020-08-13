@@ -42,6 +42,8 @@
     
 12. POJOs
 
+    > Plain Ordinary Java Objects，普通的Java对象
+
 13. DAOs
 
     > data access objects，也就是我们熟知的数据模型
@@ -56,10 +58,10 @@
     >
     > https://www.jianshu.com/p/2accc2840a1b
 
-15. CGLIB
+16. CGLIB
 
     > *CGLib* (Code Generation Library) 是一个强大的,高性能,高质量的Code生成类库。
-    
+
 17. Hibernate
 
     > 是一个框架，它对JDBC进行了非常轻量级的封装，使得开发人员操纵数据库可以按照对象思维来进行操作。类似于iOS开发中的Realm。

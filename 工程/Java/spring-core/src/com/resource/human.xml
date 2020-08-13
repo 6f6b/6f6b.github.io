@@ -7,9 +7,9 @@
 <!--        <property name="name" value="america"></property>-->
 <!--    </bean>-->
 
-    <bean id="liufeng" class="com.Person">
-        <property name="dog" ref="dogJpan"></property>
-        <property name="name" value="liufeng"></property>
+    <bean id="liufeng" class="com.PersonFactory" factory-method="createPerson">
+        <property name="dog" ref="dog3"></property>
+<!--        <property name="name" value="liufeng"></property>-->
     </bean>
 
     <!--    <bean id="dog" class="com.Dog"/>-->
