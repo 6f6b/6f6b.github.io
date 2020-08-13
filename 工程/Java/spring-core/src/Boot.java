@@ -5,6 +5,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
 
 public class Boot {
 
@@ -13,6 +18,9 @@ public class Boot {
         ApplicationContext context = new ClassPathXmlApplicationContext("com/resource/common.xml");
 //        GenericApplicationContext context = new GenericApplicationContext();
 //        ConfigurableListableBeanFactory factory = context.getBeanFactory();
+//        new XmlBeanDefinitionReader(context).loadBeanDefinitions("com/resource/common.xml");
+//        context.refresh();
+
         Person mao = context.getBean("maozedong",Person.class);
 
         System.out.println(mao.name);
@@ -21,6 +29,9 @@ public class Boot {
         Person liufeng = context.getBean("liufeng",Person.class);
         System.out.println(liufeng.name);
         System.out.println(liufeng.dog.name);
+
+        CommandManager manager = context.getBean("commandManager",CommandManager.class);
+        manager.excute();
     }
 
 }

@@ -11,4 +11,12 @@
     </bean>
 
     <bean id="postProccessor" class="com.PostProccessor"></bean>
+    <bean id="commandManager" name="commandManager" class="com.CommandManager" scope="singleton">
+        <lookup-method name="createCommand" bean="command"></lookup-method>
+    </bean>
+
+    <bean id="command" name="command" class="com.Command" init-method="">
+        <property name="name" value="Command1"></property>
+    </bean>
+
 </beans>

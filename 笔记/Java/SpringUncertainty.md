@@ -124,6 +124,15 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     > 1. bean的完整类名
     > 2. bean的行为(域、生命周期、回调 ...)配置元素
     > 3. 对其他bean的引用
+9. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+
+   > ?
+
+10. Bean的个性化定制
+
+    > 1. bean的声明周期回调
+    >    1. 初始化
+    >    2. 销毁
 
 12. ##### Dependency Injection
 
