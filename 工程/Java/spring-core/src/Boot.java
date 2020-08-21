@@ -1,4 +1,5 @@
 import com.*;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -32,6 +33,7 @@ public class Boot {
 
         CommandManager manager = context.getBean("commandManager",CommandManager.class);
         manager.excute();
+
     }
 
 }
