@@ -31,7 +31,6 @@ public class HelloController {
     @GetMapping("/hello")
     @WebLog
     public String handle(Object ojc){
-        InternalResourceViewResolver
         return ojc.toString();
     }
 

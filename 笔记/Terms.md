@@ -1,3 +1,5 @@
+#术语
+
 1. 什么是镜像
 
    > 镜像其实就是一种文件格式，而且有很多种，就好比图片有PNG、JPG等等。镜像更多的反映的是一种压缩形式，它将多个文件搞成一个文件，就形成了镜像文件，它的格式有iso、bin等等
@@ -34,12 +36,12 @@
 
 10. ISP？
 
-    > Internet Service Provider
+   > Internet Service Provider
 
 11. CDN
 
     > Content Distribution Network
-    
+
 12. POJOs
 
     > Plain Ordinary Java Objects，普通的Java对象
@@ -73,3 +75,33 @@
 19. DSL
 
     > Domain Specific Language 领域特定语言
+
+20. SPI机制
+
+    > ​	SPI ，全称为 Service Provider Interface，是一种服务发现机制。它通过在ClassPath路径下的META-INF/services文件夹查找文件，自动加载文件里所定义的类.
+
+21. CRM系统
+
+    > customer relationship manager 客户关系管理系统
+
+22. jar
+
+    > Java Archive，Java归档文件，包含编译后的class文件以及所依赖的其他jar文件
+
+23. war
+
+    > web archive，就是一个Java web项目打出来的包，放在Tomcat容器的webapps目录下会自动解压并运行
+
+24. -Xss
+
+    > 规定了每个线程虚拟机栈及堆栈的大小，一般情况下，256k是足够的，此配置将会影响此进程中并发线程数的大小。
+    
+25. -Xms
+
+    > 表示初始化JAVA堆的大小及该进程刚创建出来的时候，他的专属JAVA堆的大小，一旦对象容量超过了JAVA堆的初始容量，JAVA堆将会自动扩容到-Xmx大小。
+
+26. -Xmx
+
+    > 表示java堆可以扩展到的最大值，在很多情况下，通常将-Xms和-Xmx设置成一样的，因为当堆不够用而发生扩容时，会发生内存抖动影响程序运行时的稳定性。
+
+27. 

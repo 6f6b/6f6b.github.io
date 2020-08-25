@@ -35,8 +35,6 @@
 
 
 
-CRM系统：customer relationship manager 客户关系管理系统
-
 
 
 Java EE 体系结构
@@ -145,6 +143,8 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     > 原理：通过解析配置元数据来动态的生成相应的实例
     >
     > 目的：使用依赖由主动变被动，形成一种松散耦合结构
+    
+17. 如何在IDEA中搜索maven库？
 
 
 
@@ -410,6 +410,35 @@ There are pros and cons for considering validation as business logic（为什么
 能够保持长时间的专注是一种非常难得和宝贵的能力！
 
 
+
+## Spring-Boot
+
+1. Auto-configuration
+
+   > 自动配置的机制:根据开发者添加的依赖包来决定需要自动配置哪些bean
+   >
+   > 有几个问题：
+   >
+   > 1. 它会自动给我配置什么bean？
+   >
+   >    > 调试模式下进行查看
+   >
+   > 2. 如何禁止某个自动配置类？
+   >
+   >    > (exclude={DataSourceAutoConfiguration.class})
+   >
+   > 3. 如何替换自动配置的bean？
+   >
+   >    > 定义好你想配置的bean就行了
+
+2. Lazy Initialization
+
+   > 懒加载的好处应该是可以减少启动时间
+   >
+   > 缺点：
+   >
+   > 1. 问题不能提早暴露，比如某些bean缺失
+   > 2. jvm 空间不够，只足够启动期间初始化的那些bean
 
 
 
