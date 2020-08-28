@@ -440,5 +440,17 @@ There are pros and cons for considering validation as business logic（为什么
    > 1. 问题不能提早暴露，比如某些bean缺失
    > 2. jvm 空间不够，只足够启动期间初始化的那些bean
 
+3. Externalized Configuration
 
+   > 有什么好处：
+   >
+   > 1. 一个相同的应用程序可以运行在不同的环境下
+   >
+   > 有哪些方式：
+   >
+   > 1. property files
+   > 2. yaml
+   > 3. 环境变量
+   > 4. 命令行参数
 
+4. 

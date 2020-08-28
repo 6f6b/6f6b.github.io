@@ -1,6 +1,11 @@
 package com.example.springmvcdemo.controllers;
 
 import com.example.springmvcdemo.aop.aspect.WebLog;
+import com.example.springmvcdemo.del.AcmeProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,10 +21,42 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.ServletContext;
+import java.util.Map;
 
 @RestController
 @RequestMapping("hello/")
+@ConfigurationProperties(prefix = "hello")
 public class HelloController {
+    String name;
+    Integer age;
+    Map<String,String> map;
+
+    @Autowired
+    private AcmeProperties acmeProperties;
+
+    public Map<String, String> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, String> map) {
+        this.map = map;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
     @GetMapping("/")
     public String home() {
@@ -31,8 +68,9 @@ public class HelloController {
     @GetMapping("/hello")
     @WebLog
     public String handle(Object ojc){
-        return ojc.toString();
+        return name + age.toString() + "岁";
     }
+
 
 //
 //    @InitBinder
