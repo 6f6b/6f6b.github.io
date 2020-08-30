@@ -14,10 +14,12 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.diagnostics.FailureAnalyzer;
 import org.springframework.boot.env.YamlPropertySourceLoader;
+import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
@@ -44,5 +46,6 @@ public class SpringMvcDemoApplication {
         SpringApplication application = new SpringApplication(SpringMvcDemoApplication.class);
         application.addListeners();
         application.run(args);
+//        DelegatingMessageSource
     }
 }

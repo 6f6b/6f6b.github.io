@@ -152,6 +152,12 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 我可以配置多个BeanPostProcessor实例，并且可以通过order来控制这些实例被执行的顺序，问题是我怎么配置这多个实例？如果我不设置order，那么它的默认order是什么？设置order的动机可能是什么？
 
+> 这些实例的配置方式跟普通的bean是一样的配置方式
+>
+> 默认order不知道
+>
+> 设置order的动机：比如要搞一个Chain of Resolvers
+
 扩展Container的目的是什么？解决什么问题？
 
 实例化instantiating和初始化initialization的区别是什么？
@@ -453,4 +459,6 @@ There are pros and cons for considering validation as business logic（为什么
    > 3. 环境变量
    > 4. 命令行参数
 
-4. 
+4. 日志文件超过10MB开始轮转
+
+5. Log files rotate when they reach 10 MB and, as with console output, `ERROR`-level, `WARN`-level, and `INFO`-level messages are logged by default. Size limits can be changed using the `logging.file.max-size` property. Rotated log files of the last 7 days are kept by default unless the `logging.file.max-history` property has been set. The total size of log archives can be capped using `logging.file.total-size-cap`. When the total size of log archives exceeds that threshold, backups will be deleted.

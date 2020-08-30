@@ -2,11 +2,14 @@ package com.example.springmvcdemo.controllers;
 
 import com.example.springmvcdemo.aop.aspect.WebLog;
 import com.example.springmvcdemo.del.AcmeProperties;
+import com.example.springmvcdemo.utils.LocalUtils;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.ServletContext;
+import java.util.Locale;
 import java.util.Map;
 
 @RestController
@@ -30,6 +34,9 @@ public class HelloController {
     String name;
     Integer age;
     Map<String,String> map;
+
+    @Autowired
+    MessageSource messageSource;
 
     @Autowired
     private AcmeProperties acmeProperties;
@@ -68,7 +75,10 @@ public class HelloController {
     @GetMapping("/hello")
     @WebLog
     public String handle(Object ojc){
-        return name + age.toString() + "岁";
+        String message = this.messageSource.getMessage("user.login",
+                new Object [] {"userDao"}, "Required", Locale.ENGLISH);
+        return message;
+//        return name + age.toString() + "岁";
     }
 
 
