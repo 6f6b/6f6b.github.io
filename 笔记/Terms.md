@@ -104,4 +104,6 @@
 
     > 表示java堆可以扩展到的最大值，在很多情况下，通常将-Xms和-Xmx设置成一样的，因为当堆不够用而发生扩容时，会发生内存抖动影响程序运行时的稳定性。
 
-27. 
+27. HATEOAS
+
+    > Hypermedia as the engine of application state？

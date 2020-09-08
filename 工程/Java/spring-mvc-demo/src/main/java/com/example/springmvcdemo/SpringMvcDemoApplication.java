@@ -13,6 +13,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -28,8 +30,10 @@ import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
@@ -82,5 +86,6 @@ public class SpringMvcDemoApplication {
         System.out.println(json);
         Person person1 = objectMapper.readValue(json,Person.class);
         System.out.println(person1.toString());
+        //ErrorViewResolver
     }
 }

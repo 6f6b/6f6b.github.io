@@ -462,3 +462,7 @@ There are pros and cons for considering validation as business logic（为什么
 4. 日志文件超过10MB开始轮转
 
 5. Log files rotate when they reach 10 MB and, as with console output, `ERROR`-level, `WARN`-level, and `INFO`-level messages are logged by default. Size limits can be changed using the `logging.file.max-size` property. Rotated log files of the last 7 days are kept by default unless the `logging.file.max-history` property has been set. The total size of log archives can be capped using `logging.file.total-size-cap`. When the total size of log archives exceeds that threshold, backups will be deleted.
+
+6. HATEOAS 与 RESTful？
+
+7. 
