@@ -104,4 +104,13 @@
 
     > 表示java堆可以扩展到的最大值，在很多情况下，通常将-Xms和-Xmx设置成一样的，因为当堆不够用而发生扩容时，会发生内存抖动影响程序运行时的稳定性。
 
-27. 
+27. SQL
+
+    > Structured Query Language 结构化查询语句
+
+28. SQL的四种类型
+
+    > 1. DQL（Data Query Language） 数据查询语句
+    > 2. DML（Data Manipulation Language） 数据操纵语句
+    > 3. DDL（Data Definition Language） 数据定义语句
+    > 4. DCL（Data Control Language） 数据控制语句
