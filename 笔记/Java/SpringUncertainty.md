@@ -479,3 +479,4 @@ There are pros and cons for considering validation as business logic（为什么
    >
    > 参考：https://www.cnblogs.com/yunche/p/10279324.html
 
+6. HATEOAS 与 RESTful？

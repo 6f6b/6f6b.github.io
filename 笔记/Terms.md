@@ -114,3 +114,6 @@
     > 2. DML（Data Manipulation Language） 数据操纵语句
     > 3. DDL（Data Definition Language） 数据定义语句
     > 4. DCL（Data Control Language） 数据控制语句
+27. HATEOAS
+
+    > Hypermedia as the engine of application state？
