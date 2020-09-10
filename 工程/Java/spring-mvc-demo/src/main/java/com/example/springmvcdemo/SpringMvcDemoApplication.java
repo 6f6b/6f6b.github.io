@@ -1,5 +1,6 @@
 package com.example.springmvcdemo;
 
+import com.example.springmvcdemo.config.Swagger;
 import com.example.springmvcdemo.dao.Person;
 import com.example.springmvcdemo.del.AcmeProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,6 +25,7 @@ import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.DelegatingMessageSource;
@@ -33,6 +35,8 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 import javax.servlet.ServletContext;
@@ -86,6 +90,6 @@ public class SpringMvcDemoApplication {
         System.out.println(json);
         Person person1 = objectMapper.readValue(json,Person.class);
         System.out.println(person1.toString());
-        //ErrorViewResolver
+
     }
 }

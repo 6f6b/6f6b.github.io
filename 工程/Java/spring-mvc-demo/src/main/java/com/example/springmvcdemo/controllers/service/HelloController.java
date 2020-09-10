@@ -1,10 +1,13 @@
-package com.example.springmvcdemo.controllers;
+package com.example.springmvcdemo.controllers.service;
 
 import com.example.springmvcdemo.aop.aspect.WebLog;
 import com.example.springmvcdemo.del.AcmeProperties;
 import com.example.springmvcdemo.utils.LocalUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
@@ -30,6 +33,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("hello/")
 @ConfigurationProperties(prefix = "hello")
+@Api(tags = {"Hello Controller","Hello 控制器"})
 public class HelloController {
     String name;
     Integer age;
@@ -65,20 +69,13 @@ public class HelloController {
         this.age = age;
     }
 
-    @GetMapping("/")
-    public String home() {
-        int[] arr = {1};
-        int a = arr[1];
-        return "hello";
-    }
-
     @GetMapping("/hello")
     @WebLog
-    public String handle(Object ojc){
+    @ApiOperation("handle")
+    public String handle(@RequestParam(value = "对象",required = true) Object ojc){
         String message = this.messageSource.getMessage("user.login",
                 new Object [] {"userDao"}, "Required", Locale.ENGLISH);
         return message;
-//        return name + age.toString() + "岁";
     }
 
 
