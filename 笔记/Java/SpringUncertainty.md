@@ -463,6 +463,20 @@ There are pros and cons for considering validation as business logic（为什么
 
 5. Log files rotate when they reach 10 MB and, as with console output, `ERROR`-level, `WARN`-level, and `INFO`-level messages are logged by default. Size limits can be changed using the `logging.file.max-size` property. Rotated log files of the last 7 days are kept by default unless the `logging.file.max-history` property has been set. The total size of log archives can be capped using `logging.file.total-size-cap`. When the total size of log archives exceeds that threshold, backups will be deleted.
 
-6. HATEOAS 与 RESTful？
+6. ORM是什么？
 
-7. 
+   > Object Relational Mapping，这是一个技术，它叫做对象关系映射，如果某个技术实现了两个不同类型的对象的转换，我们称这个技术为ORM技术
+
+7. JDBC、JPA、Spring Data JPA、Hibernate、Mybatis、MySQL、Oracle、之间的关系和区别
+
+   > * JDBC和JPA都属于规范和接口，不同的是JDBC是面向SQL的，就是说Java开发人员通过调用JDBC提供的接口执行SQL语句来操作数据库；通过SQL直接操作数据库是很繁琐的，因此我们希望通过操作对象的形式来操作数据库，那就需要有一个框架能够把相应的对象转换为相应的SQL并交给JDBC来执行，因为这个框架实现了不同类型数据之间的转换，因此这些框架叫做ORM框架，这些框架内部到底怎么转换为SQL不需要关心，但是提供给开发人员使用的接口需要有一个规范以保证开发人员能够轻松的替换不同的框架，这个规范就叫JPA。
+   >
+   > * Hibernate和Spring Data JPA就是属于遵循JAP规范的ORM框架，只不过Spring Data JPA是Spring搞的，Hibernate是另外一家公司搞的
+   > * MyBatis？？
+   > * MySQL和Oracle是一个数据库软件，如果让这些软件执行SQL语句便能对数据库中的数据进行操作
+   >
+   > Java应用->遵循JPA规范的ORM框架->JDBC->数据库软件
+   >
+   > 参考：https://www.cnblogs.com/yunche/p/10279324.html
+
+6. HATEOAS 与 RESTful？
