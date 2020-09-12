@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CustomMvcConfiguration extends WebMvcConfigurationSupport {
-    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //ResourceHandlerRegistration
-        System.out.println("牛逼");
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
     }
 }

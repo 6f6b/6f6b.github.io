@@ -2,7 +2,6 @@ package com.example.springmvcdemo;
 
 import com.example.springmvcdemo.config.Swagger;
 import com.example.springmvcdemo.dao.Person;
-import com.example.springmvcdemo.del.AcmeProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

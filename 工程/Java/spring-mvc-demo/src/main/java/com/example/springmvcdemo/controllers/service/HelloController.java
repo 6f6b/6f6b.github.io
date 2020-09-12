@@ -1,7 +1,6 @@
 package com.example.springmvcdemo.controllers.service;
 
 import com.example.springmvcdemo.aop.aspect.WebLog;
-import com.example.springmvcdemo.del.AcmeProperties;
 import com.example.springmvcdemo.utils.LocalUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,9 +40,6 @@ public class HelloController {
 
     @Autowired
     MessageSource messageSource;
-
-    @Autowired
-    private AcmeProperties acmeProperties;
 
     public Map<String, String> getMap() {
         return map;
