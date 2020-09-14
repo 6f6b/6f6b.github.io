@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.DelegatingMessageSource;
+import org.springframework.data.repository.Repository;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
@@ -38,6 +39,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
+import javax.persistence.Entity;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class SpringMvcDemoApplication {
         application.addListeners();
         application.run(args);
 
+        /*Jackson 的使用*/
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT,true);
         Person person = new Person("liufeng",26);
@@ -86,9 +89,8 @@ public class SpringMvcDemoApplication {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        System.out.println(json);
-        Person person1 = objectMapper.readValue(json,Person.class);
-        System.out.println(person1.toString());
-
+        //System.out.println(json);
+        //Person person1 = objectMapper.readValue(json,Person.class);
+        //System.out.println(person1.toString());
     }
 }
