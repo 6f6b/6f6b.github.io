@@ -487,3 +487,7 @@ There are pros and cons for considering validation as business logic（为什么
    > Java提供了JDBC来让我们操作SQL数据库，后面又衍生出了ORM技术产品如Hibernate来操作数据库，而Spring更牛逼了，他提供的SpringData使得我们只需要定义接口就完了，其实现会在运行时产生
 
 8. HATEOAS 与 RESTful？
+
+9. Spring 数据持久化部分？
+
+10. 
