@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @Api(tags = {"Home","主页"})
 public class HomeController {
-    @RequestMapping("")
     public String hello(){
         return "hello world !";
     }

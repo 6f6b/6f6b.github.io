@@ -30,7 +30,6 @@ public class Swagger {
                 .description("用restful风格写的接口")
                 .version("1.0")
                 .license("maked by liufeng")
-                .contact("dev.liufeng@gmail.com")
                 .build();
     }
 }
