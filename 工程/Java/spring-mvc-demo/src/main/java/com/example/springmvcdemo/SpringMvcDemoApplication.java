@@ -22,6 +22,7 @@ import org.springframework.boot.diagnostics.FailureAnalyzer;
 import org.springframework.boot.env.YamlPropertySourceLoader;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.boot.logging.LoggingSystem;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.data.repository.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
@@ -38,6 +40,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
+import springfox.documentation.annotations.Cacheable;
 
 import javax.persistence.Entity;
 import javax.servlet.ServletContext;
@@ -49,6 +52,7 @@ import java.util.Map;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
+@EnableCaching
 public class SpringMvcDemoApplication {
 
     public static void main(String[] args) throws JsonProcessingException {
@@ -93,4 +97,5 @@ public class SpringMvcDemoApplication {
         //Person person1 = objectMapper.readValue(json,Person.class);
         //System.out.println(person1.toString());
     }
+
 }

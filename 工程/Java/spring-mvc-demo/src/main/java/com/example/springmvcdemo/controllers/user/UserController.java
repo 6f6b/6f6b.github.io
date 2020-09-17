@@ -1,12 +1,14 @@
 package com.example.springmvcdemo.controllers.user;
 
 import com.example.springmvcdemo.aop.aspect.WebLog;
+import com.example.springmvcdemo.dao.MyService;
 import com.example.springmvcdemo.dao.RestResponse;
 import com.example.springmvcdemo.entity.User;
 import com.example.springmvcdemo.repository.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MyService service;
 
     @PostMapping(path = "/add")
     @WebLog
@@ -47,7 +52,9 @@ public class UserController {
 
     @GetMapping(path = "/all")
     @ApiOperation(value = "获取所有用户")
+    @WebLog
     public ResponseEntity<RestResponse<Iterable<User>>> all(){
+        service.simulateSlowService();
         return handleWith(userRepository.findAll(),HttpStatus.OK);
     }
 
