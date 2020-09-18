@@ -488,8 +488,9 @@ There are pros and cons for considering validation as business logic（为什么
 
 8. HATEOAS 与 RESTful？
 
-9. NoSQL是一个大的知识模块
-9. Spring 数据持久化部分？
+9. ####NoSQL是一个大的知识模块？？？
+
+9. ####Spring 数据持久化部分？？？
 
 10. 缓存可能存在的问题以及解决方案
 
@@ -501,4 +502,20 @@ There are pros and cons for considering validation as business logic（为什么
     >
     >    > 相应的缓存实现中提供了高级功能来解决这个问题（具体解决思路是怎样的？）
 
-    
+12. #### 消息？？？
+
+13. #### 分布式事务？？？
+
+14. #### 分布式缓存？？？
+
+
+
+
+
+
+
+
+
+
+
+maven、数据库、分布式事务、gradle、中间件、分布式缓存
