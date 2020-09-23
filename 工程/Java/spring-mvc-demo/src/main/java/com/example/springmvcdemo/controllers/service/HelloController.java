@@ -4,13 +4,18 @@ import com.example.springmvcdemo.aop.aspect.WebLog;
 import com.example.springmvcdemo.utils.LocalUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.juli.logging.LogFactory;
 import org.apache.tomcat.jni.Local;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +39,9 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "hello")
 @Api(tags = {"Hello Controller","Hello 控制器"})
 public class HelloController {
+    private Logger logger = LoggerFactory.getLogger(HelloController.class);
+    @Autowired
+    private ApplicationContext applicationContext;
     String name;
     Integer age;
     Map<String,String> map;
@@ -68,9 +76,11 @@ public class HelloController {
     @GetMapping("/hello")
     @WebLog
     @ApiOperation("handle")
-    public String handle(@RequestParam(value = "对象",required = true) Object ojc){
-        String message = this.messageSource.getMessage("user.login",
-                new Object [] {"userDao"}, "Required", Locale.ENGLISH);
+    public String handle() throws InterruptedException {
+        logger.info("正在处理业务");
+        Thread.sleep(7000);
+        String message = "hello im feng";
+        logger.info("处理业务结束");
         return message;
     }
 
@@ -86,5 +96,11 @@ public class HelloController {
     public String handle(Exception ex) {
         //ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.ACCEPTED);
         return ex.toString()+"Controller 内的exceptionhandler";
+    }
+
+    @WebLog
+    @RequestMapping("exit")
+    public void exit(){
+        SpringApplication.exit(this.applicationContext);
     }
 }
