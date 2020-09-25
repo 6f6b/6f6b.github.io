@@ -122,6 +122,7 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     > 1. bean的完整类名
     > 2. bean的行为(域、生命周期、回调 ...)配置元素
     > 3. 对其他bean的引用
+    
 9. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
 
    > ?
@@ -136,15 +137,25 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
     > 依赖注入是一个处理过程，这个过程就是容器给bean注入依赖，那么他怎么注入呢？根据什么来注入呢？答案是根据构造函数中的参数、工厂方法中的参数、实例化后设置的bean的属性
 
-13. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+15. scope
 
-14. 依赖注入原理、依赖注入目的
+    > [scope文档](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-scopes-singleton)
+    >
+    > * scope为prototype 时，该bean的销毁方法不会被执行！
+    > * 通过构造方法和setter方法注入依赖，这样的依赖解析只会执行一次
+    > * web容器中存在额外的四种scope，request、session、application、websock，那么这四种scope对应的四种process的生命周期是怎样的？
+
+16.  CGLIB proxies intercept only public method calls! Do not call non-public methods on such a proxy.
+
+17. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+
+18. 依赖注入原理、依赖注入目的
 
     > 原理：通过解析配置元数据来动态的生成相应的实例
     >
     > 目的：使用依赖由主动变被动，形成一种松散耦合结构
-    
-17. 如何在IDEA中搜索maven库？
+
+19. 如何在IDEA中搜索maven库？
 
 
 
