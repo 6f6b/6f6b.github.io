@@ -155,7 +155,21 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     >
     > 目的：使用依赖由主动变被动，形成一种松散耦合结构
 
-19. 如何在IDEA中搜索maven库？
+19. #####Bean 的生命周期跟踪
+
+    > 1. 在Bean的类的方法上面加注解@PostConstruct/@PreDestroy
+    > 2. 实现InitializingBean/DisposableBean这两个接口
+    > 3. 通过@Bean指定相关的方法
+
+20. 当将上面三个机制结合起来用的时候执行顺序是怎样的
+
+    > 同上面的顺序
+
+21. 当三个机制指向一个方法的时候这个方法会执行几次？
+
+    > 1次
+
+22. 如何在IDEA中搜索maven库？
 
 
 
@@ -547,6 +561,19 @@ spring相关：
 9. 消息
 10. Auth2.0
 11. 非关系型数据库NoSQL
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
