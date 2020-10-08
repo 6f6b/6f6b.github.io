@@ -114,6 +114,21 @@
     > 2. DML（Data Manipulation Language） 数据操纵语句
     > 3. DDL（Data Definition Language） 数据定义语句
     > 4. DCL（Data Control Language） 数据控制语句
+    
 27. HATEOAS
 
     > Hypermedia as the engine of application state？
+    
+30. AspectJ？
+
+    > * AspectJ是什么？
+    >
+    >   > 1. Java 语言的一个aspect-oriented扩展（无缝的，代表很牛逼）
+    >   > 2. 兼容Java平台
+    >
+    > * AspectJ可以干什么？
+    >
+    >   > 1. 可以把横切关注点（crosscutting concerns）清晰地进行模块化
+    >   > 2. 错误检查、处理；同步；性能优化；监控；日志；多对象协议（什么鬼？）
+
+31. 

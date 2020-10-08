@@ -66,7 +66,7 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 
 ## Spring (Core Technologies) 
-1. #####Spring Overview，Spring是一个框架，这个框架有什么用？
+1. ##### Spring Overview，Spring是一个框架，这个框架有什么用？
 
    > 1. 使得创建企业级Java应用变得更加容易
    > 2. 支持大量的应用场景
@@ -107,10 +107,10 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 
 9. it is better form not to use the slash at all 定义资源路径的时候前面最好不加斜杠
 
-10. #####Bean
+10. ##### Bean
 
    > 1. bean的名字
-   > 2. 实例化
+   > 2.  实例化
    >    1. 构造函数
    >    2. 静态工厂方法
    >    3. 实例工厂方法
@@ -145,17 +145,55 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     > * 通过构造方法和setter方法注入依赖，这样的依赖解析只会执行一次
     > * web容器中存在额外的四种scope，request、session、application、websock，那么这四种scope对应的四种process的生命周期是怎样的？
 
-16.  CGLIB proxies intercept only public method calls! Do not call non-public methods on such a proxy.
+16. 我们可以通过实现BeanPostProcessor来实现对Bean的初始化、依赖解析逻辑、等进行自定义，其具体操作就是你搞一个类A实现BeanPostProcessor这个协议里面的方法，并将这个类A搞成ApplicationContext容器中的一个Bean，那么当其他类要进行初始化的时候，你在A对应的Bean里面就能收到相应的回调了
 
-17. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+    > 注意：当通过@Bean修饰的工厂方法来获得一个实现了BeanPostProcessor的Bean的时候，其返回类型需要是这个实现类本身或者BeanPostProcessor，这样容器才能尽可能早的将这个bean注册为post-processor（他确实需要尽可能早，不然那其他bean初始化的时候，如果这个post-processor bean都还没创建，那process又从何谈起呢）
 
-18. 依赖注入原理、依赖注入目的
+17. The `PropertySourcesPlaceholderConfigurer` not only looks for properties in the `Properties` file you specify. By default, if it cannot find a property in the specified properties files, it checks against Spring `Environment` properties and regular Java `System` properties.
+
+    >  it checks against Spring `Environment` properties and regular Java `System` properties.这句话中的**Spring `Environment` properties**和** Java `System` properties**
+
+18.  Annotation injection is performed before XML injection. Thus, the XML configuration overrides the annotations for properties wired through both approaches.
+
+    > 通过xml配置的数据会覆盖通过注解配置的数据
+
+19. 关于注解配置与xml配置的争论
+
+    > 注解的好处：由于注解的声明提供了大量的上下文，因此我们使用的注解就变得短小、精简（其声明提供了关于注解足够的信息）
+    >
+    > xml的好处：xml配置则不需要接触源码，并且不需要对源代码进行重新编译
+    >
+    > 争论认为注解将对象变成了非POJOs并使得配置数据变得分散和难以控制
+    >
+    > 对于我自己而言，我更倾向于使用注解，因为对他更亲近使用起来更熟练
+
+20. An alternative to XML setup is provided by annotation-based configuration, which relies on the bytecode metadata for wiring up components instead of angle-bracket declarations
+
+    > 从这句话中我们可以看出，通过注解进行配置其根本原理是通过字节码数据来进行模块的组装，
+    >
+    > 而xml则是通过识别尖括号
+
+21. BeanPostProcessor的example
+
+    > 比如这个RequiredAnnotationBeanPostProcessor，它是BeanPostProcessor的实现类之一，是由Spring提供的，它主要就是负责检查Bean的带有@Required注解的属性是否被设置值了
+
+22. 通过注解来进行Bean的配置其实现原理
+
+    > 说白了就是通过BeanPostProcessor的实现来进行的，Spring2.0实现了通过RequiredAnnotationBeanPostProcessor来进行@Required注解的识别，Spring2.5的时候以相同的方式又新增了@Autowire的识别，但其具备了更加细颗粒度的控制和更广的适用范围
+    >
+    > 注：Spring5.1的时候废弃了@Required注解，建议通过构造方法注入必须的属性值
+
+23. CGLIB proxies intercept only public method calls! Do not call non-public methods on such a proxy.
+
+24. You can autowire strongly-typed `Map` instances if the expected key type is `String`，强类型的map实例是什么意思？为什么要期望的key type是string才行，其他类型的key不行吗？map除了string作为key，还有其他什么类型可以作为key吗？
+
+25. 依赖注入原理、依赖注入目的
 
     > 原理：通过解析配置元数据来动态的生成相应的实例
     >
     > 目的：使用依赖由主动变被动，形成一种松散耦合结构
 
-19. 如何在IDEA中搜索maven库？
+26. 如何在IDEA中搜索maven库？
 
 
 
