@@ -194,25 +194,38 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     > 目的：使用依赖由主动变被动，形成一种松散耦合结构
 
 26. 如何在IDEA中搜索maven库？
-19. ##### Bean 的生命周期跟踪
+
+27. Autowire
+
+    > Autowire本质上是通过类型匹配对bean进行筛选，进而进行依赖注入
+    >
+    > 有两个可以对Autowire的机制进行微调的注解：`@Primary`、`@Qualifiers`
+    >
+    > `@Primary`:这个东西就是说当@Autowire匹配到多个bean时，优先使用用了@Primary注解的那个Bean
+    >
+    > `@Qualifiers`:可以理解成标签，用在Bean上表示这个Bean有哪些标签，用在注入点时表示这里需要哪些标签的Bean
+    >
+    > `@Autowired` applies to **fields, constructors, and multi-argument methods**, allowing for narrowing through qualifier annotations at the parameter level. In contrast, `@Resource` is supported only for **fields and bean property setter methods with a single argument**. As a consequence, you should stick with qualifiers if your injection target is a constructor or a multi-argument method.
+    >
+    > 如果需要完全通过Bean的名字来进行依赖注入，使用@Resource
+
+28. ##### Bean 的生命周期跟踪
 
     > 1. 在Bean的类的方法上面加注解@PostConstruct/@PreDestroy
     > 2. 实现InitializingBean/DisposableBean这两个接口
     > 3. 通过@Bean指定相关的方法
 
-20. 当将上面三个机制结合起来用的时候执行顺序是怎样的
+29. 当将上面三个机制结合起来用的时候执行顺序是怎样的
 
     > 同上面的顺序
 
-21. 当三个机制指向一个方法的时候这个方法会执行几次？
+30. 当三个机制指向一个方法的时候这个方法会执行几次？
 
     > 1次
 
-22. 如何在IDEA中搜索maven库？
+31. 如何在IDEA中搜索maven库？
 
-我们通过插入（怎么插入）一些实现的特殊的集成(集成接口怎么理解？)接口来对IOC Container进行扩展，这些接口如BeanPostProcessor
-
-我可以配置多个BeanPostProcessor实例，并且可以通过order来控制这些实例被执行的顺序，问题是我怎么配置这多个实例？如果我不设置order，那么它的默认order是什么？设置order的动机可能是什么？
+32. 我们通过插入（怎么插入）一些实现的特殊的集成(集成接口怎么理解？)接口来对IOC Container进行扩展，这些接口如BeanPostProcessor，我可以配置多个BeanPostProcessor实例，并且可以通过order来控制这些实例被执行的顺序，问题是我怎么配置这多个实例？如果我不设置order，那么它的默认order是什么？设置order的动机可能是什么？
 
 > 这些实例的配置方式跟普通的bean是一样的配置方式
 >
@@ -220,17 +233,11 @@ JDBC、hibernate、Mybatis、数据库的CRUD
 >
 > 设置order的动机：比如要搞一个Chain of Resolvers
 
-扩展Container的目的是什么？解决什么问题？
-
-实例化instantiating和初始化initialization的区别是什么？
-
-container hierarchies.是什么意思？怎么理解container的hierarchy？
-
-
-
-BeanPostProcessor用来对Bean实例进行处理
-
-BeanFactoryPostProcessor则用来对Bean的definition进行处理
+32. 扩展Container的目的是什么？解决什么问题？
+33. 实例化instantiating和初始化initialization的区别是什么？
+34. container hierarchies.是什么意思？怎么理解container的hierarchy？
+35. BeanPostProcessor用来对Bean实例进行处理
+36. BeanFactoryPostProcessor则用来对Bean的definition进行处理
 
 
 
