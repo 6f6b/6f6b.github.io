@@ -209,23 +209,51 @@ JDBC、hibernate、Mybatis、数据库的CRUD
     >
     > 如果需要完全通过Bean的名字来进行依赖注入，使用@Resource
 
-28. ##### Bean 的生命周期跟踪
+28. 环境Environment和Profile、Properties之间的关系
+
+    > * Profile是BeanDefinition的一个逻辑集合，Environment在与Profile之间的的关系中充当的角色是决定激活哪一个Profile（即激活哪个BeanDefinition集合，激活的BeanDefinition集合才会被注册到容器中去）
+    >
+    > * Properties
+
+29. Enviroment
+
+    > 通过容器我们能获取到一个Environment对象，通过这个对象我们能询问Spring当前环境下xxx Property是否定义，那么Environment对象是如何回答的呢？
+    >
+    > > Enviroment对象从他所持有的PropertySource集合中去查找，这个PropertySource is a simple abstraction over any source of key-value pairs
+
+30. Properties文件是如何被读入到Environment中去的？是否是自动读入？如果是自动读入那么@PropertySource这个注解有什么用？
+
+31. ApplicationContext作为BeanFactory的一个扩展，他成为一个更面向应用的一个类，处理提供处理Bean的功能之外，还提供了以下额外功能
+
+    * Access to message
+    * Access to resource
+    * Event publication
+    * Loading of multiple(hierarchical) Context
+
+32. ```
+    			Enviroment
+    
+    ```
+
+33. 
+
+34. ##### Bean 的生命周期跟踪
 
     > 1. 在Bean的类的方法上面加注解@PostConstruct/@PreDestroy
     > 2. 实现InitializingBean/DisposableBean这两个接口
     > 3. 通过@Bean指定相关的方法
 
-29. 当将上面三个机制结合起来用的时候执行顺序是怎样的
+35. 当将上面三个机制结合起来用的时候执行顺序是怎样的
 
     > 同上面的顺序
 
-30. 当三个机制指向一个方法的时候这个方法会执行几次？
+36. 当三个机制指向一个方法的时候这个方法会执行几次？
 
     > 1次
 
-31. 如何在IDEA中搜索maven库？
+37. 如何在IDEA中搜索maven库？
 
-32. 我们通过插入（怎么插入）一些实现的特殊的集成(集成接口怎么理解？)接口来对IOC Container进行扩展，这些接口如BeanPostProcessor，我可以配置多个BeanPostProcessor实例，并且可以通过order来控制这些实例被执行的顺序，问题是我怎么配置这多个实例？如果我不设置order，那么它的默认order是什么？设置order的动机可能是什么？
+38. 我们通过插入（怎么插入）一些实现的特殊的集成(集成接口怎么理解？)接口来对IOC Container进行扩展，这些接口如BeanPostProcessor，我可以配置多个BeanPostProcessor实例，并且可以通过order来控制这些实例被执行的顺序，问题是我怎么配置这多个实例？如果我不设置order，那么它的默认order是什么？设置order的动机可能是什么？
 
 > 这些实例的配置方式跟普通的bean是一样的配置方式
 >
