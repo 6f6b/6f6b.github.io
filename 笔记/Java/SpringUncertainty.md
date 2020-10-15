@@ -623,15 +623,27 @@ java基础：
 spring相关：
 
 1. IOC（DI）☆
+
 2. AOP ☆
+
 3. maven
+
 4. 数据库
+
+   > NoSQL介绍 https://www.cnblogs.com/xrq730/p/11039384.html
+
 5. 分布式事务
+
 6. gradle
+
 7. 中间件
+
 8. 分布式缓存
+
 9. 消息
+
 10. Auth2.0
+
 11. 非关系型数据库NoSQL
 
 
