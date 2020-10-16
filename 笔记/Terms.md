@@ -131,4 +131,8 @@
     >   > 1. 可以把横切关注点（crosscutting concerns）清晰地进行模块化
     >   > 2. 错误检查、处理；同步；性能优化；监控；日志；多对象协议（什么鬼？）
 
-31. 
+31. IPC
+
+    > Inter-Process Communication 进程间通信
+    >
+    > IPC Library就是指进程间通信的库
