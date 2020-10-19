@@ -136,3 +136,15 @@
     > Inter-Process Communication 进程间通信
     >
     > IPC Library就是指进程间通信的库
+
+32. AWS
+
+    >Amazon Web Services 亚马逊云服务
+
+33. AWS ELB
+
+    > AWS Elastic Load Balancing AWS的弹性伸缩负载均衡
+
+34. EC2
+
+    > Elastic Compute Cloud 弹性计算云
