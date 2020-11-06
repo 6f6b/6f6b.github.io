@@ -442,7 +442,7 @@ https://docs.oracle.com/javase/tutorial/extra/
 
 #### 并发
 
- #### section 1
+ ##### section 1
 
 1. 进程和线程的概念
 2. 定义一个线程对象的两种方式
@@ -453,5 +453,23 @@ https://docs.oracle.com/javase/tutorial/extra/
    1. 如何中断一个线程
    2. 如何获取中断状态
 5. 通过Join等待一个线程结束
+
+##### section 2（同步、通信）
+
+1. 线程间通信通过访问线程对象的field和field所引用到的对象来进行通信，由此产生两个问题，线程间干扰和内存不一致错误
+
+   1. 线程间干扰产生的原因
+
+      > https://docs.oracle.com/javase/tutorial/essential/concurrency/interfere.html
+
+   2. 关于Happens-before关系的定义
+
+      > https://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4.5
+
+
+
+死锁、饿死锁、活跃锁、Synchronization导致的效率低下问题（Liveness）
+
+
 
  
