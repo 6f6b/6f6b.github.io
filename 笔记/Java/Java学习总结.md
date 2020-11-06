@@ -437,3 +437,21 @@ JPA：Java Persistent API 即Java持久层的API
 额外的学习内容
 
 https://docs.oracle.com/javase/tutorial/extra/
+
+
+
+#### 并发
+
+ #### section 1
+
+1. 进程和线程的概念
+2. 定义一个线程对象的两种方式
+   1. 一个继承自Thread并实现自己的run方法的线程类
+   2. 一个实现了Runnable协议的类，其创建的实例作为Thread的一个构造参数实例化一个线程对象
+3. 通过sleep进行线程阻塞
+4. 中断，Interrupt
+   1. 如何中断一个线程
+   2. 如何获取中断状态
+5. 通过Join等待一个线程结束
+
+ 
