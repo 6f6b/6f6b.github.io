@@ -444,19 +444,53 @@ https://docs.oracle.com/javase/tutorial/extra/
 
  ##### section 1
 
-1. 进程和线程的概念
+1. 进程和线程的概念，共同点与区别
+
+   > **Process**
+   >
+   > > A process has a self-contained execution environment. A process generally has a complete, private set of basic run-time resources; in particular, each process has its own memory space.
+   > >
+   > > Processes are often seen as synonymous with programs or applications. However, what the user sees as a single application may in fact be a set of cooperating processes. To facilitate communication between processes, most operating systems support *Inter Process Communication* (IPC) resources, such as pipes and sockets. IPC is used not just for communication between processes on the same system, but processes on different systems.
+   >
+   > **Thread**
+   >
+   > > Threads are sometimes called ***lightweight processes***. **Both processes and threads provide an execution environment, but creating a new thread requires fewer resources than creating a new process**.
+   > >
+   > > Threads exist within a process — every process has at least one. Threads share the process's resources, including memory and open files. This makes for efficient, but potentially problematic, communication.
+   > >
+   > > Multithreaded execution is an essential feature of the Java platform. Every application has at least one thread — or several
+
 2. 定义一个线程对象的两种方式
    1. 一个继承自Thread并实现自己的run方法的线程类
    2. 一个实现了Runnable协议的类，其创建的实例作为Thread的一个构造参数实例化一个线程对象
+
 3. 通过sleep进行线程阻塞
+
 4. 中断，Interrupt
    1. 如何中断一个线程
+
+      > ```java
+      > //设置当前线程为打断状态
+      > Thread.currentThread().interrupt();
+      > ```
+
    2. 如何获取中断状态
+
+      > ```java
+      > //返回当前线程是否被打断，并不清空状态
+      > Thread.currentThread().isInterrupted();
+      > 
+      > //返回当前线程是否被打断，并将状态清空
+      > Thread.interrupted();
+      > ```
+
 5. 通过Join等待一个线程结束
+
+   > t.join，这句代码的效果是：执行这句代码的线程的后续的语句要等到t结束之后才会执行
 
 ##### section 2（同步、通信）
 
-1. 线程间通信通过访问线程对象的field和field所引用到的对象来进行通信，由此产生两个问题，线程间干扰和内存不一致错误
+1. 线程间通信通过访问线程对象的field和field所引用到的对象来进行通信，由此产生两个问题，线程间干扰和内存不一致错误，需要一个工具来阻止这两个错误的产生，这个工具就是Synchronization，而这个Synchronization又产生了一个问题就是线程争用（形式分为：死锁、饥饿锁、活跃锁）
 
    1. 线程间干扰产生的原因
 
@@ -465,6 +499,21 @@ https://docs.oracle.com/javase/tutorial/extra/
    2. 关于Happens-before关系的定义
 
       > https://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4.5
+      >
+      > Happens-before relationship是一个保证，保证一条执行内存写操作的语句对于另外的特定的语句是可见的。如何建立这种关系呢？Synchronization是方法之一，
+   
+2. 什么是内存一致性错误
+
+3. Synchronization的作用
+
+   > - First, it is not possible for two invocations of synchronized methods on the same object to interleave. When one thread is executing a synchronized method for an object, all other threads that invoke **synchronized methods **for the same object block (suspend execution) until the first thread is done with the object.
+   > - Second, when a synchronized method exits, it automatically establishes a happens-before relationship with *any subsequent invocation* of a synchronized method for the same object. This guarantees that changes to the state of the object are visible to all threads.
+
+4. Synchronization和固有锁的关系
+
+5. Atomic Access，原子操作类似于事务操作，即一系列操作要么全部进行完，要么完全不进行。
+
+   > 原子操作能够避免线程干扰，但是不能避免内存一致性错误
 
 
 
