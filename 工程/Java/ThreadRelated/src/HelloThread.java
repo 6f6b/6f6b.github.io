@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.concurrent.Future;
 
 public class HelloThread implements Runnable{
     public int age = 0;
@@ -24,7 +25,6 @@ public class HelloThread implements Runnable{
 //        //当使用join并传入时间参数时，你不能假设他刚好就阻塞3000毫秒，这受到操作系统能力的影响；而当不传入参数时可以保证其阻塞至t这个线程结束
 //        t.join(3000);
 //        System.out.println("This is main method teminated");
-
         TrainStation ticketCenter = new TrainStation();
         int stationNum = 20;
         System.out.println(String.format("总计%d张票,%d个窗口同时取票",ticketCenter.ticketNum,stationNum));
@@ -33,7 +33,7 @@ public class HelloThread implements Runnable{
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (tiicketCenter.ticketNum > 0){
+                    while (ticketCenter.ticketNum > 0){
                         ticketCenter.acquireTicket();
                         try {
                             Thread.sleep(500);
