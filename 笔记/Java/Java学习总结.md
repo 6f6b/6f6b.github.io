@@ -515,9 +515,20 @@ https://docs.oracle.com/javase/tutorial/extra/
 
    > 原子操作能够避免线程干扰，但是不能避免内存一致性错误
 
+##### Section 3（保护块、不可变对象）
+
+1. `wait()`、`notify()`、`notifyAll()`
+2. 不可变对象更加稳定可靠、不需要考虑同步和内存一致性问题，同时创建对象对机器的消耗被高估（1. 减少保护代码降低了开销；2.垃圾回收机制而减少的开销）
+
 
 
 死锁、饿死锁、活跃锁、Synchronization导致的效率低下问题（Liveness）
+
+##### Section 4（高级并发对象）
+
+1. `Lock`
+
+   > `Lock`中有`lock()`、`tryLock()`、`tryLock(long time,TimeUnit unit)`这三个函数，其中`tryLock()`与另外两个函数的不同之处在于如果该函数获取锁失败的话，不会使线程进入休眠状态。
 
 
 

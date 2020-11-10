@@ -26,7 +26,9 @@ public class ThreadExample implements Runnable{
 
     public static void main(String[] args) throws InterruptedException{
         Thread t = new Thread(new ThreadExample());
+        t.wait();
         t.start();
+        t.notify();
         long patience = 4000;
         long startTime = System.currentTimeMillis();
         while (t.isAlive()){
