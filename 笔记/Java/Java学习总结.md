@@ -529,6 +529,14 @@ https://docs.oracle.com/javase/tutorial/extra/
 1. `Lock`
 
    > `Lock`中有`lock()`、`tryLock()`、`tryLock(long time,TimeUnit unit)`这三个函数，其中`tryLock()`与另外两个函数的不同之处在于如果该函数获取锁失败的话，不会使线程进入休眠状态。
+   
+2. Executor 之线程池
+
+   > 为何要有线程池这个东西？因为线程的创建和销毁会引起较大的内存开销，所以线程池通过对线程的复用来进行优化
+
+3. Fork/Join框架
+
+   > 可利用该框架将一个任务分成多个小块，并利用多线程进行处理。
 
 
 
