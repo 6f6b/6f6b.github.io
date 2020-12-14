@@ -223,3 +223,4 @@ QUESTIONS:
 
 1. mysqldump、mysqlpump？
 2. NDB Cluster？
+3. 统一数据编码方式-UTF-8
