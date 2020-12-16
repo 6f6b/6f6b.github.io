@@ -206,7 +206,19 @@
 13. JOIN
 
     > INNER, OUTER, LEFT, RIGHT, CROSS
+12. View
 
+    > * View本质上就是一个SELECT SQL语句
+    > * 执行Insert、update、delete是可以的，它会影响到底层的table，一般不执行这些语句。
+    >
+    > * 使用view的2个动机：
+    >
+    > 1. 增加复用性
+    > 2. 增加安全性，可只暴露需要暴露的字段
+
+13. 将索引用在经常更新的表上是非常影响性能的，因为更新表的同时也要更新大量索引。最好的是用在经常select而不经常更新(包括update、delete、insert)的表中
+
+14. 
 
 
 
@@ -232,3 +244,5 @@ QUESTIONS:
 1. mysqldump、mysqlpump？
 2. NDB Cluster？
 3. 统一数据编码方式-UTF-8
+4. 查询分页比较大的时候，怎么提高查询速度
+5. 查询分表怎么分？（官方建议数据量达到2000万以上才分库分表）
