@@ -1,4 +1,4 @@
-# 数据库相关的学习笔记（设计MySQL、Redis、MongoDB...）
+# 数据库相关的学习笔记（涉及MySQL、Redis、MongoDB...）
 
 数据库技术对比https://www.cnblogs.com/xrq730/p/11039384.html
 
@@ -24,7 +24,7 @@
    >
    > 3. 三层：客户端、服务端、数据库各在一台机器上
    >
-   >    <img src="/Users/liufeng/work/gits/JAVAWeb/images/091318_0745_DBMSArchite3.png" style="zoom:50%;" />
+   >    <img src="../../JAVAWeb/images/091318_0745_DBMSArchite3.png" style="zoom:50%;" />
 
 ## 一、MySQL
 
@@ -198,6 +198,14 @@
     >
     > 1. 降低网络负载（意思是MySQL实现的操作更加牛逼，性能更好）
     > 2. 同样的数据库应用于不同的应用时避免重复的工作
+    
+12. 子查询易读易用，但是很影响性能，使用JOIN有时候可以提升500倍的性能
+
+    > why this happen?因为join可以使用索引
+
+13. JOIN
+
+    > INNER, OUTER, LEFT, RIGHT, CROSS
 
 
 
