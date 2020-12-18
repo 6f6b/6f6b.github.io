@@ -160,6 +160,18 @@
 
     > 主要是配置InnoDB的buffer pool 或 MyISAM的key cache
 
+  * ##### 索引
+
+    > Primary Key Index、Unique Key Index、普通索引、全文索引、空间索引
+    >
+    > 索引实现的数据结构有`B-tree`、`Hash`
+    >
+    > 建索引背后发生了什么？
+    >
+    > index？B树？hash？R树？adaptive-hash？clustered index？secondary-index？
+    >
+    > 二级索引可以分为空间索引、列索引、复合索引
+
 * 硬件
 
   * Disk seek ，做一次seek平均时间少于10ms，更换Disk通常不会有较大性能提升，好的方案是分成多个Disk
