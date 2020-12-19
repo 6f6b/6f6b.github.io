@@ -26,9 +26,9 @@
    >
    >    <img src="../../JAVAWeb/images/091318_0745_DBMSArchite3.png" style="zoom:50%;" />
 
-## 一、MySQL
+## 二、MySQL
 
-
+#### 2.1 Sheet
 
 1. MySQL是一个数据库管理系统（DBMS），跟它类似的还有Oracle、SqlServer..
 
@@ -80,117 +80,32 @@
 
 10. 主要用到的语句
 
-    > - [Atomic Data Definition Statement Support](https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html)
-    >
-    > - [ALTER DATABASE Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-database.html)
-    >
-    >   ```mysql
-    >   ALTER {DATABASE | SCHEMA} [db_name]
-    >       alter_option ...
-    >   
-    >   alter_option: {
-    >       [DEFAULT] CHARACTER SET [=] charset_name
-    >     | [DEFAULT] COLLATE [=] collation_name
-    >     | [DEFAULT] ENCRYPTION [=] {'Y' | 'N'}
-    >     | READ ONLY [=] {DEFAULT | 0 | 1}
-    >   }
-    >   
-    >   note:READ ONLY 这个选项在数据库迁移的时候非常有用，可以保证在迁移过程中数据不被修改
-    >   ```
-    >
-    >   
-    >
-    > - [ALTER EVENT Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-event.html)
-    >
-    > - [ALTER FUNCTION Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-function.html)
-    >
-    > - [ALTER INSTANCE Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-instance.html)
-    >
-    > - [ALTER LOGFILE GROUP Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-logfile-group.html)
-    >
-    > - [ALTER PROCEDURE Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-procedure.html)
-    >
-    > - [ALTER SERVER Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-server.html)
-    >
-    > - [ALTER TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-table.html)
-    >
-    > - [ALTER TABLESPACE Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-tablespace.html)
-    >
-    > - [ALTER VIEW Statement](https://dev.mysql.com/doc/refman/8.0/en/alter-view.html)
-    >
-    > - [CREATE DATABASE Statement](https://dev.mysql.com/doc/refman/8.0/en/create-database.html)
-    >
-    >   ```mysql
-    >   CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name
-    >       [create_option] ...
-    >   
-    >   create_option: [DEFAULT] {
-    >       CHARACTER SET [=] charset_name
-    >     | COLLATE [=] collation_name
-    >     | ENCRYPTION [=] {'Y' | 'N'}
-    >   }
-    >   ```
-    >
-    >   
-    >
-    > - [CREATE EVENT Statement](https://dev.mysql.com/doc/refman/8.0/en/create-event.html)
-    >
-    > - [CREATE FUNCTION Statement](https://dev.mysql.com/doc/refman/8.0/en/create-function.html)
-    >
-    > - [CREATE INDEX Statement](https://dev.mysql.com/doc/refman/8.0/en/create-index.html)
-    >
-    > - [CREATE LOGFILE GROUP Statement](https://dev.mysql.com/doc/refman/8.0/en/create-logfile-group.html)
-    >
-    > - [CREATE PROCEDURE and CREATE FUNCTION Statements](https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html)
-    >
-    > - [CREATE SERVER Statement](https://dev.mysql.com/doc/refman/8.0/en/create-server.html)
-    >
-    > - [CREATE SPATIAL REFERENCE SYSTEM Statement](https://dev.mysql.com/doc/refman/8.0/en/create-spatial-reference-system.html)
-    >
-    > - [CREATE TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/create-table.html)
-    >
-    >   ```
-    >   表的创建有一个非常复杂的表达式
-    >   数据库中表的数量限制：MySQL不限制其表的数量，但底层的文件系统可能会限制文件夹中文件（表的表现形式）的数量，不同的存储引擎可能会限制数量，InnoDB限制最多只能创建20亿张表
-    >   ```
-    >
-    > - [CREATE TABLESPACE Statement](https://dev.mysql.com/doc/refman/8.0/en/create-tablespace.html)
-    >
-    > - [CREATE TRIGGER Statement](https://dev.mysql.com/doc/refman/8.0/en/create-trigger.html)
-    >
-    > - [CREATE VIEW Statement](https://dev.mysql.com/doc/refman/8.0/en/create-view.html)
-    >
-    > - [DROP DATABASE Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-database.html)
-    >
-    >   ```mysql
-    >   DROP {DATABASE | SCHEMA} [IF EXISTS] db_name
-    >   ```
-    >
-    > - [DROP EVENT Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-event.html)
-    >
-    > - [DROP FUNCTION Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-function.html)
-    >
-    > - [DROP INDEX Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-index.html)
-    >
-    > - [DROP LOGFILE GROUP Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-logfile-group.html)
-    >
-    > - [DROP PROCEDURE and DROP FUNCTION Statements](https://dev.mysql.com/doc/refman/8.0/en/drop-procedure.html)
-    >
-    > - [DROP SERVER Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-server.html)
-    >
-    > - [DROP SPATIAL REFERENCE SYSTEM Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-spatial-reference-system.html)
-    >
-    > - [DROP TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-table.html)
-    >
-    > - [DROP TABLESPACE Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-tablespace.html)
-    >
-    > - [DROP TRIGGER Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-trigger.html)
-    >
-    > - [DROP VIEW Statement](https://dev.mysql.com/doc/refman/8.0/en/drop-view.html)
-    >
-    > - [RENAME TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/rename-table.html)
-    >
-    > - [TRUNCATE TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/truncate-table.html)
+   > - https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html
+   >
+   > - 数据库修改
+   >
+   >   ```mysql
+   >   ALTER {DATABASE | SCHEMA} [db_name]
+   >       alter_option ...
+   >   
+   >   alter_option: {
+   >       [DEFAULT] CHARACTER SET [=] charset_name
+   >     | [DEFAULT] COLLATE [=] collation_name
+   >     | [DEFAULT] ENCRYPTION [=] {'Y' | 'N'}
+   >     | READ ONLY [=] {DEFAULT | 0 | 1}
+   >   }
+   >   
+   >   note:READ ONLY 这个选项在数据库迁移的时候非常有用，可以保证在迁移过程中数据不被修改
+   >   ```
+   >
+   > - 表的创建
+   >
+   >   ```mysql
+   >   表的创建有一个非常复杂的表达式
+   >   数据库中表的数量限制：MySQL不限制其表的数量，但底层的文件系统可能会限制文件夹中文件（表的表现形式）的数量，不同的存储引擎可能会限制数量，InnoDB限制最多只能创建20亿张表
+   >   ```
+   >
+   >   
 
 11. 为什么有MySQL函数的存在，不能在应用中实现吗？
 
@@ -206,6 +121,7 @@
 13. JOIN
 
     > INNER, OUTER, LEFT, RIGHT, CROSS
+    
 12. View
 
     > * View本质上就是一个SELECT SQL语句
@@ -216,9 +132,59 @@
     > 1. 增加复用性
     > 2. 增加安全性，可只暴露需要暴露的字段
 
-13. 将索引用在经常更新的表上是非常影响性能的，因为更新表的同时也要更新大量索引。最好的是用在经常select而不经常更新(包括update、delete、insert)的表中
+15. 将索引用在经常更新的表上是非常影响性能的，因为更新表的同时也要更新大量索引。最好的是用在经常select而不经常更新(包括update、delete、insert)的表中
 
-14. 
+#### 2.2 Backup and Recovery
+
+#### 2.3 Optimization
+
+从三个角度入手：
+
+* 数据库
+
+  * 数据库表结构是否合理？field是否是正确的数据类型？列数多少是否设置的合适（根据不同的工作类型）
+
+    > note:高频更新的数据一般建立成多个表，每个表有较少的几个列，而不是很少的表，每个表有多个列（这回造成数据库需要分析大量的数据）
+
+  * 是否正确的设置索引？
+
+  * 是否为每个表设置了正确的存储引擎？InnoDB（事务性存储引擎）、MyISAM（非事务性存储引擎）的选择对性能和扩展性的影响非常大
+
+    > InnoDB相对来讲更为牛逼，尤其是在处理高并发的场景下，而MyISAM则更擅长读较多的场景以及地并发中
+
+  * 表是否采用了合适的`行格式`？
+
+  * 应用程序是否设置了合适的上锁策略
+
+  * 用于缓存的内存空间大小配置是否正确？要大到足够hold住高频访问，但又不能超过物理内存大小进而导致分页（分页是什么？）
+
+    > 主要是配置InnoDB的buffer pool 或 MyISAM的key cache
+
+  * ##### 索引
+
+    > Primary Key Index、Unique Key Index、普通索引、全文索引、空间索引
+    >
+    > 索引实现的数据结构有`B-tree`、`Hash`
+    >
+    > 建索引背后发生了什么？
+    >
+    > index？B树？hash？R树？adaptive-hash？clustered index？secondary-index？
+    >
+    > 二级索引可以分为空间索引、列索引、复合索引
+
+* 硬件
+
+  * Disk seek ，做一次seek平均时间少于10ms，更换Disk通常不会有较大性能提升，好的方案是分成多个Disk
+  * Disk Read&Write，分发速度至少10-20M/s，可以再多个Disk中并行的读
+  * CPU周期，相对于内存的大小对性能的影响而言，过大的表通常是性能限制的主要因素，小的表通常不会有问题。（这里的大小表是指数据行数多还是列数多，还是两者兼具？）
+
+* SQL语句的可移植性和性能之间的平衡
+
+  * 有些适用于MySQL的性能优化语句不一定适合其他的数据库管理系统，因此需要 `/*! */` 进行适配
+
+#### 2.4 Security
+
+
 
 
 
@@ -259,3 +225,17 @@ QUESTIONS:
    > * 哈希
 
 7. 
+6. 如何查询数据库中某个列值最大的那条数据
+
+   > 1. Max函数
+   > 2. 倒序查一条
+   > 3. LEFT JOIN
+
+
+
+参考文档：
+
+> https://www.guru99.com/sql.html
+>
+> https://dev.mysql.com/doc/refman/8.0/en/
+>
