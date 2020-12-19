@@ -242,7 +242,20 @@
 QUESTIONS:
 
 1. mysqldump、mysqlpump？
+
 2. NDB Cluster？
+
 3. 统一数据编码方式-UTF-8
+
 4. 查询分页比较大的时候，怎么提高查询速度
+
 5. 查询分表怎么分？（官方建议数据量达到2000万以上才分库分表）
+
+6. 索引（B树索引、哈希索引（只能用在内存型的存储引擎中））
+
+   > [adaptive hash index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_adaptive_hash_index), [B-tree](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_b_tree), [child table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_child_table), [clustered index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_clustered_index), [column index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_column_index), [composite index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_composite_index), [covering index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_covering_index), [foreign key](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_foreign_key), [hash index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_hash_index), [parent table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_parent_table), [partial index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_partial_index), [primary key](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_primary_key), [query](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_query), [R-tree](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_r_tree), [row](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_row), [secondary index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_secondary_index), [table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_table). [index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_index), [InnoDB](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_innodb).
+   >
+   > * B树结构（B树节点可以有多个子节点，而二叉树只能有最多2个子节点）
+   > * 哈希
+
+7. 
