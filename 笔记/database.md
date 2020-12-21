@@ -136,6 +136,58 @@
 
 #### 2.2 Backup and Recovery
 
+1. 备份类型：
+
+   > 1. 物理与逻辑
+   >
+   >    > * 速度（物理更快，因为本质上他就是一个文件的拷贝；而逻辑备份需要对文件进行转换进而导出）
+   >    >
+   >    > * 粒度（物理备份的粒度因存储引擎的不同而不同，物理备份也可以将日志和配置文件备份；逻辑备份的粒度可以分为数据库服务器、数据库、数据表这几个粒度，逻辑备份无法备份日志、配置或其他相关的非数据库文件）
+   >    > * 移植性（物理备份要求其他的机器具备相同或相似的硬件性质；逻辑备份移植性更好）
+   >    > * 空间（物理更紧凑、更小；逻辑备份较大）
+   >    > * 停机（物理备份需要server处于停机状态或进行锁定；逻辑备份需要在server运行时进行备份）
+   >
+   > 2. 在线与离线（区别在于是否关闭server）
+   >
+   >    > * 在线备份：对客户端侵入性更小，需要适当上锁防止数据在备份期间被修改导致损害数据完整性
+   >    > * 离线备份：因为需要关机，那么为了防止影响客户端我们可以关闭副本，从副本中进行备份；简单，因为没有来自客户端的影响
+   >
+   > 3. 全量和增量
+   >
+   >    > MySQL有很多方法实现全量备份；通过server的记录数据变化的二进制日志文件使得增量备份变为可能
+   >
+   > others：
+   >
+   > * 热备份、冷备份、暖备份（冷热分指server是否关闭；暖指server未关闭，但是被锁定防止数据被修改）
+
+2. 备份调度、压缩、加密
+
+   > MySQL均不提供备份的调度、压缩、加密，所以需要借助文件系统或者其他的第三方的工具来实现这几个功能
+   
+3. 备份工具
+
+   > * 逻辑备份
+   >
+   >   ```mysql
+   >   --备份
+   >   mysqldump --databases db1,db2.. -u root -p > backup.sql
+   >   --恢复
+   >   1.在终端
+   >   mysql -u root -p backup.sql
+   >   2.mysql 中
+   >   source  backup.sql
+   >   ```
+   >
+   > * 物理备份
+   >
+   >   ```
+   >   how to ?
+   >   ```
+   >
+   >   
+
+
+
 #### 2.3 Optimization
 
 从三个角度入手：
@@ -162,15 +214,42 @@
 
   * ##### 索引
 
-    > Primary Key Index、Unique Key Index、普通索引、全文索引、空间索引
+    > 1. Primary Key Index、Unique Key Index、普通索引、全文索引、空间索引
     >
-    > 索引实现的数据结构有`B-tree`、`Hash`
+    > 2. 索引实现的数据结构有`B-tree`、`Hash`
     >
-    > 建索引背后发生了什么？
+    > 3. 建索引背后发生了什么？
     >
-    > index？B树？hash？R树？adaptive-hash？clustered index？secondary-index？
+    >    > 构建了一棵B树，对于hash索引而言，我认为什么也不需要做，其只需要有一个hash函数对key和内存地址进行转换即可
     >
-    > 二级索引可以分为空间索引、列索引、复合索引
+    > 4. 二级索引可以分为空间索引、列索引、复合索引
+    >
+    > 5. 主键有相关的索引，因为主键不能为空，所以可以在物理层面进行有序排列，然后进行超快查询，一个表即便没有明显的主键列，我们也可以自己给其添加一个，以便快速查询。
+    >
+    > 6. whats the fucking left-prefix rule？
+    >
+    >    > https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/
+    >
+    > 7. NDB Cluster？
+    >
+    > 8. 统一数据编码方式-UTF-8
+    >
+    > 9. 查询分页比较大的时候，怎么提高查询速度
+    >
+    > 10. 查询分表怎么分？（官方建议数据量达到2000万以上才分库分表）
+    >
+    > 11. 索引（B树索引、哈希索引（只能用在内存型的存储引擎中）
+    >
+    >     > [adaptive hash index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_adaptive_hash_index), [B-tree](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_b_tree), [child table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_child_table), [clustered index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_clustered_index), [column index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_column_index), [composite index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_composite_index), [covering index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_covering_index), [foreign key](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_foreign_key), [hash index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_hash_index), [parent table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_parent_table), [partial index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_partial_index), [primary key](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_primary_key), [query](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_query), [R-tree](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_r_tree), [row](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_row), [secondary index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_secondary_index), [table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_table). [index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_index), [InnoDB](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_innodb).
+    >     >
+    >     > * B树结构（B树节点可以有多个子节点，而二叉树只能有最多2个子节点）
+    >     > * 哈希
+    >
+    > 12. 如何查询数据库中某个列值最大的那条数据
+    >
+    >     > 1. Max函数
+    >     > 2. 倒序查一条
+    >     > 3. LEFT JOIN
 
 * 硬件
 
@@ -184,6 +263,9 @@
 
 #### 2.4 Security
 
+#### 2.5 Transaction
+
+#### 2.6 Event
 
 
 
@@ -203,34 +285,29 @@
 
 
 
+
+
+
+TIPS：
+
+1. MySQL InnoDB Cluster?
+
+   > MySQL InnoDB Cluster is a collection of products that work together to provide a high availability solution. A group of MySQL servers can be configured to create a cluster using MySQL Shell. The cluster of servers has a single source, called the primary, which acts as the read-write source. Multiple secondary servers are replicas of the source. A minimum of three servers are required to create a high availability cluster. A client application is connected to the primary via MySQL Router. If the primary fails, a secondary is automatically promoted to the role of primary, and MySQL Router routes requests to the new primary.
+
+2. NDB Cluster？
+
+   > NDB Cluster provides a high-availability, high-redundancy version of MySQL adapted for the distributed computing environment. See [Chapter 23, *MySQL NDB Cluster 8.0*](https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html), which provides information about MySQL NDB Cluster 8.0.
 
 
 QUESTIONS:
 
 1. mysqldump、mysqlpump？
 
-2. NDB Cluster？
-
-3. 统一数据编码方式-UTF-8
+2. 统一数据编码方式-UTF-8
 
 4. 查询分页比较大的时候，怎么提高查询速度
 
 5. 查询分表怎么分？（官方建议数据量达到2000万以上才分库分表）
-
-6. 索引（B树索引、哈希索引（只能用在内存型的存储引擎中））
-
-   > [adaptive hash index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_adaptive_hash_index), [B-tree](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_b_tree), [child table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_child_table), [clustered index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_clustered_index), [column index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_column_index), [composite index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_composite_index), [covering index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_covering_index), [foreign key](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_foreign_key), [hash index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_hash_index), [parent table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_parent_table), [partial index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_partial_index), [primary key](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_primary_key), [query](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_query), [R-tree](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_r_tree), [row](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_row), [secondary index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_secondary_index), [table](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_table). [index](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_index), [InnoDB](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_innodb).
-   >
-   > * B树结构（B树节点可以有多个子节点，而二叉树只能有最多2个子节点）
-   > * 哈希
-
-7. 
-6. 如何查询数据库中某个列值最大的那条数据
-
-   > 1. Max函数
-   > 2. 倒序查一条
-   > 3. LEFT JOIN
-
 
 
 参考文档：
