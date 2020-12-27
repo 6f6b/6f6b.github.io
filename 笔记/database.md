@@ -25,6 +25,8 @@
    > 3. 三层：客户端、服务端、数据库各在一台机器上
    >
    >    <img src="../../JAVAWeb/images/091318_0745_DBMSArchite3.png" style="zoom:50%;" />
+   
+4. 数据库的连接数
 
 ## 二、MySQL
 
@@ -202,7 +204,7 @@
 
   * 是否为每个表设置了正确的存储引擎？InnoDB（事务性存储引擎）、MyISAM（非事务性存储引擎）的选择对性能和扩展性的影响非常大
 
-    > InnoDB相对来讲更为牛逼，尤其是在处理高并发的场景下，而MyISAM则更擅长读较多的场景以及地并发中
+    > InnoDB相对来讲更为牛逼，尤其是在处理高并发的场景下，而MyISAM则更擅长读较多的场景
 
   * 表是否采用了合适的`行格式`？
 
@@ -290,6 +292,39 @@
    >    > 可用`telnet server_host port` 来检测端口是否开启
 
 #### 2.5 Transaction
+
+	> transaction are atomic units of work that can be commited or rolled back
+
+1. ACID（atomicity, consistency, isolation, and durability.分别为原子性、一致性、隔离性、持久性），原子性指不可分割性
+
+2. 事务解决什么问题？怎么解决的？带来什么新的问题？新的问题如何解决？
+
+3. 有些语句不能被回滚
+
+   > DDL
+
+4. autocommit
+
+   > 造成的效果是每一个语句都被start transaction和commit包围，也就是说每一条语句都是一个原子操作
+
+5. 隔离级别
+
+   > * READ COMMITTED 读已提交
+   > * READ UNCOMMITTED 读未提交
+   > * REPEATABLE READ 可重复读，默认的隔离级别
+   > * SERIALIZABLE 序列化
+
+6. Transaction Access Model
+
+   > * READ WRITE 默认
+   >
+   > * READ ONLY 可提高性能；事务中不能对表进行修改，但是可对临时表进行修改
+
+7. 事务属性设置影响到的域
+
+   > * GLOBAL 对所有接下来的其他session有效，但对当前session无效
+   > * SESSION 对当前session中所有接下来的事务有效；可以在事务中执行，但是对当前事务不生效
+   > * Without any `SESSION` or `GLOBAL` keyword：仅对当前session的下一个事务有效；不能在事务中执行
 
 #### 2.6 Event
 
