@@ -309,10 +309,15 @@
 
 5. 隔离级别
 
-   > * READ COMMITTED 读已提交
    > * READ UNCOMMITTED 读未提交
+   >
+   > * READ COMMITTED 读已提交
+   >
    > * REPEATABLE READ 可重复读，默认的隔离级别
+   >
    > * SERIALIZABLE 序列化
+   >
+   >   [涉及隔离级别的介绍、读产生的几种问题(脏读、不可重复度、幻读)及解决方案](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Non-repeatable_reads)
 
 6. Transaction Access Model
 
