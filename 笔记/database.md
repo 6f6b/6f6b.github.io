@@ -293,11 +293,14 @@
 
 #### 2.5 Transaction
 
-	> transaction are atomic units of work that can be commited or rolled back
+	transaction are atomic units of work that can be commited or rolled back
 
 1. ACID（atomicity, consistency, isolation, and durability.分别为原子性、一致性、隔离性、持久性），原子性指不可分割性
 
 2. 事务解决什么问题？怎么解决的？带来什么新的问题？新的问题如何解决？
+
+   > 1. 有时候，几个操作需要一起成功或一起失败，事务就是解决这个问题。从概念上来讲，事务是一个原子单位的工作单元，这个工作单元包含了一条或多条操作。
+   > 2. 
 
 3. 有些语句不能被回滚
 
@@ -331,9 +334,62 @@
    > * SESSION 对当前session中所有接下来的事务有效；可以在事务中执行，但是对当前事务不生效
    > * Without any `SESSION` or `GLOBAL` keyword：仅对当前session的下一个事务有效；不能在事务中执行
 
+8. MVCC
+
+   > MySQL通过undo log来实现一致性读
+   >
+   > Undo logs in the rollback segment are divided into insert and update undo logs. Insert undo logs are needed only in transaction rollback and can be discarded as soon as the transaction commits.**Update undo logs are used also in consistent reads**, but they can be discarded only after there is no transaction present for which `InnoDB` has assigned a snapshot that in a consistent read could need the information in the update undo log to build an earlier version of a database row.
+
 #### 2.6 Event
 
+1. event 用来执行定时任务，类似于Linux中的crontab，通过SQL语句来创建和修改event
+
 #### 2.7 Log
+
+1. 日志记录了些什么东西？
+2. 日志文件存储在哪里？
+3. 日志文件如何查看？
+4. 日志文件大小如何设置？
+5. 日志超过了日志文件大小上限怎么办？
+
+#### 2.8 InnoDB
+
+#####2.8.1 Tips
+
+1. row format [详细对比](https://dev.mysql.com/doc/refman/8.0/en/innodb-row-format.html)
+
+   > * 表中的行数据在磁盘中存储的格式，可以设置的值有`REDUNDANT`,`COMPACT`,`COMPRESSED`,`DYNAMIC`，这个`COMPRESSED`是InnoDB引擎中新增的，可以提高存储的性能
+   > * 这个值的设置可以通过数据库配置选项`innodb_default_row_format`来设置（默认是`DYNAMIC`)，也可以在建表的时候单独设置
+   > * 比较，一个比一个压缩更牛逼（工作负载受缓存命中和磁盘IO限制则采用压缩率较高的，受CPU限制则采用压缩率较低的）
+   >   * REDUNDANT 最老的格式，基本不用了
+   >   * COMPACT 相比于REDUNDANT来讲减少了约20%的磁盘空间 
+   >   * DYNAMIC 相比COMPACT 增强了对变长字段的存储能力，增加了对大的前缀索引的支持。这种格式使得长的变长字段被存储在包含行数据的page之外，因此非常适合包含大对象的表（因为大的字段通常不会用来作为查询条件，所以他们通常不需要被加载到缓存池中，这样就减少了磁盘IO）
+   >   * COMPRESSED 相比DYNAMIC 增加了对表和索引数据的压缩支持
+
+2. buffer （主要目的是减少磁盘IO，将多次的小的磁盘IO调整为少的较大的磁盘IO）LRU（least recently used）算法--优化**midpoint-insertion-strategy**
+
+   > * buffer pool 缓存表和索引的一个内存区域
+   > * doublewrite buffer 先写到doublewrite buffer中，再写入数据文件，为了防止写入数据文件过程中发生故障。可以关闭
+   > * change buffer
+
+##### 2.8.2 优势
+
+#####	2.8.3 局限性
+
+1. 一张表最多1017列（包括虚拟生成的列）
+
+2. 一张表最多64个二级索引
+
+3. 每个多列索引最多包含16列
+
+4. 每一行的大小限制
+
+   > * 没有变长字段：大小限制为page size的一半，但不超过16KB，如：InnoDB默认pagesize为16KB，则单行数据最大为8KB
+   > * 有变长字段（LONGBLOB、LONGTEXT、BLOB、TEXT）：因为这些字段的值（当整个行已经超过pagesize的一半）是存储在另外一个page中的，因此这样的行最大不超过4GB
+
+5. 日志文件总和的大小限制为512GB
+
+
 
 
 
@@ -382,7 +438,13 @@ QUESTIONS:
 
 参考文档：
 
-> https://www.guru99.com/sql.html
+> [MySQL官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 >
-> https://dev.mysql.com/doc/refman/8.0/en/
+> > [InnoDB 中MVCC的实现](https://dev.mysql.com/doc/refman/8.0/en/innodb-multi-versioning.html)
 >
+> [guru99中对SQL的入门介绍](https://www.guru99.com/sql.html)
+>
+> [How does MVCC (Multi-Version Concurrency Control) work](https://vladmihalcea.com/how-does-mvcc-multi-version-concurrency-control-work/)
+>
+> [MVCC多版本并发控制](https://www.jianshu.com/p/8845ddca3b23)
+
