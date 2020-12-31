@@ -55,9 +55,13 @@
     $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \ -jar target/myapplication-0.0.1-SNAPSHOT.jar
     ```
 
-25. MAVEN_OPTS、JAVA_OPTS？
-26. Java hot-swapping
-27. Packaging Your Application for Production
+26. MAVEN_OPTS、JAVA_OPTS？
+
+27. Java hot-swapping
+
+28. Packaging Your Application for Production
+
+29. 在Controller中定义全局变量会引起线程安全问题？
 
 
 
