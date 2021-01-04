@@ -423,6 +423,14 @@ TIPS：
 2. NDB Cluster？
 
    > NDB Cluster provides a high-availability, high-redundancy version of MySQL adapted for the distributed computing environment. See [Chapter 23, *MySQL NDB Cluster 8.0*](https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html), which provides information about MySQL NDB Cluster 8.0.
+   
+3. 数据库设计三范式
+
+   > 1. 字段具有原子性
+   > 2. 有主键
+   > 3. 外键
+   >
+   > > note:数据库及数据表及数据表中的字段采用下划线分割
 
 
 QUESTIONS:

@@ -53,5 +53,7 @@ QUESTIONS:
 
    > [answer](https://www.cnblogs.com/yslf/p/10731951.html)
 
-2. 
+2. 不通过预处理语句，如何防止SQL注入攻击？
+
+   > 
 
