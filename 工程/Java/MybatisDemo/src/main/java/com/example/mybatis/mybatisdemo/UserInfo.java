@@ -10,4 +10,17 @@ public class UserInfo {
     int sex;
     String phone;
 
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", sex=" + sex +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

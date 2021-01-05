@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
@@ -22,11 +23,21 @@ class MybatisDemoApplicationTests {
     public void test() throws IOException {
         String resource = "mybatis.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        try {
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserInfo userInfo = sqlSession.selectOne("com.example.mybatis.mybatisdemo.UserInfoMapper.selectUser",1);
-        System.out.println(userInfo);
+            //直接调用statement的Id
+//            UserInfo userInfo = sqlSession.selectOne("com.example.mybatis.mybatisdemo.UserInfoMapper.selectUser",1);
+
+            UserInfoMapper mapper = sqlSession.getMapper(UserInfoMapper.class);
+            UserInfo userInfo = mapper.selectUser(1);
+            System.out.println(userInfo.toString());
+            sqlSession.close();
+        }catch (Exception e){
+            LoggerFactory.getLogger(this.getClass()).error(e.toString());
+        }finally {
+        }
     }
 
 }
