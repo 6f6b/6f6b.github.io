@@ -12,7 +12,6 @@
     <!--    -->
     <typeHandlers>
     </typeHandlers>
-
     <plugins>
         <plugin interceptor="com.example.mybatis.mybatisdemo.ExamplePlugin">
             <property name="someProperty" value="100"/>
