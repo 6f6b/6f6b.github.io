@@ -7,4 +7,5 @@
     <select id="selectUser" resultType="com.example.mybatis.mybatisdemo.UserInfo">
         select * from user_info where id = #{id}
     </select>
+    <insert id=""></insert>
 </mapper>
