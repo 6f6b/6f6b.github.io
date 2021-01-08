@@ -29,10 +29,9 @@ class MybatisDemoApplicationTests {
 
             //直接调用statement的Id
 //            UserInfo userInfo = sqlSession.selectOne("com.example.mybatis.mybatisdemo.UserInfoMapper.selectUser",1);
+            Blog blog = sqlSession.selectOne("com.example.mybatis.mybatisdemo.BlogMapper.selectBlog",1);
 
-            UserInfoMapper mapper = sqlSession.getMapper(UserInfoMapper.class);
-            UserInfo userInfo = mapper.selectUser(1);
-            System.out.println(userInfo.toString());
+            System.out.println(blog.toString());
             sqlSession.close();
         }catch (Exception e){
             LoggerFactory.getLogger(this.getClass()).error(e.toString());

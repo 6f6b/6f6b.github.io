@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mybatisdemo.BlogMapper">
+    <!--    关联的嵌套结果映射-->
+<!--    <resultMap id="blogResultMap" type="com.example.mybatis.mybatisdemo.Blog">-->
+<!--        <id property="id" column="blog_id"></id>-->
+<!--        <result property="name" column="blog_name"></result>-->
+
+<!--        <association property="author" resultMap="authorResultMap" columnPrefix="au_"></association>-->
+<!--        <association property="subAuthor" resultMap="authorResultMap" columnPrefix="s_au_"></association>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="authorResultMap" type="com.example.mybatis.mybatisdemo.Author">-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="name" column="name"></result>-->
+<!--        <result property="age" column="age"></result>-->
+<!--    </resultMap>-->
+<!--    -->
+<!--    <select id="selectBlog" resultMap="blogResultMap">-->
+<!--        select-->
+<!--        B.id as blog_id,-->
+<!--        B.name as blog_name,-->
+<!--&#45;&#45;         AR.id as ar_id,-->
+<!--&#45;&#45;         AR.title as ar_title,-->
+<!--&#45;&#45;         AR.content as ar_content,-->
+<!--        AU.id as au_id,-->
+<!--        AU.name as au_name,-->
+<!--        AU.age as au_age,-->
+<!--		SAU.id as s_au_id,-->
+<!--        SAU.name as s_au_name,-->
+<!--        SAU.age as s_au_age-->
+
+<!--        from blog B-->
+<!--&#45;&#45;         right join articles AR on B.id = AR.id-->
+<!--		left outer join authors AU on B.author = AU.id-->
+<!--		left outer join authors SAU on B.sub_author = SAU.id-->
+
+<!--		where B.id = #{id}-->
+<!--    </select>-->
+
+<!--    关联的嵌套select查询-->
+    <resultMap id="blogResultMap" type="com.example.mybatis.mybatisdemo.Blog">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+
+        <association property="author" column="author" javaType="com.example.mybatis.mybatisdemo.Author" select="selectAuthor" fetchType="lazy"></association>
+        <association property="subAuthor" column="sub_author" javaType="com.example.mybatis.mybatisdemo.Author" select="selectAuthor" fetchType="lazy"></association>
+    </resultMap>
+
+<!--    <resultMap id="authorResultMap" type="com.example.mybatis.mybatisdemo.Author">-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="name" column="name"></result>-->
+<!--        <result property="age" column="age"></result>-->
+<!--    </resultMap>-->
+
+    <select id="selectBlog" resultMap="blogResultMap">
+        select * from blog where id = #{id}
+    </select>
+
+    <select id="selectAuthor" resultType="com.example.mybatis.mybatisdemo.Author">
+        select * from authors where id = #{id}
+    </select>
+</mapper>

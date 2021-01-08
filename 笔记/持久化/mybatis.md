@@ -55,7 +55,98 @@
 
 #### 二、XML映射文件（Mapper）
 
-1. 
+1. 缓存-`<cache>`、`<cache-ref>`
+
+2. `<sql>`创建可复用的sql语句
+
+   ```xml
+   
+   ```
+
+3. `<select>`、`<insert>`、`<update>`、`<delete>`
+
+   > 1. `<select>`
+   >
+   >    > 1. 属性
+   >    >
+   >    >    > ```xml
+   >    >    > id CDATA #REQUIRED
+   >    >    > parameterMap CDATA #IMPLIED
+   >    >    > parameterType CDATA #IMPLIED
+   >    >    > resultMap CDATA #IMPLIED
+   >    >    > resultType CDATA #IMPLIED
+   >    >    > resultSetType (FORWARD_ONLY | SCROLL_INSENSITIVE | SCROLL_SENSITIVE | DEFAULT) #IMPLIED
+   >    >    > statementType (STATEMENT|PREPARED|CALLABLE) #IMPLIED
+   >    >    > fetchSize CDATA #IMPLIED
+   >    >    > timeout CDATA #IMPLIED
+   >    >    > flushCache (true|false) #IMPLIED
+   >    >    > useCache (true|false) #IMPLIED
+   >    >    > databaseId CDATA #IMPLIED
+   >    >    > lang CDATA #IMPLIED
+   >    >    > resultOrdered (true|false) #IMPLIED
+   >    >    > resultSets CDATA #IMPLIED 
+   >    >    > ```
+   >    
+   > 2. `<insert>` 、`<update>`
+   >
+   >    > 1. 属性
+   >    >
+   >    >    > ```
+   >    >    > id CDATA #REQUIRED
+   >    >    > parameterMap CDATA #IMPLIED
+   >    >    > parameterType CDATA #IMPLIED
+   >    >    > timeout CDATA #IMPLIED
+   >    >    > flushCache (true|false) #IMPLIED
+   >    >    > statementType (STATEMENT|PREPARED|CALLABLE) #IMPLIED
+   >    >    > keyProperty CDATA #IMPLIED
+   >    >    > useGeneratedKeys (true|false) #IMPLIED
+   >    >    > keyColumn CDATA #IMPLIED
+   >    >    > databaseId CDATA #IMPLIED
+   >    >    > lang CDATA #IMPLIED
+   >    >    > ```
+   >
+   > 3. `<delete>`
+   >
+   >    > 1. 属性
+   >    >
+   >    >    > ```
+   >    >    > id CDATA #REQUIRED
+   >    >    > parameterMap CDATA #IMPLIED
+   >    >    > parameterType CDATA #IMPLIED
+   >    >    > timeout CDATA #IMPLIED
+   >    >    > flushCache (true|false) #IMPLIED
+   >    >    > statementType (STATEMENT|PREPARED|CALLABLE) #IMPLIED
+   >    >    > databaseId CDATA #IMPLIED
+   >    >    > lang CDATA #IMPLIED
+   >    >    > ```
+   >
+   > * useGeneratedKeys之主键回填？
+   
+4. 结果映射之**resultMap**
+
+   > 1. 普通结果映射
+   >
+   > 2. 高级结果映射
+   >
+   >    > 1. `<association>` 关联
+   >    >
+   >    >    > 1. 关联的嵌套查询（N+1问题、延迟加载）
+   >    >    > 2. 关联的嵌套映射（连表查询）
+   >    >    > 3. 关联的多结果集（需要数据库支持多结果集查询才能行）
+   >    >
+   >    > 2. `<collection>`  集合
+
+5. 缓存
+
+   > 1. select 的结果缓存后，那条数据发生了变更咋整？
+   > 2. insert、update、delete会更新缓存，怎么更新法？
+   > 3. 缓存会保存列表或对象的1024个引用，这里的引用是什么？
+   > 4. 
+
+
+
+
+
 
 QUESTIONS:
 
@@ -71,3 +162,14 @@ QUESTIONS:
 
 5. 当selectKey元素设置了多个keyProperty时，其内部只返回一个值，会发生什么？
 
+6. id & result
+
+   > 这两者之间的唯一不同是，*id* 元素对应的属性会被标记为对象的标识符，在比较对象实例时使用。 这样可以提高整体的性能，尤其是进行缓存和嵌套结果映射（也就是连接映射）的时候。为什么可以提高整体性能？
+
+7. 关联的嵌套查询
+
+   > MyBatis 能够对这样的查询（N+1查询）进行延迟加载，因此可以将大量语句同时运行的开销分散开来。 然而，如果你加载记录列表之后立刻就遍历列表（立刻遍历的具体表现形式是什么？）以获取嵌套的数据，就会触发所有的延迟加载查询，性能可能会变得很糟糕。
+
+TIPS：
+
+1. 访问数据库多次、访问数据库一次执行多个语句
