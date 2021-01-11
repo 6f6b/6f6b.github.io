@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="18ffda8c-2544-4d26-958a-e10b8d458722" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1mu11qTEMSymw6eWSKmn8ouk2aR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RunManager">
+    <configuration name="SqlSessionTest.shouldSelectBlogWithPostsAndAuthorUsingSubSelectsLazily" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.apache.ibatis.session.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.apache.ibatis.session" />
+      <option name="MAIN_CLASS_NAME" value="org.apache.ibatis.session.SqlSessionTest" />
+      <option name="METHOD_NAME" value="shouldSelectBlogWithPostsAndAuthorUsingSubSelectsLazily" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SqlSessionTest.shouldSelectBlogWithPostsAndAuthorUsingSubSelectsLazily" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18ffda8c-2544-4d26-958a-e10b8d458722" name="Default Changelist" comment="" />
+      <created>1610328449189</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610328449189</updated>
+      <workItem from="1610328452328" duration="2508000" />
+      <workItem from="1610331381893" duration="5523000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1043" y="397" key="#xdebugger.evaluate" timestamp="1610335780883">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state x="1043" y="397" key="#xdebugger.evaluate/0.25.2560.1330@0.25.2560.1330" timestamp="1610335780883" />
+    <state width="2518" height="431" key="GridCell.Tab.0.bottom" timestamp="1610345969606">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="431" key="GridCell.Tab.0.bottom/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969606" />
+    <state width="2518" height="431" key="GridCell.Tab.0.center" timestamp="1610345969606">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="431" key="GridCell.Tab.0.center/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969606" />
+    <state width="2518" height="431" key="GridCell.Tab.0.left" timestamp="1610345969605">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="431" key="GridCell.Tab.0.left/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969605" />
+    <state width="2518" height="431" key="GridCell.Tab.0.right" timestamp="1610345969606">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="431" key="GridCell.Tab.0.right/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969606" />
+    <state width="2518" height="189" key="GridCell.Tab.1.bottom" timestamp="1610345969593">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="189" key="GridCell.Tab.1.bottom/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969593" />
+    <state width="2518" height="189" key="GridCell.Tab.1.center" timestamp="1610345969592">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="189" key="GridCell.Tab.1.center/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969592" />
+    <state width="2518" height="189" key="GridCell.Tab.1.left" timestamp="1610345969592">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="189" key="GridCell.Tab.1.left/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969592" />
+    <state width="2518" height="189" key="GridCell.Tab.1.right" timestamp="1610345969592">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state width="2518" height="189" key="GridCell.Tab.1.right/0.25.2560.1330@0.25.2560.1330" timestamp="1610345969592" />
+    <state x="1019" y="451" width="799" height="889" key="find.popup" timestamp="1610334623083">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state x="1019" y="451" width="799" height="889" key="find.popup/0.25.2560.1330@0.25.2560.1330" timestamp="1610334623083" />
+    <state x="1150" y="332" width="670" height="676" key="search.everywhere.popup" timestamp="1610330030842">
+      <screen x="0" y="25" width="2560" height="1330" />
+    </state>
+    <state x="1150" y="332" width="670" height="676" key="search.everywhere.popup/0.25.2560.1330@0.25.2560.1330" timestamp="1610330030842" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/loader/ResultLoaderMap.java</url>
+          <line>191</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/loader/ResultLoaderMap.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/loader/cglib/CglibProxyFactory.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/statement/PreparedStatementHandler.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/loader/ResultLoaderMap.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/loader/ResultLoaderMap.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/ibatis/executor/loader/ResultLoaderMap.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
