@@ -139,6 +139,8 @@ public class CglibProxyFactory implements ProxyFactory {
           } else {
             if (lazyLoader.size() > 0 && !FINALIZE_METHOD.equals(methodName)) {
               if (aggressive || lazyLoadTriggerMethods.contains(methodName)) {
+                System.out.println("牛-cglib-all");
+
                 lazyLoader.loadAll();
               } else if (PropertyNamer.isSetter(methodName)) {
                 final String property = PropertyNamer.methodToProperty(methodName);
@@ -146,6 +148,7 @@ public class CglibProxyFactory implements ProxyFactory {
               } else if (PropertyNamer.isGetter(methodName)) {
                 final String property = PropertyNamer.methodToProperty(methodName);
                 if (lazyLoader.hasLoader(property)) {
+                  System.out.println("牛-cglib");
                   lazyLoader.load(property);
                 }
               }

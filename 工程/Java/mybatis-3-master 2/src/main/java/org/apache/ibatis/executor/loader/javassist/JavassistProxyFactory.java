@@ -141,6 +141,7 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
           } else {
             if (lazyLoader.size() > 0 && !FINALIZE_METHOD.equals(methodName)) {
               if (aggressive || lazyLoadTriggerMethods.contains(methodName)) {
+                System.out.println("牛-javassist-all");
                 lazyLoader.loadAll();
               } else if (PropertyNamer.isSetter(methodName)) {
                 final String property = PropertyNamer.methodToProperty(methodName);
@@ -148,6 +149,7 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
               } else if (PropertyNamer.isGetter(methodName)) {
                 final String property = PropertyNamer.methodToProperty(methodName);
                 if (lazyLoader.hasLoader(property)) {
+                  System.out.println("牛-javassist");
                   lazyLoader.load(property);
                 }
               }

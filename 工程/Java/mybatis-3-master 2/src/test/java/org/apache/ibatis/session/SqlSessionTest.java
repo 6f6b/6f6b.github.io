@@ -338,6 +338,10 @@ class SqlSessionTest extends BaseDataTest {
   void shouldSelectBlogWithPostsAndAuthorUsingSubSelectsLazily() {
     try (SqlSession session = sqlMapper.openSession()) {
       Blog blog = session.selectOne("org.apache.ibatis.domain.blog.mappers.BlogMapper.selectBlogWithPostsUsingSubSelectLazily", 1);
+      System.out.println("hello");
+      System.out.println(blog.getAuthor().toString());
+      System.out.println(blog.getAuthor().toString());
+
 //      Assertions.assertTrue(blog instanceof Proxy);
 //      assertEquals("Jim Business", blog.getTitle());
 //      assertEquals(2, blog.getPosts().size());

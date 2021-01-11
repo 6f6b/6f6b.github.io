@@ -36,6 +36,7 @@ public class Blog {
     }
 
     public Author getSubAuthor() {
+        System.out.println("获取author");
         return subAuthor;
     }
 

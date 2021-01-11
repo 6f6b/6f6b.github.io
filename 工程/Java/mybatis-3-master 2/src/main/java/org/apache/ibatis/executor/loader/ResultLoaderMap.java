@@ -76,6 +76,7 @@ public class ResultLoaderMap {
   }
 
   public boolean load(String property) throws SQLException {
+    System.out.println("牛逼-load-property");
     LoadPair pair = loaderMap.remove(property.toUpperCase(Locale.ENGLISH));
     if (pair != null) {
       pair.load();
@@ -89,6 +90,8 @@ public class ResultLoaderMap {
   }
 
   public void loadAll() throws SQLException {
+    System.out.println("牛逼-load-all");
+
     final Set<String> methodNameSet = loaderMap.keySet();
     String[] methodNames = methodNameSet.toArray(new String[methodNameSet.size()]);
     for (String methodName : methodNames) {
