@@ -1,42 +1,92 @@
 package com.example.quartzdemo.dao;
 
+import javax.persistence.*;
 
-import java.util.Date;
-
+@Entity
+@Table(name = "tasks")
 public class SchedulerJob {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    //@ApiModelProperty(value="jobid",dataType="String",name="jobid",example="1")
-    private String jobid;
-
-    //@ApiModelProperty(value="classname",dataType="String",name="classname",example="com.bcu.springboot.biz.quartz.CustomJob")
-    private String classname;
-
-    //@ApiModelProperty(value="cronexpression",dataType="String",name="cronexpression",example="0/5 * * * * ?")
+    @Column(name = "cron_expression")
     private String cronexpression;
 
-    //@ApiModelProperty(value="jobname",dataType="String",name="jobname",example="job1")
-    private String jobname;
+    @Column(name = "status")
+    private Integer status;
 
-    //@ApiModelProperty(value="jobgroup",dataType="String",name="jobgroup",example="group1")
-    private String jobgroup;
+    @Column(name = "task_content")
+    private String jobContent;
 
-    //@ApiModelProperty(value="triggername",dataType="String",name="triggername",example="triggername1")
-    private String triggername;
+    public SchedulerJob(){
+    }
 
-    //@ApiModelProperty(value="triggergroup",dataType="String",name="triggergroup",example="triggergroup1")
-    private String triggergroup;
+    public Integer getId() {
+        return id;
+    }
 
-    //@ApiModelProperty(value="pause",dataType="Boolean",name="pause",example="true")
-    private Boolean pause;
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    private Boolean enable;
+    public String getCronexpression() {
+        return cronexpression;
+    }
 
-    //@ApiModelProperty(value="description",dataType="String",name="description",example="秒杀活动")
-    private String description;
+    public void setCronexpression(String cronexpression) {
+        this.cronexpression = cronexpression;
+    }
 
-    private Date createtime;
+    public Integer getStatus() {
+        return status;
+    }
 
-    private Date lastupdatetime;
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
+    public String getJobContent() {
+        return jobContent;
+    }
 
+    public void setJobContent(String jobContent) {
+        this.jobContent = jobContent;
+    }
+
+    public String getJobName(){
+        return "job_name_" + this.getCronexpression();
+    }
+
+    public String getJobGroup(){
+        return "job_group_" + this.getCronexpression();
+    }
+
+    public String getTriggerName(){
+        return "trigger_name_" + this.getCronexpression();
+    }
+
+    public String getTriggerGroup(){
+        return "trigger_group_" + this.getCronexpression();
+    }
+
+    public String getDescription(){
+        return "description_" + this.getCronexpression();
+    }
+
+    public SchedulerJob update(SchedulerJob job){
+        SchedulerJob.class.getFields();
+        if (null != job.getId()){
+            this.id = job.getId();
+        }
+        if (null != job.getStatus()){
+            this.status = job.getStatus();
+        }
+        if (null != job.getCronexpression()){
+            this.cronexpression = job.getCronexpression();
+        }
+        if (null != job.getJobContent()){
+            this.jobContent = job.getJobContent();
+        }
+        return this;
+    }
 }

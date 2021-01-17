@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -31,6 +32,7 @@ public class UserController {
     public ResponseEntity<RestResponse<Void>> createUser(@RequestParam String name, @RequestParam String address){
         String message;
         if (name == null){
+            HashMap
             message = "name 不能为空";
         }
         else if (address == null){
