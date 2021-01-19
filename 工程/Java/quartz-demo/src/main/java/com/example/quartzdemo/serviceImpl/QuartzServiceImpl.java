@@ -103,7 +103,6 @@ public class QuartzServiceImpl implements QuartzService {
 
     @PostConstruct
     private void run(){
-        customJobFactory.setApplicationContext(applicationContext);
         try {
             scheduler.setJobFactory(customJobFactory);
         } catch (SchedulerException e) {
