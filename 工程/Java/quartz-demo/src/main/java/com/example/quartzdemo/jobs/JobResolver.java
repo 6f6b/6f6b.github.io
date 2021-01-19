@@ -1,13 +1,11 @@
 package com.example.quartzdemo.jobs;
 
+import java.math.BigInteger;
+
 public interface JobResolver {
     /**
-     * 解析工作内容
-     * @param jobContent
+     * 解析ID
+     * @param id
      */
-    public void excute(String jobContent);
-
-    /**
-     * 解析器识别号 resolverID
-     */
+    public void excute(Long id);
 }

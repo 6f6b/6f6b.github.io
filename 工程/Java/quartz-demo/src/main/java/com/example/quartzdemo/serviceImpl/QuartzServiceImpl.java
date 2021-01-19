@@ -1,9 +1,10 @@
 package com.example.quartzdemo.serviceImpl;
 
-import com.example.quartzdemo.dao.SchedulerJob;
+import com.example.quartzdemo.dao.Job;
 import com.example.quartzdemo.jobs.BaseJob;
-import com.example.quartzdemo.repository.TaskRepository;
+import com.example.quartzdemo.repository.JobRepository;
 import com.example.quartzdemo.service.QuartzService;
+import javassist.NotFoundException;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,16 +22,16 @@ public class QuartzServiceImpl implements QuartzService {
     @Autowired
     private Scheduler scheduler;
     @Autowired
-    TaskRepository repository;
+    JobRepository repository;
 
     @Override
-    public SchedulerJob addTimerJob(String cronExpression,String jobContent) {
-        SchedulerJob job = new SchedulerJob();
-        job.setCronexpression(cronExpression);
-        job.setJobContent(jobContent);
-        job.setStatus(1);
-        SchedulerJob savedJob = repository.save(job);
-        addTrigger(cronExpression);
+    public Job addJob(Job job) throws Exception{
+        Optional<Job> preSchedule = repository.findById(job.getId());
+        if (preSchedule.isPresent()){
+            throw new ObjectAlreadyExistsException("该任务已存在");
+        }
+        Job savedJob = repository.save(job);
+        addSchedule(savedJob.getCronExpression());
         System.out.println("==================================创建Job成功！==================================");
         return savedJob;
     }
@@ -37,25 +39,25 @@ public class QuartzServiceImpl implements QuartzService {
 
 
     @Override
-    public void updateTimerJob(SchedulerJob job) {
-        Optional<SchedulerJob> optionalJob = repository.findById(job.getId());
-        if (optionalJob.isPresent()){
-            SchedulerJob updatedJob = optionalJob.get().update(job);
-            repository.update(updatedJob.getId(),updatedJob.getStatus(),updatedJob.getCronexpression(),updatedJob.getJobContent());
-            addTrigger(updatedJob.getCronexpression());
-            logger.info("==================================更新Job成功！==================================");
+    public void updateJob(Job job) throws Exception{
+        Optional<Job> preSchedule = repository.findById(job.getId());
+        if (!preSchedule.isPresent()){
+            throw new NotFoundException("该任务不存在");
         }
+        Job savedJob = repository.save(job);
+        addSchedule(savedJob.getCronExpression());
+        logger.info("==================================更新Job成功！==================================");
     }
 
     @Override
-    public void deleteTimerJob(Integer id) {
+    public void deleteJob(Long id) {
         repository.deleteById(id);
         logger.info("==================================删除Job！==================================");
     }
 
     @Override
-    public SchedulerJob selectTimerJob(Integer id) {
-        Optional<SchedulerJob> optionalSchedulerJob = repository.findById(id);
+    public Job selectJob(Long id) {
+        Optional<Job> optionalSchedulerJob = repository.findById(id);
         if (optionalSchedulerJob.isPresent()){
             return optionalSchedulerJob.get();
         }
@@ -63,9 +65,9 @@ public class QuartzServiceImpl implements QuartzService {
     }
 
     @Override
-    public void addTrigger(String cronExpression) {
+    public void addSchedule(String cronExpression) {
         try {
-            SchedulerJob job = new SchedulerJob();
+            Job job = new Job();
             job.setCronexpression(cronExpression);
             JobDetail jobDetail = JobBuilder
                     .newJob(BaseJob.class)
@@ -76,7 +78,7 @@ public class QuartzServiceImpl implements QuartzService {
                     .build();
             // 创建表达式调度构建器
             CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder
-                    .cronSchedule(job.getCronexpression());
+                    .cronSchedule(job.getCronExpression());
             // 创建触发器
             CronTrigger cronTrigger = TriggerBuilder.newTrigger()
                     .withIdentity(job.getTriggerName(), job.getTriggerGroup())
@@ -97,7 +99,9 @@ public class QuartzServiceImpl implements QuartzService {
         logger.info("启动持久化的触发器");
         List<String> cronExpressions = repository.findAllCronExpressions();
         cronExpressions.forEach((cronExpression)->{
-            this.addTrigger(cronExpression);
+            if (null != cronExpression){
+                this.addSchedule(cronExpression);
+            }
         });
     }
 }

@@ -1,36 +1,37 @@
 package com.example.quartzdemo.service;
 
-import com.example.quartzdemo.dao.SchedulerJob;
+import com.example.quartzdemo.dao.Job;
+
+import java.math.BigInteger;
 
 public interface QuartzService {
-
     /**
-     * 创建Job
-     * @param cronExpression
-     * @param jobContent
+     * 创建调度
+     * @param job
+     * @return
      */
-    public SchedulerJob addTimerJob(String cronExpression,String jobContent);
+    public Job addJob(Job job) throws Exception;
 
     /**
-     * 修改Job
+     * 修改调度
      * @param job
      */
-    public void updateTimerJob(SchedulerJob job);
+    public void updateJob(Job job) throws Exception;
 
     /**
-     * 删除Job
+     * 删除调度
      * @param id
      */
-    public void deleteTimerJob(Integer id);
+    public void deleteJob(Long id);
 
     /**
-     * 查询Job
+     * 查询调度
      * @param id
      */
-    public SchedulerJob selectTimerJob(Integer id);
+    public Job selectJob(Long id);
 
     /**
-     * 添加一个触发器
+     * 添加一个调度器
      */
-    public void addTrigger(String cronExpression);
+    public void addSchedule(String cronExpression);
 }
