@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface JobRepository extends CrudRepository<Job,Long> {
-    @Query(value = "SELECT cron_expression FROM schedules GROUP BY cron_expression",nativeQuery = true)
+    @Query(value = "SELECT cron_expression FROM jobs GROUP BY cron_expression",nativeQuery = true)
     public List<String> findAllCronExpressions();
 
     @Query(value = "SELECT * FROM schedules WHERE status = 1 AND cron_expression = :cron AND start_time < :currentTime AND next_time <= :currentTime AND (end_time > :currentTime OR end_time = 0)",nativeQuery = true)

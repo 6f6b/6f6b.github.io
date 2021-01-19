@@ -9,6 +9,8 @@ import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,8 +24,13 @@ public class QuartzServiceImpl implements QuartzService {
     @Autowired
     private Scheduler scheduler;
     @Autowired
+    private CustomJobFactory customJobFactory;
+    @Autowired
     JobRepository repository;
-
+    @Autowired
+    private SchedulerFactoryBean schedulerFactoryBean;
+    @Autowired
+    private ApplicationContext applicationContext;
     @Override
     public Job addJob(Job job) throws Exception{
         Optional<Job> preSchedule = repository.findById(job.getId());
@@ -96,6 +103,12 @@ public class QuartzServiceImpl implements QuartzService {
 
     @PostConstruct
     private void run(){
+        customJobFactory.setApplicationContext(applicationContext);
+        try {
+            scheduler.setJobFactory(customJobFactory);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
         logger.info("启动持久化的触发器");
         List<String> cronExpressions = repository.findAllCronExpressions();
         cronExpressions.forEach((cronExpression)->{
