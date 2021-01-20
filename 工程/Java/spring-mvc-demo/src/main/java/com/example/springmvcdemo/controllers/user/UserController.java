@@ -32,7 +32,6 @@ public class UserController {
     public ResponseEntity<RestResponse<Void>> createUser(@RequestParam String name, @RequestParam String address){
         String message;
         if (name == null){
-            HashMap
             message = "name 不能为空";
         }
         else if (address == null){
