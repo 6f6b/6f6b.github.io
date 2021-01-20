@@ -7,15 +7,13 @@ import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 @Component
-public class BaseJob  extends QuartzJobBean {
+public class BaseJob  implements org.quartz.Job {
     private Logger logger = LoggerFactory.getLogger(BaseJob.class);
     @Autowired
     private JobRepository jobRepository;
@@ -23,11 +21,10 @@ public class BaseJob  extends QuartzJobBean {
     private List<JobResolver> jobResolvers;
 
     @Override
-    protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         CronTrigger cronTrigger = (CronTrigger) jobExecutionContext.getTrigger();
         String cronExpression = cronTrigger.getCronExpression();
         logger.info("执行调度：("+cronExpression+")");
-        if (null == QuartzDemoApplication.applicationContext){return;}
 //        jobRepository = QuartzDemoApplication.applicationContext.getBean(JobRepository.class);
 
 //        Collection<JobResolver> jobResolvers = QuartzDemoApplication.applicationContext.getBeansOfType(JobResolver.class).values();
