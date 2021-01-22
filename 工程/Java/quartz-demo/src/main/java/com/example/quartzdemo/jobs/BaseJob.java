@@ -42,14 +42,18 @@ public class BaseJob  implements org.quartz.Job {
             }
         }else{
             jobs.forEach((schedulerJob)->{
-                //更新next_time
-                Date nextTime = cronTrigger.getNextFireTime();
-                Integer succeedNum = jobRepository.update(schedulerJob.getId(),nextTime.getTime());
-                if (succeedNum >= 1){
-                    jobResolvers.forEach((jobResolver)->{
-                        jobResolver.excute(schedulerJob.getId());
-                    });
-                }
+                    //更新next_time
+                    Date nextTime = cronTrigger.getNextFireTime();
+                    Integer succeedNum = jobRepository.update(schedulerJob.getId(),nextTime.getTime());
+                    if (succeedNum >= 1){
+                        jobResolvers.forEach((jobResolver)->{
+
+
+                            CompletableFuture.runAsync(() -> {
+                                jobResolver.excute(schedulerJob.getId());
+                            });
+                        });
+                    }
             });
         }
     }

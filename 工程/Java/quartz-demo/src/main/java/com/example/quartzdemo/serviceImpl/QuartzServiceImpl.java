@@ -8,6 +8,9 @@ import javassist.NotFoundException;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -28,6 +31,9 @@ public class QuartzServiceImpl implements QuartzService {
     JobRepository repository;
     @Autowired
     private ApplicationContext applicationContext;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Override
     public Job addJob(Job job) throws Exception{
         Optional<Job> preSchedule = repository.findById(job.getId());
@@ -35,7 +41,9 @@ public class QuartzServiceImpl implements QuartzService {
             throw new ObjectAlreadyExistsException("该任务已存在");
         }
         Job savedJob = repository.save(job);
+        // 保证在消息服务中断的情况下本机依然可以创建一个触发器
         addSchedule(savedJob.getCronExpression());
+        rabbitTemplate.convertAndSend("rplus.service.app.doctor:job:exchange","rplus.service.app.doctor:job:add",savedJob.getCronExpression());
         System.out.println("==================================创建Job成功！==================================");
         return savedJob;
     }
@@ -50,6 +58,7 @@ public class QuartzServiceImpl implements QuartzService {
         }
         Job savedJob = repository.save(job);
         addSchedule(savedJob.getCronExpression());
+        rabbitTemplate.convertAndSend("rplus.service.app.doctor:job:exchange","rplus.service.app.doctor:job:update",savedJob.getCronExpression());
         logger.info("==================================更新Job成功！==================================");
     }
 
@@ -99,7 +108,7 @@ public class QuartzServiceImpl implements QuartzService {
     }
 
     @PostConstruct
-    private void run(){
+    public void run(){
         try {
             scheduler.setJobFactory(customJobFactory);
         } catch (SchedulerException e) {
@@ -112,5 +121,17 @@ public class QuartzServiceImpl implements QuartzService {
                 this.addSchedule(cronExpression);
             }
         });
+    }
+
+    @RabbitHandler
+    @RabbitListener(queues = "rplus.service.app.doctor:job.add:queue")
+    private void receiveAddJobMessage(String message){
+        addSchedule(message);
+    }
+
+    @RabbitHandler
+    @RabbitListener(queues = "rplus.service.app.doctor:job.update:queue-${server.port}")
+    private void receiveUpdateJobMessage(String message){
+        addSchedule(message);
     }
 }

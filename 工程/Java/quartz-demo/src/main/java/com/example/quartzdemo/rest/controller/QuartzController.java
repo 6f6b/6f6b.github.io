@@ -1,7 +1,11 @@
 package com.example.quartzdemo.rest.controller;
 
+import com.example.quartzdemo.QuartzDemoApplication;
 import com.example.quartzdemo.dao.Job;
 import com.example.quartzdemo.service.QuartzService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +19,12 @@ import java.math.BigInteger;
 public class QuartzController {
     @Autowired
     private QuartzService quartzService;
+    private final AmqpTemplate rabbitTemplate;
 
+
+    public QuartzController(RabbitTemplate rabbitTemplate){
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @RequestMapping("/add")
     //@ApiOperation("创建Quartz任务")
@@ -46,5 +55,11 @@ public class QuartzController {
         if(id==null) throw new Exception("id cannot be null");
         Job selectJob = quartzService.selectJob(id);
         return selectJob;
+    }
+
+    @RequestMapping("/sendMessage")
+    public String sendMessage(){
+        rabbitTemplate.convertAndSend("topic-exchange-name-job", "job.add", "Hello from RabbitMQ!");
+        return "发送成功";
     }
 }
