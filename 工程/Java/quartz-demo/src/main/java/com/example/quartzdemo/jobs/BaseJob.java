@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 @Component
@@ -29,7 +28,7 @@ public class BaseJob  implements org.quartz.Job {
 //        jobRepository = QuartzDemoApplication.applicationContext.getBean(JobRepository.class);
 
 //        Collection<JobResolver> jobResolvers = QuartzDemoApplication.applicationContext.getBeansOfType(JobResolver.class).values();
-        long currentTime = System.currentTimeMillis();
+        long currentTime = System.currentTimeMillis();Map
         List<Job> jobs = jobRepository.findSchedulerJobs(cronExpression,currentTime);
         if (jobs.stream().count() == 0){
             JobKey jobKey = jobExecutionContext.getJobDetail().getKey();

@@ -5,8 +5,11 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class Main implements PropertyChangeListener {
+    transient Set<String> keySet;
+
     public static void main(String[] args) {
         JBean bean = new JBean();
         bean.addPropertyChangeListener(new Main());
@@ -18,6 +21,11 @@ public class Main implements PropertyChangeListener {
         printNums(a,b);
         Animal animal = new Animal();
         String name = animal.name;
+
+        byte num = (byte) 0xff;
+        byte num1 = (byte) ((num << 1));
+
+        System.out.println(num);
     }
 
     @Override
@@ -33,4 +41,5 @@ public class Main implements PropertyChangeListener {
             }
         }
     }
+
 }
