@@ -24,10 +24,18 @@
    >    > 3. 对其集合视图的迭代所需的时间和hashmap的容量("桶"的个数)与hashmap的size之和成比例，所以如果对迭代性能要求较高的话不宜对初始容量设置太高
    >    >
    >    >    > An instance of HashMap has two parameters that affect its performance: initial capacity and load factor. The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created. The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased. When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.
+   >    >    
+   >    > 4. HashMap下面
    >
    > 2. TreeMap
    >
    > 3. Hashtable
+   >
+   >    > * Hashtable这个类下面有table[Entry]、loadfactor、threshold这几个关键属性，其中Entry这个类下面有key、value、next这几个属性，Hashtable存储的映射就是以Entry的形式存储的。
+   >    >
+   >    > * 当存入一个key-value映射对，首先会拿到key的hash值创建一个Entry实例，然后这个key的hash值对table[Entry]的长度取余，取余所得的值即为这个Entry实例在table[Entry]中的位置，问题是有可能两个不同的key的hash值可能相同，也可能两个不同的hash值取余后所得的值相同，比如都为2，那么这两个Entry都会存入table[2]的位置，这是后加入进来的Entry就会作为先加入进来的Entry的next属性，也就是形成了一个链表。
+   >    > * table[Entry]这个数组的每一个位置代表一个“桶(bucket)”
+   >    > * threshold的值=loadfactor*初始容量，loadfactor越低则性能越好，但是也就越浪费空间，为什么呢？因为负载系数决定了table[Entry]何时扩容（当所有的Entry数目超过threshold时进行扩容），loadfactor越高则threshold越高，则扩容时机越晚，假设loadfactor为10000，初始容量为2，则table[Entry]的每个桶中的链表长度平均为5000，链表越长，查询性能越慢
    >
    > 4. SortedMap
 
