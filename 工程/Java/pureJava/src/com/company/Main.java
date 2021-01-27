@@ -26,7 +26,7 @@ public class Main implements PropertyChangeListener {
 //
 //            System.out.println("左移" + i+"位="+num);
 //        }
-        CompletableFuture
+        HashMap
         for (int binCount = 0; ; ++binCount) {
             System.out.println(binCount);
             if (binCount >= 7) // -1 for 1st

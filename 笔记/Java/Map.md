@@ -25,7 +25,21 @@
    >    >
    >    >    > An instance of HashMap has two parameters that affect its performance: initial capacity and load factor. The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created. The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased. When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.
    >    >    
-   >    > 4. HashMap下面
+   >    > 4. HashMap下面有table[Entry]、loadfactor、threshold这几个属性，区别于Hashtable的是table[Entry]的容量总是2的幂，当存入key-value时，HashMap会对key再做一次hash处理使得更均匀的分布在hash表中，处理后的key值与hash表的长度-1做&处理，如table的长度为1000，则-1后变成0111，这使得key值&处理后必定落在table中，当某个桶中存入的个数达到TREEIFY_THRESHOLD时，先要判断是table容量否达到MIN_TREEIFY_CAPACITY这个值，若没达到则先进行扩容，若已达到则开始对这个桶中的链表进行树化处理，将其搞成一个红黑树，对树中的某个元素进行删除时可参考对树中节点的删除。随着key-value持续的添加达到下一个扩容操作时，在扩容的时候会对装树的桶进行处理，判断树的节点数是否达到砍树的值UNTREEIFY_THRESHOLD，若没达到则不管，若达到了则根据hash值分为高低两棵树，低树放在table的低位，根据是否达到UNTREEIFY_THRESHOLD的条件来决定是否砍树，高树放在table的高位，根据是否达到UNTREEIFY_THRESHOLD来决定是否砍树
+   >    >
+   >    >    > ```
+   >    >    > static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16 table的默认初始容量
+   >    >    > 
+   >    >    > static final int MAXIMUM_CAPACITY = 1 << 30;	table的最大容量
+   >    >    > 
+   >    >    > static final float DEFAULT_LOAD_FACTOR = 0.75f;	默认负载系数
+   >    >    > 
+   >    >    > static final int TREEIFY_THRESHOLD = 8;	桶里的节点个数超过这个值且table超过MIN_TREEIFY_CAPACITY则对桶中的值进行树化
+   >    >    > 
+   >    >    > static final int UNTREEIFY_THRESHOLD = 6; 扩容时若树的节点数低于或等于这个值则砍树
+   >    >    > 
+   >    >    > static final int MIN_TREEIFY_CAPACITY = 64;
+   >    >    > ```
    >
    > 2. TreeMap
    >
