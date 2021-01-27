@@ -1,6 +1,7 @@
 package com.example.quartzdemo.jobs;
 
 import com.example.quartzdemo.QuartzDemoApplication;
+import com.example.quartzdemo.common.ExecutorInstanceHelper;
 import com.example.quartzdemo.dao.Job;
 import com.example.quartzdemo.repository.JobRepository;
 import org.quartz.*;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 @Component
 public class BaseJob  implements org.quartz.Job {
@@ -19,6 +21,7 @@ public class BaseJob  implements org.quartz.Job {
     private JobRepository jobRepository;
     @Autowired
     private List<JobResolver> jobResolvers;
+    private Executor executor = ExecutorInstanceHelper.getCpuExecutor();
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
@@ -28,7 +31,7 @@ public class BaseJob  implements org.quartz.Job {
 //        jobRepository = QuartzDemoApplication.applicationContext.getBean(JobRepository.class);
 
 //        Collection<JobResolver> jobResolvers = QuartzDemoApplication.applicationContext.getBeansOfType(JobResolver.class).values();
-        long currentTime = System.currentTimeMillis();Map
+        long currentTime = System.currentTimeMillis();
         List<Job> jobs = jobRepository.findSchedulerJobs(cronExpression,currentTime);
         if (jobs.stream().count() == 0){
             JobKey jobKey = jobExecutionContext.getJobDetail().getKey();
@@ -46,11 +49,9 @@ public class BaseJob  implements org.quartz.Job {
                     Integer succeedNum = jobRepository.update(schedulerJob.getId(),nextTime.getTime());
                     if (succeedNum >= 1){
                         jobResolvers.forEach((jobResolver)->{
-
-
-                            CompletableFuture.runAsync(() -> {
+                            CompletableFuture.runAsync(()->{
                                 jobResolver.excute(schedulerJob.getId());
-                            });
+                            },executor);
                         });
                     }
             });

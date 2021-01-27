@@ -123,15 +123,15 @@ public class QuartzServiceImpl implements QuartzService {
         });
     }
 
-    @RabbitHandler
-    @RabbitListener(queues = "rplus.service.app.doctor:job.add:queue")
-    private void receiveAddJobMessage(String message){
-        addSchedule(message);
-    }
-
-    @RabbitHandler
-    @RabbitListener(queues = "rplus.service.app.doctor:job.update:queue-${server.port}")
-    private void receiveUpdateJobMessage(String message){
-        addSchedule(message);
-    }
+//    @RabbitHandler
+//    @RabbitListener(queues = "rplus.service.app.doctor:job.add:queue")
+//    private void receiveAddJobMessage(String message){
+//        addSchedule(message);
+//    }
+//
+//    @RabbitHandler
+//    @RabbitListener(queues = "rplus.service.app.doctor:job.update:queue-${server.port}")
+//    private void receiveUpdateJobMessage(String message){
+//        addSchedule(message);
+//    }
 }

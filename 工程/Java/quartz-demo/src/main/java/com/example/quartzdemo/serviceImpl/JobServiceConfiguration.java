@@ -16,7 +16,7 @@ import java.util.concurrent.Executor;
  * @Author LiuFeng
  * @Date 2021/1/22
  */
-@Configuration
+//@Configuration
 public class JobServiceConfiguration {
     /**
      * 监听队列

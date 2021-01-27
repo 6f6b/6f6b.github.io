@@ -28,19 +28,6 @@ import java.util.Random;
 public class QuartzDemoApplication {
 
     public static void main(String[] args) throws Exception{
-
-        Enumeration e = NetworkInterface.getNetworkInterfaces();
-        while(e.hasMoreElements())
-        {
-            NetworkInterface n = (NetworkInterface) e.nextElement();
-            Enumeration ee = n.getInetAddresses();
-            System.out.println("###################");
-            while (ee.hasMoreElements())
-            {
-                InetAddress i = (InetAddress) ee.nextElement();
-                System.out.println(i.getHostAddress());
-            }
-        }
         SpringApplication.run(QuartzDemoApplication.class, args);
     }
 
