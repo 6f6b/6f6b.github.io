@@ -455,4 +455,3 @@ QUESTIONS:
 > [How does MVCC (Multi-Version Concurrency Control) work](https://vladmihalcea.com/how-does-mvcc-multi-version-concurrency-control-work/)
 >
 > [MVCC多版本并发控制](https://www.jianshu.com/p/8845ddca3b23)
-

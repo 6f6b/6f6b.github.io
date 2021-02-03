@@ -3,6 +3,7 @@ package com.example.quartzdemo.jobs;
 import com.example.quartzdemo.QuartzDemoApplication;
 import com.example.quartzdemo.common.ExecutorInstanceHelper;
 import com.example.quartzdemo.dao.Job;
+import com.example.quartzdemo.dao.Person;
 import com.example.quartzdemo.repository.JobRepository;
 import org.quartz.*;
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ public class BaseJob  implements org.quartz.Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        Person person = new Person();
+        person.setName("liufeng");
         CronTrigger cronTrigger = (CronTrigger) jobExecutionContext.getTrigger();
         String cronExpression = cronTrigger.getCronExpression();
         logger.info("执行调度：("+cronExpression+")");

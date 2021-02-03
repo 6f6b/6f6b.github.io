@@ -63,3 +63,9 @@
 6. Iterable接口类似于Enumeration接口，但是多了一个可选的remove方法，并且方法名更短
 7. 
 
+
+
+#### 参考文档：
+
+> [HashMap面试题](https://www.jianshu.com/p/ace20ab375bd)
+
