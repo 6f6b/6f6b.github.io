@@ -1,8 +1,11 @@
 package com.example.demo.dao.dto;
 
+import lombok.Data;
+
 /**
  * @Author LiuFeng
  */
+@Data
 public class DogDto {
 
     /**

@@ -51,78 +51,45 @@
    > 2. POOLED
    > 3. JNDI
 
-5. 
+5. 配置文件下的层级结构
+
+   * <configuration>
+     * <properties resource=xx,url=xx>?
+       * <property name=xx,value=xx>*
+     * <settings>?
+       * <setting name=xx,value=xx>+ 这里的name有很多[mybatis设置](https://mybatis.org/mybatis-3/zh/configuration.html#settings)
+     * <typeAliases>?
+       * <typeAliase type=xx,alias=xx>*
+       * <package name=xx>*
+     * <typeHandlers>?
+       * <typeHandler javaType=xx,jdbcType=xx,handler=xx>*
+       * <package>*
+     * <objectFactory type=xx>? 对象工厂
+       * <property>*
+     * <objectWrapperFactory type=xx>?
+     * <reflectorFactory type=xx>?
+     * <plugins>?
+       * <plugin interceptor=xx>+
+         * <property>*
+     * <environments default=xx(如development)>?
+       * <environment id=xx(如development)>+
+         * <transactionManager type=xx>
+           * <property>*
+         * <dataSource type=xx>
+           * <property>*
+     * <databaseIdProvider type=xx>?
+       * <property>*
+     * <mappers>?
+       * <mapper resource=xx,url=xx,class=xx>*
+       * <package>*
+
+   
 
 #### 二、XML映射文件（Mapper）
 
-1. 缓存-`<cache>`、`<cache-ref>`
+1. mapper文件下的层级结构
 
-2. `<sql>`创建可复用的sql语句
-
-   ```xml
-   
-   ```
-
-3. `<select>`、`<insert>`、`<update>`、`<delete>`
-
-   > 1. `<select>`
-   >
-   >    > 1. 属性
-   >    >
-   >    >    > ```xml
-   >    >    > id CDATA #REQUIRED
-   >    >    > parameterMap CDATA #IMPLIED
-   >    >    > parameterType CDATA #IMPLIED
-   >    >    > resultMap CDATA #IMPLIED
-   >    >    > resultType CDATA #IMPLIED
-   >    >    > resultSetType (FORWARD_ONLY | SCROLL_INSENSITIVE | SCROLL_SENSITIVE | DEFAULT) #IMPLIED
-   >    >    > statementType (STATEMENT|PREPARED|CALLABLE) #IMPLIED
-   >    >    > fetchSize CDATA #IMPLIED
-   >    >    > timeout CDATA #IMPLIED
-   >    >    > flushCache (true|false) #IMPLIED
-   >    >    > useCache (true|false) #IMPLIED
-   >    >    > databaseId CDATA #IMPLIED
-   >    >    > lang CDATA #IMPLIED
-   >    >    > resultOrdered (true|false) #IMPLIED
-   >    >    > resultSets CDATA #IMPLIED 
-   >    >    > ```
-   >    
-   > 2. `<insert>` 、`<update>`
-   >
-   >    > 1. 属性
-   >    >
-   >    >    > ```
-   >    >    > id CDATA #REQUIRED
-   >    >    > parameterMap CDATA #IMPLIED
-   >    >    > parameterType CDATA #IMPLIED
-   >    >    > timeout CDATA #IMPLIED
-   >    >    > flushCache (true|false) #IMPLIED
-   >    >    > statementType (STATEMENT|PREPARED|CALLABLE) #IMPLIED
-   >    >    > keyProperty CDATA #IMPLIED
-   >    >    > useGeneratedKeys (true|false) #IMPLIED
-   >    >    > keyColumn CDATA #IMPLIED
-   >    >    > databaseId CDATA #IMPLIED
-   >    >    > lang CDATA #IMPLIED
-   >    >    > ```
-   >
-   > 3. `<delete>`
-   >
-   >    > 1. 属性
-   >    >
-   >    >    > ```
-   >    >    > id CDATA #REQUIRED
-   >    >    > parameterMap CDATA #IMPLIED
-   >    >    > parameterType CDATA #IMPLIED
-   >    >    > timeout CDATA #IMPLIED
-   >    >    > flushCache (true|false) #IMPLIED
-   >    >    > statementType (STATEMENT|PREPARED|CALLABLE) #IMPLIED
-   >    >    > databaseId CDATA #IMPLIED
-   >    >    > lang CDATA #IMPLIED
-   >    >    > ```
-   >
-   > * useGeneratedKeys之主键回填？
-   
-4. 结果映射之**resultMap**
+2. 结果映射之**resultMap**
 
    > 1. 普通结果映射
    >
@@ -136,7 +103,7 @@
    >    >
    >    > 2. `<collection>`  集合
 
-5. 缓存
+3. 缓存
 
    > 1. select 的结果缓存后，那条数据发生了变更咋整？
    > 2. insert、update、delete会更新缓存，怎么更新法？
