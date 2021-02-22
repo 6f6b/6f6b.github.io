@@ -50,3 +50,40 @@
 
 4. Linux
 
+5. cd-Change Directory
+
+   > * cd / 进入根目录
+   > * cd ~ 进入用户主目录
+   > * cd xxx 进入某个具体目录
+   > * cd .. 进入上级目录
+
+6. pwd-Present Working Directory
+
+7. CLI
+
+   > <img src="../../JAVAWeb/images/Terminal_Description.png" alt="Terminal_Description" style="zoom:50%;" />
+   >
+   > **#**代表root用户
+   >
+   > **$**代表regular用户
+   >
+   > 
+
+### Basic Linux/Unix Commands with Examples & Syntax
+
+##### Listing files (ls)
+
+1. `ls`展示当前文件夹下的文件夹/文件
+
+2. `ls -R`递归展示文件夹下的文件夹/文件
+
+3. `ls -a`展示当前文件夹下的全部(包含隐藏的)文件夹/文件
+
+4. `ls -al`展示当前文件夹下的文件的详细信息
+
+   > 每列表示的意义
+   >
+   > <img src="/Users/feng/gits/JAVAWeb/images/ls-al(2).png" alt="ls-al(2)" style="zoom:50%;" />
+
+##### Creating & Viewing Files
+
