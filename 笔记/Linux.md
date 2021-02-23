@@ -1,3 +1,5 @@
+
+
 # Linux相关的学习笔记
 
 
@@ -87,3 +89,110 @@
 
 ##### Creating & Viewing Files
 
+1. `cat > filename`创建一个文本文件
+
+   > 1.  cat > filename
+   > 2.  Add content
+   > 3.  Press 'ctrl + d' to return to command prompt.
+
+2. `cat filename`查看一个文本文件
+
+3. `cat file1 file2 > file`将file1和file2组合成一个file文件
+
+##### Deleting Files
+
+1. `rm filename`删除一个文件
+
+##### Moving and Re-naming files
+
+1. `mv filename new_file_location`移动filename到new_file_location
+2. `mv filename newfilename`给filename重命名
+
+##### Directory Manipulations
+
+1. `mkdir directoryname`创建一个文件夹
+
+   > 1. 也可以是`mkdir /xx/xx/directoryname`这种形式
+   > 2. 一次可以创建多个文件夹，如：`mkdir directoryname1 directoryname2`
+
+2. `rmdir directoryname`删除一个文件夹，**要求文件夹为空才能删除**
+
+3. `mv directoryname newdirectoryname`文件夹重命名
+
+##### other
+
+1. `pr -n filename`显示文本文件内容并附带行号
+2. `apt-get install packagename`Linux安装软件
+3. `clear`清空屏幕
+4. `history`显示历史命令
+
+### File Permission
+
+##### Ownership of Linux files
+
+1. User
+
+   > A user is the owner of the file. By default, the person who created a file becomes its owner
+
+2. Group
+
+3. Other
+
+##### Permissions
+
+1. Read 读权限
+
+2. Write 写权限
+
+3. Execute 执行权限
+
+4. `ls -l`
+
+   > ![Permis_system](../../JAVAWeb/images/Permis_system.png)
+   >
+   > ![Directory](../../JAVAWeb/images/Directory.png)
+   >
+   > ![its_a_file](../../JAVAWeb/images/its_a_file.png)
+   >
+   > ![permission(1)](../../JAVAWeb/images/permission(1).png)
+   >
+   > ![no_execute](../../JAVAWeb/images/no_execute.png)
+   >
+
+##### Change Permission
+
+1. 通过数字
+
+   > chmod 777 filename
+
+2. 通过字符
+
+   > 1. 操作符
+   >
+   >    | **+** | Adds a permission to a file or directory                     |
+   >    | ----- | ------------------------------------------------------------ |
+   >    | **-** | Removes the permission                                       |
+   >    | **=** | Sets the permission and overrides the permissions set earlier. |
+   >
+   > 2. 用户类型缩写
+   >
+   >    | u    | user/owner |
+   >    | ---- | ---------- |
+   >    | g    | group      |
+   >    | o    | other      |
+   >    | a    | all        |
+   ><img src="../../JAVAWeb/images/Symbolic_Mode(1).png" alt="Symbolic_Mode(1)" style="zoom:70%;" />
+
+##### Changing Ownership and Group
+
+1. `chown username filename` 表示将filename设置其owner为username
+2. `chown username:groupname filename`同时改变filename的owner和所属的群组
+3. `chgrp gourpname filename`只改变filename所属的群组
+
+##### Tips
+
+- The file /etc/group contains all the groups defined in the system
+- You can use the command "groups" to find all the groups you are a member of
+- You cannot have 2 groups owning the same file.
+- You do not have nested groups in Linux. One group cannot be sub-group of other
+- x- eXecuting a directory means Being allowed to "enter" a dir and gain possible access to sub-dirs
