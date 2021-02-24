@@ -4,7 +4,7 @@
 
 
 
-学习网站： https://www.guru99.com/unix-linux-tutorial.html
+###一、Basic Info
 
 1. Linux简介：开源的一个操作系统或者说内核，其功能和Unix极为相似
 
@@ -50,9 +50,7 @@
 
    > Linus Torvalds读计算机科学的时候使用Unix操作系统，他觉得该系统有需要优化的地方，但是他的建议（他的建议是什么？）被Unix设计者给拒绝了，因此他便思考着搞一个尊重使用者提出的修改建议和意见的操作系统，于是Linux（Linux is not Unix）1991年便诞生了。
 
-4. Linux
-
-5. cd-Change Directory
+4. cd-Change Directory
 
    > * cd / 进入根目录
    > * cd ~ 进入用户主目录
@@ -71,7 +69,7 @@
    >
    > 
 
-### Basic Linux/Unix Commands with Examples & Syntax
+### 二、Basic Linux/Unix Commands with Examples & Syntax
 
 ##### Listing files (ls)
 
@@ -126,7 +124,7 @@
 3. `clear`清空屏幕
 4. `history`显示历史命令
 
-### File Permission
+### 三、File Permission
 
 ##### Ownership of Linux files
 
@@ -191,8 +189,171 @@
 
 ##### Tips
 
-- The file /etc/group contains all the groups defined in the system
-- You can use the command "groups" to find all the groups you are a member of
-- You cannot have 2 groups owning the same file.
-- You do not have nested groups in Linux. One group cannot be sub-group of other
-- x- eXecuting a directory means Being allowed to "enter" a dir and gain possible access to sub-dirs
+1. The file /etc/group contains all the groups defined in the system
+2. You can use the command "groups" to find all the groups you are a member of
+3. You cannot have 2 groups owning the same file.
+4. You do not have nested groups in Linux. One group cannot be sub-group of other
+5. x- eXecuting a directory means Being allowed to "enter" a dir and gain possible access to sub-dirs
+
+### 四、Input/Output Redirection
+
+##### Output Redirection
+
+1. `command_xx > filename`将command_xx命令执行的结果重定向到filename中，这种方式会将filename中原有内容覆盖掉
+2. `command_xx >> filename`这种方式是在filename中追加内容，不会将filename中原有内容覆盖掉
+
+##### Input Redirection
+
+1. `command_xx < filename`将filename中的内容交给command_xx作为参数
+
+##### Error Redirection
+
+1. `command_xx 2> filename`将command_xx命令执行的错误信息重定向到filename中去
+
+### 五、Pipe, Grep , Sort
+
+##### Pipe
+
+1. 管道是通过`|`符号形成的，目的是连接多个命令
+
+   >  如：cat filename | less，这里的less处理前面cat filename的结果
+
+##### Grep
+
+1. `grep search_string`是对结果进行查找操作
+
+   > | **Option** | **Function**                                              |
+   > | :--------- | :-------------------------------------------------------- |
+   > | -v         | Shows all the lines that do not match the searched string |
+   > | -c         | Displays only the count of matching lines                 |
+   > | -n         | Shows the matching line and its number                    |
+   > | -i         | Match both (upper and lower) case                         |
+   > | -l         | Shows just the name of the file with the string           |
+
+##### Sort
+
+1. `sort`对内容进行排序，每行内容排序
+
+   > | **Option** | **Function**             |
+   > | :--------- | :----------------------- |
+   > | -r         | Reverses sorting         |
+   > | -n         | Sorts numerically        |
+   > | -f         | Case insensitive sorting |
+
+### 六、环境变量
+
+> | Command                       | Description                             |
+> | :---------------------------- | :-------------------------------------- |
+> | echo $VARIABLE                | To display value of a variable          |
+> | env                           | Displays all environment variables      |
+> | VARIABLE_NAME= variable_value | Create a new variable                   |
+> | unset                         | Remove a variable                       |
+> | export Variable=value         | To set value of an environment variable |
+
+### 七、SSH, Ping, FTP Communication Commands
+
+##### SSH
+
+1. SSH which stands for Secure Shell（安全的、加密的shell）
+2. `SSH username@ip-address or hostname`
+
+##### Ping
+
+1. `ping hostname/ipaddress`
+
+   > 1. 用来检查本机与被ping的主机之间的连接是否健康
+   > 2. 检查网络性能
+
+##### FTP
+
+1. FTP **is file transfer protocol**.它是最受欢迎的计算机间的文件传输协议
+
+   > 通过ftp可以做到以下事情
+   >
+   > 1. 登录并和远程主机建立连接
+   > 2. 上传和下载文件
+   > 3. 
+   >
+   > - Logging in and establishing a connection with a remote host
+   > - Upload and download files
+   > - Navigating through directories
+   > - Browsing contents of the directories
+
+### 八、Process Management
+
+##### 前后台运行
+
+1. 首先运行一个程序
+
+   > 1. `ctl + z`挂起程序
+   > 2. `bg`放入后台运行
+   > 3. `fg`放入前台运行
+
+##### Top
+
+1. This utility tells the user about all the running processes on the Linux machine.
+
+   > | **Field** | **Description**                                              | **Example 1** |
+   > | :-------- | :----------------------------------------------------------- | :------------ |
+   > | PID       | The process ID of each task                                  | 1525          |
+   > | User      | The username of task owner                                   | Home          |
+   > | PR        | Priority Can be 20(highest) or -20(lowest)                   | 20            |
+   > | NI        | The nice value of a task                                     | 0             |
+   > | VIRT      | Virtual memory used (kb)                                     | 1775          |
+   > | RES       | Physical memory used (kb)                                    | 100           |
+   > | SHR       | Shared memory used (kb)                                      | 28            |
+   > | S         | StatusThere are five types:     'D' = uninterruptible sleep     'R' = running     'S' = sleeping     'T' = traced or stopped     'Z' = zombie | S             |
+   > | %CPU      | % of CPU time                                                | 1.7           |
+   > | %MEM      | Physical memory used                                         | 10            |
+   > | TIME+     | Total CPU time                                               | 5:05.34       |
+   > | Command   | Command name                                                 | Photoshop.exe |
+   > fd
+
+##### PS
+
+1. 类似top，但展示的信息有所不同
+2. `ps ux`To check all the processes running under a user
+3. `ps PID`展示某个pid的详细信息
+
+##### DF
+
+1. `df`展示磁盘占用情况
+2. `df -h`占用情况的可读性更高
+
+##### Free
+
+1. `free`展示ram的占用情况
+2. `free -m`以m显示
+3. `free -g`以g显示
+
+### 九、VI Editor
+
+1. 两种模式
+
+   > 1. 命令模式
+   > 2. 编辑模式(insert 模式)
+
+2. 命令
+
+   > - i - Insert at cursor (goes into insert mode)
+   > - A - Write at the end of line (goes into insert mode)
+   > - ESC - Terminate insert mode
+   > - u - Undo last change
+   > - U - Undo all changes to the entire line
+   > - o - Open a new line (goes into insert mode)
+   > - dd - Delete line
+   > - 3dd - Delete 3 lines.
+   > - D - Delete contents of line after the cursor
+
+3. 保存和关闭
+
+   > - Shift+zz - Save the file and quit
+   > - :w - Save the file but keep it open
+   > - :q - Quit without saving
+   > - :wq - Save the file and quit
+
+
+
+
+
+参考文档： https://www.guru99.com/unix-linux-tutorial.html
