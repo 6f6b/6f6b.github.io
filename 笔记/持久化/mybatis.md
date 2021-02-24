@@ -112,7 +112,37 @@
 
 
 
+#### 三、Mapper的获取过程
 
+1. mybatis.xml
+
+   1. SqlSessionFactoryBuilder通过Configuration生成SQLSessionFactory
+
+      1. XMLConfigBuilder将mybatis.xml解析成Configuration
+
+         1. XPathParser
+
+      2. 对'/configuration'节点下的子节点分别解析
+
+         ```java
+               propertiesElement(root.evalNode("properties"));
+               Properties settings = settingsAsProperties(root.evalNode("settings"));
+               loadCustomVfs(settings);
+               loadCustomLogImpl(settings);
+               typeAliasesElement(root.evalNode("typeAliases"));
+               pluginElement(root.evalNode("plugins"));
+               objectFactoryElement(root.evalNode("objectFactory"));
+               objectWrapperFactoryElement(root.evalNode("objectWrapperFactory"));
+               reflectorFactoryElement(root.evalNode("reflectorFactory"));
+               settingsElement(settings);
+               // read it after objectFactory and objectWrapperFactory issue #631
+               environmentsElement(root.evalNode("environments"));
+               databaseIdProviderElement(root.evalNode("databaseIdProvider"));
+               typeHandlerElement(root.evalNode("typeHandlers"));
+               mapperElement(root.evalNode("mappers"));
+         ```
+
+         
 
 
 QUESTIONS:

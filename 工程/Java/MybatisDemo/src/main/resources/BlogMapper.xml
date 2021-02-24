@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mybatis.mybatisdemo.BlogMapper">
+<mapper namespace="com.example.mybatis.mybatisdemo.mapper.BlogMapper">
     <cache></cache>
     <!--    关联的嵌套结果映射-->
 <!--    <resultMap id="blogResultMap" type="com.example.mybatis.mybatisdemo.Blog">-->
@@ -42,12 +42,12 @@
 <!--    </select>-->
 
 <!--    关联的嵌套select查询-->
-    <resultMap id="blogResultMap" type="com.example.mybatis.mybatisdemo.Blog">
+    <resultMap id="blogResultMap" type="com.example.mybatis.mybatisdemo.entity.Blog">
         <id property="id" column="id"></id>
         <result property="name" column="name"></result>
 
-        <association property="author" column="author" javaType="com.example.mybatis.mybatisdemo.Author" select="selectAuthor" fetchType="lazy"></association>
-        <association property="subAuthor" column="sub_author" javaType="com.example.mybatis.mybatisdemo.Author" select="selectAuthor" fetchType="lazy"></association>
+        <association property="author" column="author" javaType="com.example.mybatis.mybatisdemo.entity.Author" select="selectAuthor" fetchType="lazy"></association>
+        <association property="subAuthor" column="sub_author" javaType="com.example.mybatis.mybatisdemo.entity.Author" select="selectAuthor" fetchType="lazy"></association>
     </resultMap>
 
 <!--    <resultMap id="authorResultMap" type="com.example.mybatis.mybatisdemo.Author">-->
@@ -60,7 +60,7 @@
         select * from blog where id = #{id}
     </select>
 
-    <select id="selectAuthor" resultType="com.example.mybatis.mybatisdemo.Author">
+    <select id="selectAuthor" resultType="com.example.mybatis.mybatisdemo.entity.Author">
         select * from authors where id = #{id}
     </select>
 </mapper>

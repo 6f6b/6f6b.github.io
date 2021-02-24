@@ -13,9 +13,10 @@
         <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
 
-    <!--    -->
+<!--    typeHandlers-->
     <typeHandlers>
     </typeHandlers>
+
 <!--    <plugins>-->
 <!--        <plugin interceptor="com.example.mybatis.mybatisdemo.ExamplePlugin">-->
 <!--            <property name="someProperty" value="100"/>-->
@@ -29,7 +30,7 @@
 
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/demo1"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
                 <property name="username" value="root"/>
                 <property name="password" value="${password}"/>
             </dataSource>
@@ -40,5 +41,6 @@
     <mappers>
         <mapper resource="UserInfoMapper.xml"/>
         <mapper resource="BlogMapper.xml"></mapper>
+        <mapper resource="AuthorMapper.xml"></mapper>
     </mappers>
 </configuration>
