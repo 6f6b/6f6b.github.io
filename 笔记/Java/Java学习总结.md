@@ -196,13 +196,19 @@
 
 1. *Annotations*, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.（关于注解的概念，他就是元数据的一种表现形式，给程序提供一些数据，程序怎么用这些数据？）
 
-2. 注解可以包含多个元素，这些元素可以命名也可以不命名（多个元素不命名的话怎么区分？），单个元素时可以省略元素名
+   > 通过反射API获取注解中的数据
+
+2. 注解可以包含多个元素，这些元素可以命名也可以不命名（多个元素不命名的话怎么区分？），单个元素时可以省略元素名（The annotation can include *elements*, which can be named or unnamed, and there are values for those elements:）
 
 3. 在一段代码上加多个类型相同的注解叫做重复注解
 
 4. unchecked warnings 哪种情况下产生
 
-5.  and the user queries the annotation type on a class declaration怎么解释？
+   > warning有很多类型，如unchecked、deprecated...，数组未进行参数化就会产生unchecked warning
+
+5. and the user queries the annotation type on a class declaration怎么解释？
+
+   > 
 
 6. how to define a custom type check Annotation？
 
@@ -219,7 +225,7 @@
      int hour() default 12;
    }
    
-   //定一个一个容器注解
+   //定义一个容器注解
    public @interface Schedules {
        Schedule[] value();
    }
