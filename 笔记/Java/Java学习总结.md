@@ -93,53 +93,58 @@
 
     22. This technique, called *covariant return type*, means that the return type is allowed to vary in the same direction as the subclass.（协变返回类型）
 
-    23. **静态内部类、内部类、局部类**
+    23. **绑定类**，绑定类分为两种
 
+        > 1. 静态绑定类
+    > 2. 非静态绑定类（内部类），内部类有两种特殊的类
+        >    1. 本地类
+    >    2. 匿名类
+    
     24. because an inner class is associated with an instance, it cannot define any static members itself.
-
-    25. 一般内嵌类的实例只有在外部类实例化后，通过外部类的实例来实例化内部类，如下
-
-        ```java
+    
+25. 一般内嵌类的实例只有在外部类实例化后，通过外部类的实例来实例化内部类，如下
+    
+    ```java
         OuterClass.InnerClass innerObject = outerObject.new InnerClass();
         ```
-
-    26. 当内嵌类的成员变量或者方法和外部类同名时，在内部类中单纯的使用同名名字来访问变量会导致覆盖（即访问的是内部成员变量），若要访问外部类的成员变量，方法如下
-
-        ```java
+    
+26. 当内嵌类的成员变量或者方法和外部类同名时，在内部类中单纯的使用同名名字来访问变量会导致覆盖（即访问的是内部成员变量），若要访问外部类的成员变量，方法如下
+    
+    ```java
         OutClass.this.fildName
-        ```
-
-    27. To handle user interface events, you must know how to use inner classes, because the event-handling mechanism makes extensive use of them.(事件处理机制广泛的用到了inner class)
-
-    28. 位于代码块内部，有名字的类为局部类，没有名字的类叫匿名类
-
-    29. 局部类可以访问其外部类的成员变量
-
-    30. 在Javase8以后，局部类可以访问其所在代码块的参数以及局部变量，前提是参数和局部变量都是被final修饰的，或者是effectively final的，因为捕获？怎么讲？
-
-    31. 类似内部类，局部类也不能定义任何的静态成员，如果一个局部类位于外部类的静态方法中，那么这个局部类中只能访问外部类的静态成员
-
-    32. 因为局部类有访问实例变量的权利，所以他就没法被定成静态的了
-
-    33. interface天生静态，所以不能在方法中定义interface
-
-    34. 当局部类其成员为*constant variable*的时候，其成员可以使静态的
-
-    35. A *constant variable* is a variable of primitive type or type `String` that is declared final and initialized with a compile-time constant expression. A compile-time constant expression is typically a string or an arithmetic expression that can be evaluated at compile time.
-
+    ```
+    
+27. To handle user interface events, you must know how to use inner classes, because the event-handling mechanism makes extensive use of them.(事件处理机制广泛的用到了inner class)
+    
+28. 位于代码块内部，有名字的类为局部类，没有名字的类叫匿名类
+    
+29. 局部类可以访问其外部类的成员变量
+    
+30. 在Javase8以后，局部类可以访问其所在代码块的参数以及局部变量，前提是参数和局部变量都是被final修饰的，或者是effectively final的，因为捕获？怎么讲？
+    
+31. 类似内部类，局部类也不能定义任何的静态成员，如果一个局部类位于外部类的静态方法中，那么这个局部类中只能访问外部类的静态成员
+    
+32. 因为局部类有访问实例变量的权利，所以他就没法被定成静态的了
+    
+33. interface天生静态，所以不能在方法中定义interface
+    
+34. 当局部类其成员为*constant variable*的时候，其成员可以使静态的
+    
+35. A *constant variable* is a variable of primitive type or type `String` that is declared final and initialized with a compile-time constant expression. A compile-time constant expression is typically a string or an arithmetic expression that can be evaluated at compile time.
+    
     36. **匿名类**
-
-    37. he anonymous class expression consists of the following:
+    
+    37. the anonymous class expression consists of the following:
 
         - The `new` operator
-        - The name of an interface to implement or a class to extend. In this example, the anonymous class is implementing the interface `HelloWorld`.
+    - The name of an interface to implement or a class to extend. In this example, the anonymous class is implementing the interface `HelloWorld`.
         - Parentheses that contain the arguments to a constructor, just like a normal class instance creation expression. **Note**: When you implement an interface, there is no constructor, so you use an empty pair of parentheses, as in this example.
-        - A body, which is a class declaration body. More specifically, in the body, method declarations are allowed but statements are not.
-
+    - A body, which is a class declaration body. More specifically, in the body, method declarations are allowed but statements are not.
+    
     38. However, you cannot declare constructors in an anonymous class.局部类中呢？
-
+    
     39. 匿名类适用于：1-方法中仅有一个类，2-有多个函数实现（只有一个函数实现可以用lambda表达式替代）
-
+    
     40. 匿名类中不能定义构造方法，那么内部类和局部类呢？->可以定义
     
     41. 当方法中的一个局部变量和方法中的一个局部类中的一个变量重名时，shadow是怎么表现的
@@ -195,13 +200,19 @@
 
 1. *Annotations*, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.（关于注解的概念，他就是元数据的一种表现形式，给程序提供一些数据，程序怎么用这些数据？）
 
-2. 注解可以包含多个元素，这些元素可以命名也可以不命名（多个元素不命名的话怎么区分？），单个元素时可以省略元素名
+   > 通过反射API获取注解中的数据
+
+2. 注解可以包含多个元素，这些元素可以命名也可以不命名（多个元素不命名的话怎么区分？），单个元素时可以省略元素名（The annotation can include *elements*, which can be named or unnamed, and there are values for those elements:）
 
 3. 在一段代码上加多个类型相同的注解叫做重复注解
 
 4. unchecked warnings 哪种情况下产生
 
-5.  and the user queries the annotation type on a class declaration怎么解释？
+   > warning有很多类型，如unchecked、deprecated...，数组未进行参数化就会产生unchecked warning
+
+5. and the user queries the annotation type on a class declaration怎么解释？
+
+   > 
 
 6. how to define a custom type check Annotation？
 
@@ -218,7 +229,7 @@
      int hour() default 12;
    }
    
-   //定一个一个容器注解
+   //定义一个容器注解
    public @interface Schedules {
        Schedule[] value();
    }
