@@ -436,12 +436,31 @@ TIPS：
 QUESTIONS:
 
 1. mysqldump、mysqlpump？
-
 2. 统一数据编码方式-UTF-8
-
-4. 查询分页比较大的时候，怎么提高查询速度
-
+3. 查询分页比较大的时候，怎么提高查询速度
 5. 查询分表怎么分？（官方建议数据量达到2000万以上才分库分表）
+
+
+
+实操：
+
+Linux安装MySQL的坑：
+
+1. CentOS7.6的系统使用yum安装，本来应该使用(mysql80-community-release-el7-3.noarch.rpm)，结果却用了(mysql80-community-release-el8-1.noarch.rpm)，导致报依赖错误
+
+   > 解决方案：
+   >
+   > 1. 清理yum缓存
+   >    1. yum clean all
+   >    2. rm rm -rf /var/cache/yum/
+   > 2. 重新添加(mysql80-community-release-el7-3.noarch.rpm)进行安装
+   >
+   > 扩展：
+   >
+   > rpm包管理
+   >
+   > 1. rpm -qa | grep xx 查看rpm包
+   > 2. rpm -e xx 删除xx包
 
 
 参考文档：
