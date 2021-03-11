@@ -146,6 +146,10 @@
     39. 匿名类适用于：1-方法中仅有一个类，2-有多个函数实现（只有一个函数实现可以用lambda表达式替代）
     
     40. 匿名类中不能定义构造方法，那么内部类和局部类呢？->可以定义
+    
+    41. 当方法中的一个局部变量和方法中的一个局部类中的一个变量重名时，shadow是怎么表现的
+    
+        > 默认访问局部类中的变量，无法访问方法中的局部变量
 
 ##### nested class
 
@@ -571,7 +575,7 @@ javabean规范
 参考文档：
 
 * [The Java Language Environment: Contents 白皮书](https://www.oracle.com/java/technologies/language-environment.html)
-* [Java 官方文档](https://docs.oracle.com/javase/tutorial/)
+  * [Java 官方文档](https://docs.oracle.com/javase/tutorial/)
 * [Java SE Core Technology](https://www.oracle.com/java/technologies/javase/javase-core-technologies-apis.html)
 * [Java SE](https://docs.oracle.com/javase/8/docs/index.html)
 * 

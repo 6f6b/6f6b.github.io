@@ -26,12 +26,8 @@ public class Main implements PropertyChangeListener {
 //
 //            System.out.println("左移" + i+"位="+num);
 //        }
-        HashMap
-        for (int binCount = 0; ; ++binCount) {
-            System.out.println(binCount);
-            if (binCount >= 7) // -1 for 1st
-                break;
-        }
+        Cat cat = new Cat();
+        int age;
     }
 
     static final int tableSizeFor(int cap) {
