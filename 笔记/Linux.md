@@ -286,8 +286,16 @@
 1. 首先运行一个程序
 
    > 1. `ctl + z`挂起程序
+   >
    > 2. `bg`放入后台运行
+   >
    > 3. `fg`放入前台运行
+   >
+   > 4. lsof -i:端口号 查看端口号被哪个进程占用
+   >
+   >    > yum install lsof
+   >
+   > 5. grep "Name:" /proc/xx/status 根据pid查看进程名
 
 ##### Top
 
