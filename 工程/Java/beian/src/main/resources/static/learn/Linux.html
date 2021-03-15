@@ -1,0 +1,523 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Linux</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-mac'><p>&nbsp;</p><h1><a name="linux相关的学习笔记" class="md-header-anchor"></a><span>Linux相关的学习笔记</span></h1><p>&nbsp;</p><p><span>###一、Basic Info</span></p><ol start='' ><li><p><span>Linux简介：开源的一个操作系统或者说内核，其功能和Unix极为相似</span></p></li><li><p><span>Linux同其他操作系统（如：Windows、Mac OS）的区别是什么？</span></p><blockquote><ol start='' ><li><p><span>免费、开源</span></p></li><li><p><span>安全！因为有全球性的开发者社区不断的通过各种措施增强其安全性和健壮性</span></p></li><li><p><span>服务器首选操作系统，因为它相当稳定</span></p></li><li><p><span>文件系统结构不同</span></p><blockquote><p><span>Linux 是树形结构、而Windows是分成了ABCD...等几个盘</span></p><p><img src="../../JAVAWeb/images/FolderStructure.png" style="zoom:67%;" /></p></blockquote></li><li><p><span>在Linux中，一切都是文件，文件夹、外设、文本、图片等等都是文件</span></p></li><li><p><span>账户</span></p><blockquote><ul><li><span>Linux上有三种账户：Regular User、Root User、Service User</span></li></ul><h3><a name="regular-user" class="md-header-anchor"></a><span>Regular User</span></h3><p><span>A regular user account is created for you when you install Ubuntu on your system. All your files and folders are stored in /home/ which is your home directory. As a regular user, you do not have access to directories of other users.</span></p><h3><a name="root-user" class="md-header-anchor"></a><span>Root User</span></h3><p><span>Other than your regular account another user account called root is created at the time of installation. The root account is a </span><strong><span>superuser</span></strong><span> who can access restricted files, install software and has administrative privileges. Whenever you want to install software, make changes to system files or perform any administrative task on Linux; you need to log in as a root user. Otherwise, for general tasks like playing music and browsing the internet, you can use your regular account.</span></p><h3><a name="service-user" class="md-header-anchor"></a><span>Service user</span></h3><p><span>Linux is widely used as a Server Operating System. Services such as Apache, Squid, email, etc. have their own individual service accounts.  Having service accounts increases the security of your computer. Linux can allow or deny access to various resources depending on the service.</span></p><ul><li><span>Windows上的几种账户 Administrator、Standard、Child、Guest</span></li></ul></blockquote></li><li><p><span>Linux的其他重要文件夹</span></p><blockquote><p><img src="../../JAVAWeb/images/LinuxDirectories.png" style="zoom:67%;" /></p></blockquote></li></ol></blockquote></li><li><p><span>Linux是怎么诞生的？</span></p><blockquote><p><span>Linus Torvalds读计算机科学的时候使用Unix操作系统，他觉得该系统有需要优化的地方，但是他的建议（他的建议是什么？）被Unix设计者给拒绝了，因此他便思考着搞一个尊重使用者提出的修改建议和意见的操作系统，于是Linux（Linux is not Unix）1991年便诞生了。</span></p></blockquote></li><li><p><span>cd-Change Directory</span></p><blockquote><ul><li><span>cd / 进入根目录</span></li><li><span>cd ~ 进入用户主目录</span></li><li><span>cd xxx 进入某个具体目录</span></li><li><span>cd .. 进入上级目录</span></li></ul></blockquote></li><li><p><span>pwd-Present Working Directory</span></p></li><li><p><span>CLI</span></p><blockquote><p><img src="../../JAVAWeb/images/Terminal_Description.png" alt="Terminal_Description" style="zoom:50%;" /></p><p><strong><span>#</span></strong><span>代表root用户</span></p><p><strong><span>$</span></strong><span>代表regular用户</span></p><p>&nbsp;</p></blockquote></li></ol><h3><a name="二basic-linuxunix-commands-with-examples--syntax" class="md-header-anchor"></a><span>二、Basic Linux/Unix Commands with Examples &amp; Syntax</span></h3><h5><a name="listing-files-ls" class="md-header-anchor"></a><span>Listing files (ls)</span></h5><ol start='' ><li><p><code>ls</code><span>展示当前文件夹下的文件夹/文件</span></p></li><li><p><code>ls -R</code><span>递归展示文件夹下的文件夹/文件</span></p></li><li><p><code>ls -a</code><span>展示当前文件夹下的全部(包含隐藏的)文件夹/文件</span></p></li><li><p><code>ls -al</code><span>展示当前文件夹下的文件的详细信息</span></p><blockquote><p><span>每列表示的意义</span></p><p><img src="/Users/feng/gits/JAVAWeb/images/ls-al(2).png" alt="ls-al(2)" style="zoom:50%;" /></p></blockquote></li></ol><h5><a name="creating--viewing-files" class="md-header-anchor"></a><span>Creating &amp; Viewing Files</span></h5><ol start='' ><li><p><code>cat &gt; filename</code><span>创建一个文本文件</span></p><blockquote><ol start='' ><li><span>cat &gt; filename</span></li><li><span>Add content</span></li><li><span>Press &#39;ctrl + d&#39; to return to command prompt.</span></li></ol></blockquote></li><li><p><code>cat filename</code><span>查看一个文本文件</span></p></li><li><p><code>cat file1 file2 &gt; file</code><span>将file1和file2组合成一个file文件</span></p></li></ol><h5><a name="deleting-files" class="md-header-anchor"></a><span>Deleting Files</span></h5><ol start='' ><li><code>rm filename</code><span>删除一个文件</span></li></ol><h5><a name="moving-and-re-naming-files" class="md-header-anchor"></a><span>Moving and Re-naming files</span></h5><ol start='' ><li><code>mv filename new_file_location</code><span>移动filename到new_file_location</span></li><li><code>mv filename newfilename</code><span>给filename重命名</span></li></ol><h5><a name="directory-manipulations" class="md-header-anchor"></a><span>Directory Manipulations</span></h5><ol start='' ><li><p><code>mkdir directoryname</code><span>创建一个文件夹</span></p><blockquote><ol start='' ><li><span>也可以是</span><code>mkdir /xx/xx/directoryname</code><span>这种形式</span></li><li><span>一次可以创建多个文件夹，如：</span><code>mkdir directoryname1 directoryname2</code></li></ol></blockquote></li><li><p><code>rmdir directoryname</code><span>删除一个文件夹，</span><strong><span>要求文件夹为空才能删除</span></strong></p></li><li><p><code>mv directoryname newdirectoryname</code><span>文件夹重命名</span></p></li></ol><h5><a name="other" class="md-header-anchor"></a><span>other</span></h5><ol start='' ><li><code>pr -n filename</code><span>显示文本文件内容并附带行号</span></li><li><code>apt-get install packagename</code><span>Linux安装软件</span></li><li><code>clear</code><span>清空屏幕</span></li><li><code>history</code><span>显示历史命令</span></li></ol><h3><a name="三file-permission" class="md-header-anchor"></a><span>三、File Permission</span></h3><h5><a name="ownership-of-linux-files" class="md-header-anchor"></a><span>Ownership of Linux files</span></h5><ol start='' ><li><p><span>User</span></p><blockquote><p><span>A user is the owner of the file. By default, the person who created a file becomes its owner</span></p></blockquote></li><li><p><span>Group</span></p></li><li><p><span>Other</span></p></li></ol><h5><a name="permissions" class="md-header-anchor"></a><span>Permissions</span></h5><ol start='' ><li><p><span>Read 读权限</span></p></li><li><p><span>Write 写权限</span></p></li><li><p><span>Execute 执行权限</span></p></li><li><p><code>ls -l</code></p><blockquote><p><img src="../../JAVAWeb/images/Permis_system.png" referrerpolicy="no-referrer" alt="Permis_system"></p><p><img src="../../JAVAWeb/images/Directory.png" referrerpolicy="no-referrer" alt="Directory"></p><p><img src="../../JAVAWeb/images/its_a_file.png" referrerpolicy="no-referrer" alt="its_a_file"></p><p><img src="../../JAVAWeb/images/permission(1).png" referrerpolicy="no-referrer" alt="permission(1)"></p><p><img src="../../JAVAWeb/images/no_execute.png" referrerpolicy="no-referrer" alt="no_execute"></p></blockquote></li></ol><h5><a name="change-permission" class="md-header-anchor"></a><span>Change Permission</span></h5><ol start='' ><li><p><span>通过数字</span></p><blockquote><p><span>chmod 777 filename</span></p></blockquote></li><li><p><span>通过字符</span></p><blockquote><ol start='' ><li><p><span>操作符</span></p><figure><table><thead><tr><th><strong><span>+</span></strong></th><th><span>Adds a permission to a file or directory</span></th></tr></thead><tbody><tr><td><strong><span>-</span></strong></td><td><span>Removes the permission</span></td></tr><tr><td><strong><span>=</span></strong></td><td><span>Sets the permission and overrides the permissions set earlier.</span></td></tr></tbody></table></figure></li><li><p><span>用户类型缩写</span></p><figure><table><thead><tr><th><span>u</span></th><th><span>user/owner</span></th></tr></thead><tbody><tr><td><span>g</span></td><td><span>group</span></td></tr><tr><td><span>o</span></td><td><span>other</span></td></tr><tr><td><span>a</span></td><td><span>all</span></td></tr></tbody></table></figure><p><img src="../../JAVAWeb/images/Symbolic_Mode(1).png" alt="Symbolic_Mode(1)" style="zoom:70%;" /></p></li></ol></blockquote></li></ol><h5><a name="changing-ownership-and-group" class="md-header-anchor"></a><span>Changing Ownership and Group</span></h5><ol start='' ><li><code>chown username filename</code><span> 表示将filename设置其owner为username</span></li><li><code>chown username:groupname filename</code><span>同时改变filename的owner和所属的群组</span></li><li><code>chgrp gourpname filename</code><span>只改变filename所属的群组</span></li></ol><h5><a name="tips" class="md-header-anchor"></a><span>Tips</span></h5><ol start='' ><li><span>The file /etc/group contains all the groups defined in the system</span></li><li><span>You can use the command &quot;groups&quot; to find all the groups you are a member of</span></li><li><span>You cannot have 2 groups owning the same file.</span></li><li><span>You do not have nested groups in Linux. One group cannot be sub-group of other</span></li><li><span>x- eXecuting a directory means Being allowed to &quot;enter&quot; a dir and gain possible access to sub-dirs</span></li></ol><h3><a name="四inputoutput-redirection" class="md-header-anchor"></a><span>四、Input/Output Redirection</span></h3><h5><a name="output-redirection" class="md-header-anchor"></a><span>Output Redirection</span></h5><ol start='' ><li><code>command_xx &gt; filename</code><span>将command_xx命令执行的结果重定向到filename中，这种方式会将filename中原有内容覆盖掉</span></li><li><code>command_xx &gt;&gt; filename</code><span>这种方式是在filename中追加内容，不会将filename中原有内容覆盖掉</span></li></ol><h5><a name="input-redirection" class="md-header-anchor"></a><span>Input Redirection</span></h5><ol start='' ><li><code>command_xx &lt; filename</code><span>将filename中的内容交给command_xx作为参数</span></li></ol><h5><a name="error-redirection" class="md-header-anchor"></a><span>Error Redirection</span></h5><ol start='' ><li><code>command_xx 2&gt; filename</code><span>将command_xx命令执行的错误信息重定向到filename中去</span></li></ol><h3><a name="五pipe-grep--sort" class="md-header-anchor"></a><span>五、Pipe, Grep , Sort</span></h3><h5><a name="pipe" class="md-header-anchor"></a><span>Pipe</span></h5><ol start='' ><li><p><span>管道是通过</span><code>|</code><span>符号形成的，目的是连接多个命令</span></p><blockquote><p><span>如：cat filename | less，这里的less处理前面cat filename的结果</span></p></blockquote></li></ol><h5><a name="grep" class="md-header-anchor"></a><span>Grep</span></h5><ol start='' ><li><p><code>grep search_string</code><span>是对结果进行查找操作</span></p><blockquote><figure><table><thead><tr><th style='text-align:left;' ><strong><span>Option</span></strong></th><th style='text-align:left;' ><strong><span>Function</span></strong></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>-v</span></td><td style='text-align:left;' ><span>Shows all the lines that do not match the searched string</span></td></tr><tr><td style='text-align:left;' ><span>-c</span></td><td style='text-align:left;' ><span>Displays only the count of matching lines</span></td></tr><tr><td style='text-align:left;' ><span>-n</span></td><td style='text-align:left;' ><span>Shows the matching line and its number</span></td></tr><tr><td style='text-align:left;' ><span>-i</span></td><td style='text-align:left;' ><span>Match both (upper and lower) case</span></td></tr><tr><td style='text-align:left;' ><span>-l</span></td><td style='text-align:left;' ><span>Shows just the name of the file with the string</span></td></tr></tbody></table></figure></blockquote></li></ol><h5><a name="sort" class="md-header-anchor"></a><span>Sort</span></h5><ol start='' ><li><p><code>sort</code><span>对内容进行排序，每行内容排序</span></p><blockquote><figure><table><thead><tr><th style='text-align:left;' ><strong><span>Option</span></strong></th><th style='text-align:left;' ><strong><span>Function</span></strong></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>-r</span></td><td style='text-align:left;' ><span>Reverses sorting</span></td></tr><tr><td style='text-align:left;' ><span>-n</span></td><td style='text-align:left;' ><span>Sorts numerically</span></td></tr><tr><td style='text-align:left;' ><span>-f</span></td><td style='text-align:left;' ><span>Case insensitive sorting</span></td></tr></tbody></table></figure></blockquote></li></ol><h3><a name="六环境变量" class="md-header-anchor"></a><span>六、环境变量</span></h3><blockquote><figure><table><thead><tr><th style='text-align:left;' ><span>Command</span></th><th style='text-align:left;' ><span>Description</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>echo $VARIABLE</span></td><td style='text-align:left;' ><span>To display value of a variable</span></td></tr><tr><td style='text-align:left;' ><span>env</span></td><td style='text-align:left;' ><span>Displays all environment variables</span></td></tr><tr><td style='text-align:left;' ><span>VARIABLE_NAME= variable_value</span></td><td style='text-align:left;' ><span>Create a new variable</span></td></tr><tr><td style='text-align:left;' ><span>unset</span></td><td style='text-align:left;' ><span>Remove a variable</span></td></tr><tr><td style='text-align:left;' ><span>export Variable=value</span></td><td style='text-align:left;' ><span>To set value of an environment variable</span></td></tr></tbody></table></figure></blockquote><h3><a name="七ssh-ping-ftp-communication-commands" class="md-header-anchor"></a><span>七、SSH, Ping, FTP Communication Commands</span></h3><h5><a name="ssh" class="md-header-anchor"></a><span>SSH</span></h5><ol start='' ><li><span>SSH which stands for Secure Shell（安全的、加密的shell）</span></li><li><code>SSH username@ip-address or hostname</code></li></ol><h5><a name="ping" class="md-header-anchor"></a><span>Ping</span></h5><ol start='' ><li><p><code>ping hostname/ipaddress</code></p><blockquote><ol start='' ><li><span>用来检查本机与被ping的主机之间的连接是否健康</span></li><li><span>检查网络性能</span></li></ol></blockquote></li></ol><h5><a name="ftp" class="md-header-anchor"></a><span>FTP</span></h5><ol start='' ><li><p><span>FTP </span><strong><span>is file transfer protocol</span></strong><span>.它是最受欢迎的计算机间的文件传输协议</span></p><blockquote><p><span>通过ftp可以做到以下事情</span></p><ol start='' ><li><span>登录并和远程主机建立连接</span></li><li><span>上传和下载文件</span></li><li></li></ol><ul><li><span>Logging in and establishing a connection with a remote host</span></li><li><span>Upload and download files</span></li><li><span>Navigating through directories</span></li><li><span>Browsing contents of the directories</span></li></ul></blockquote></li></ol><h3><a name="八process-management" class="md-header-anchor"></a><span>八、Process Management</span></h3><h5><a name="前后台运行" class="md-header-anchor"></a><span>前后台运行</span></h5><ol start='' ><li><p><span>首先运行一个程序</span></p><blockquote><ol start='' ><li><p><code>ctl + z</code><span>挂起程序</span></p></li><li><p><code>bg</code><span>放入后台运行</span></p></li><li><p><code>fg</code><span>放入前台运行</span></p></li><li><p><span>lsof -i:端口号 查看端口号被哪个进程占用</span></p><blockquote><p><span>yum install lsof</span></p></blockquote></li><li><p><span>grep &quot;Name:&quot; /proc/xx/status 根据pid查看进程名</span></p></li></ol></blockquote></li></ol><h5><a name="top" class="md-header-anchor"></a><span>Top</span></h5><ol start='' ><li><p><span>This utility tells the user about all the running processes on the Linux machine.</span></p><blockquote><figure><table><thead><tr><th style='text-align:left;' ><strong><span>Field</span></strong></th><th style='text-align:left;' ><strong><span>Description</span></strong></th><th style='text-align:left;' ><strong><span>Example 1</span></strong></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>PID</span></td><td style='text-align:left;' ><span>The process ID of each task</span></td><td style='text-align:left;' ><span>1525</span></td></tr><tr><td style='text-align:left;' ><span>User</span></td><td style='text-align:left;' ><span>The username of task owner</span></td><td style='text-align:left;' ><span>Home</span></td></tr><tr><td style='text-align:left;' ><span>PR</span></td><td style='text-align:left;' ><span>Priority Can be 20(highest) or -20(lowest)</span></td><td style='text-align:left;' ><span>20</span></td></tr><tr><td style='text-align:left;' ><span>NI</span></td><td style='text-align:left;' ><span>The nice value of a task</span></td><td style='text-align:left;' ><span>0</span></td></tr><tr><td style='text-align:left;' ><span>VIRT</span></td><td style='text-align:left;' ><span>Virtual memory used (kb)</span></td><td style='text-align:left;' ><span>1775</span></td></tr><tr><td style='text-align:left;' ><span>RES</span></td><td style='text-align:left;' ><span>Physical memory used (kb)</span></td><td style='text-align:left;' ><span>100</span></td></tr><tr><td style='text-align:left;' ><span>SHR</span></td><td style='text-align:left;' ><span>Shared memory used (kb)</span></td><td style='text-align:left;' ><span>28</span></td></tr><tr><td style='text-align:left;' ><span>S</span></td><td style='text-align:left;' ><span>StatusThere are five types:     &#39;D&#39; = uninterruptible sleep     &#39;R&#39; = running     &#39;S&#39; = sleeping     &#39;T&#39; = traced or stopped     &#39;Z&#39; = zombie</span></td><td style='text-align:left;' ><span>S</span></td></tr><tr><td style='text-align:left;' ><span>%CPU</span></td><td style='text-align:left;' ><span>% of CPU time</span></td><td style='text-align:left;' ><span>1.7</span></td></tr><tr><td style='text-align:left;' ><span>%MEM</span></td><td style='text-align:left;' ><span>Physical memory used</span></td><td style='text-align:left;' ><span>10</span></td></tr><tr><td style='text-align:left;' ><span>TIME+</span></td><td style='text-align:left;' ><span>Total CPU time</span></td><td style='text-align:left;' ><span>5:05.34</span></td></tr><tr><td style='text-align:left;' ><span>Command</span></td><td style='text-align:left;' ><span>Command name</span></td><td style='text-align:left;' ><span>Photoshop.exe</span></td></tr></tbody></table></figure><p><span>fd</span></p></blockquote></li></ol><h5><a name="ps" class="md-header-anchor"></a><span>PS</span></h5><ol start='' ><li><span>类似top，但展示的信息有所不同</span></li><li><code>ps ux</code><span>To check all the processes running under a user</span></li><li><code>ps PID</code><span>展示某个pid的详细信息</span></li></ol><h5><a name="df" class="md-header-anchor"></a><span>DF</span></h5><ol start='' ><li><code>df</code><span>展示磁盘占用情况</span></li><li><code>df -h</code><span>占用情况的可读性更高</span></li></ol><h5><a name="free" class="md-header-anchor"></a><span>Free</span></h5><ol start='' ><li><code>free</code><span>展示ram的占用情况</span></li><li><code>free -m</code><span>以m显示</span></li><li><code>free -g</code><span>以g显示</span></li></ol><h3><a name="九vi-editor" class="md-header-anchor"></a><span>九、VI Editor</span></h3><ol start='' ><li><p><span>两种模式</span></p><blockquote><ol start='' ><li><span>命令模式</span></li><li><span>编辑模式(insert 模式)</span></li></ol></blockquote></li><li><p><span>命令</span></p><blockquote><ul><li><span>i - Insert at cursor (goes into insert mode)</span></li><li><span>A - Write at the end of line (goes into insert mode)</span></li><li><span>ESC - Terminate insert mode</span></li><li><span>u - Undo last change</span></li><li><span>U - Undo all changes to the entire line</span></li><li><span>o - Open a new line (goes into insert mode)</span></li><li><span>dd - Delete line</span></li><li><span>3dd - Delete 3 lines.</span></li><li><span>D - Delete contents of line after the cursor</span></li></ul></blockquote></li><li><p><span>保存和关闭</span></p><blockquote><ul><li><span>Shift+zz - Save the file and quit</span></li><li><span>:w - Save the file but keep it open</span></li><li><span>:q - Quit without saving</span></li><li><span>:wq - Save the file and quit</span></li></ul></blockquote></li></ol><p>&nbsp;</p><p>&nbsp;</p><p><span>参考文档： </span><a href='https://www.guru99.com/unix-linux-tutorial.html' target='_blank' class='url'>https://www.guru99.com/unix-linux-tutorial.html</a></p></div>
+</body>
+</html>
