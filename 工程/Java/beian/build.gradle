@@ -17,6 +17,15 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+sourceSets {
+    main {
+        resources.srcDirs = ["src/main/resources"]
+    }
+    test {
+        output.resourcesDir = "build/classes/test"
+    }
+}
+
 test {
     useJUnitPlatform()
 }
