@@ -188,14 +188,65 @@
    ```
 
 5. 外边距-margin
+
    1. auto：该元素将占据指定的宽度，并且剩余空间将在左右边界之间平均分配，即水平居中
    2. inherit：继承父元素的外边距
+
 6. 字体
+
    1. 字体名字：font-family
    2. 字体粗细：font-weight
    3. 字体大小：font-size
    4. 
-7. 2
+
+7. 弹性布局之Flex容器
+
+   1. 定义一个容器
+
+      ```css
+      .flex-container {
+        display: flex;
+      }
+      ```
+
+   2. 容器的属性
+
+      1. flex-direction
+         1. column 从上而下
+         2. column-reverse 从下而上
+         3. row 从左往右
+         4. row-reverse 从右往左
+      2. flex-wrap
+         1. nowrap 不换行
+         2. wrap 换行
+         3. wrap-reverse 以相反的方式换行
+      3. flex-flow
+         1. flex-direction和flex-wrap的简写属性
+      4. justify-content 水平对齐
+         1. center 水平居中对齐
+         2. flex-start 左对齐 （默认）
+         3. flex-end 右对齐
+         4. space-around 项目的前后以及项目之间带有空格
+         5. space-between 项目之间带有空格
+      5. align-items
+         1. center 垂直居中对齐
+         2. flex-start 上对齐
+         3. flex-end 下对齐
+         4. stretch 垂直方向上拉伸项目以填充容器
+         5. baseline 基线，基线是个什么东西？
+      6. align-content（弹性线，不知道是个什么东西）
+
+   3. 用于弹性项目的属性有：
+
+      - order
+      - flex-grow 规定该项目相对于其他项目将增长多少
+      - flex-shrink 规定该项目相对于其他项目将收缩多少
+      - flex-basis 规定项目的初始长度
+      - flex 上面三个属性的简写属性
+      - align-self 覆盖容器中aligin-items属性的值
+
 8. 3
+
 9. 4
+
 10. 
