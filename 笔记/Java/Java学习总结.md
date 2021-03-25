@@ -41,11 +41,21 @@
     * 对于类而言
       * public，随处可用
       * default/package-private，在整个包内都可以访问
+      
     * 对于成员变量而言
       * public，随处可用
       * protected，包中可以访问，其他包中的子类也可以访问
-      * default/package-private ，
+      * default/package-private ，包中可以访问
       * private，仅在自己类中可以调用
+      
+      ![classes-access](../../images/classes-access.gif)
+      
+      | Modifier    | Alpha | Beta | Alphasub | Gamma |
+      | ----------- | ----- | ---- | -------- | ----- |
+      | `public`    | Y     | Y    | Y        | Y     |
+      | `protected` | Y     | Y    | Y        | N     |
+      | no modifier | Y     | Y    | N        | N     |
+      | `private`   | Y     | N    | N        | N     |
 
 | Modifier    | Class | Package | Subclass | World |
 | ----------- | ----- | ------- | -------- | ----- |
@@ -103,35 +113,35 @@
     24. because an inner class is associated with an instance, it cannot define any static members itself.
     
 25. 一般内嵌类的实例只有在外部类实例化后，通过外部类的实例来实例化内部类，如下
-    
+  
     ```java
         OuterClass.InnerClass innerObject = outerObject.new InnerClass();
-        ```
+    ```
     
 26. 当内嵌类的成员变量或者方法和外部类同名时，在内部类中单纯的使用同名名字来访问变量会导致覆盖（即访问的是内部成员变量），若要访问外部类的成员变量，方法如下
-    
+  
     ```java
         OutClass.this.fildName
     ```
     
 27. To handle user interface events, you must know how to use inner classes, because the event-handling mechanism makes extensive use of them.(事件处理机制广泛的用到了inner class)
-    
+  
 28. 位于代码块内部，有名字的类为局部类，没有名字的类叫匿名类
-    
+  
 29. 局部类可以访问其外部类的成员变量
-    
+  
 30. 在Javase8以后，局部类可以访问其所在代码块的参数以及局部变量，前提是参数和局部变量都是被final修饰的，或者是effectively final的，因为捕获？怎么讲？
-    
+  
 31. 类似内部类，局部类也不能定义任何的静态成员，如果一个局部类位于外部类的静态方法中，那么这个局部类中只能访问外部类的静态成员
-    
+  
 32. 因为局部类有访问实例变量的权利，所以他就没法被定成静态的了
-    
+  
 33. interface天生静态，所以不能在方法中定义interface
-    
+  
 34. 当局部类其成员为*constant variable*的时候，其成员可以使静态的
-    
+  
 35. A *constant variable* is a variable of primitive type or type `String` that is declared final and initialized with a compile-time constant expression. A compile-time constant expression is typically a string or an arithmetic expression that can be evaluated at compile time.
-    
+  
     36. **匿名类**
     
     37. the anonymous class expression consists of the following:
