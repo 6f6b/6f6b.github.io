@@ -19,7 +19,6 @@ public class Cat extends Animal {
 
             Consumer<Integer> myConsumer = (y) ->
             {
-                System.out.println("x = " + x); // Statement A
                 System.out.println("y = " + y);
                 System.out.println("this.x = " + this.x);
             };
