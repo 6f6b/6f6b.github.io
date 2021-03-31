@@ -1,46 +1,24 @@
 # 并发相关
 
-# Processes and Threads
+### 一、简介
 
-A computer system normally has many active processes and threads. This is true even in systems that only have a single execution core, and **thus only have one thread actually executing at any given moment**. Processing time for a single core is shared among processes and threads through an OS feature called **time slicing**.
+1. Processes and Threads
 
-## Processes
+   A computer system normally has many active processes and threads. This is true even in systems that only have a single execution core, and **thus only have one thread actually executing at any given moment**. Processing time for a single core is shared among processes and threads through an OS feature called **time slicing**.
 
-A process has a **self-contained execution environment**. A process generally has a complete, private set of basic run-time resources; in particular,**each process has its own memory space**.
+2. Processes
 
-Processes are often seen as synonymous with programs or applications. However, **what the user sees as a single application may in fact be a set of cooperating processes**. To facilitate communication between processes, most operating systems support *Inter Process Communication* (IPC) resources, such as pipes and sockets. IPC is used not just for communication between processes on the same system, but processes on different systems.
+   A process has a **self-contained execution environment**. A process generally has a complete, private set of basic run-time resources; in particular,**each process has its own memory space**.
 
-## Threads
+   Processes are often seen as synonymous with programs or applications. However, **what the user sees as a single application may in fact be a set of cooperating processes**. To facilitate communication between processes, most operating systems support *Inter Process Communication* (IPC) resources, such as pipes and sockets. IPC is used not just for communication between processes on the same system, but processes on different systems.
 
-Threads are sometimes called**lightweight processes**. Both processes and threads provide an execution environment, but creating a new thread requires fewer resources than creating a new process.
+3. Threads
 
-Threads exist within a process — every process has at least one. Threads share the process's resources, including memory and open files. This makes for efficient, but potentially problematic, communication.
+   Threads are sometimes called**lightweight processes**. Both processes and threads provide an execution environment, but creating a new thread requires fewer resources than creating a new process.
 
-Multithreaded execution is an essential feature of the Java platform. Every application has at least one thread — or several, if you count "system" threads that do things like memory management and signal handling. But from the application programmer's point of view, you start with just one thread, **called the *main thread*. This thread has the ability to create additional threads**, as we'll demonstrate in the next section.
+   Threads exist within a process — every process has at least one. Threads share the process's resources, including memory and open files. This makes for efficient, but potentially problematic, communication.
 
-
-
-
-
-Questions：
-
-1. 什么是多线程？
-
-   > 多线程就是多个线程，与其问什么是多线程不如问什么是线程，线程解释如上所示
-
-2. 什么是多进程？
-
-   > 多进程同理，就是多个进程
-
-3. 什么是并发？
-
-4. 什么是串行
-
-5. 什么是异步？
-
-6. 什么是同步？
-
-
+   Multithreaded execution is an essential feature of the Java platform. Every application has at least one thread — or several, if you count "system" threads that do things like memory management and signal handling. But from the application programmer's point of view, you start with just one thread, **called the *main thread*. This thread has the ability to create additional threads**, as we'll demonstrate in the next section.
 
 ###二、多线程引起的两个问题
 
@@ -98,10 +76,18 @@ Questions：
    1. 死锁
 
       > 两个线程A、B访问两个对象O1、O2的同步方法，在O1和O2的同步方法中又互相访问了对方的同步方法，那么就可能造成死锁
+      >
+      > 解决方案：
+      >
+      > 1. 分段锁
 
    2. 饥饿锁
 
       > 某个对象的同步方法耗时长且频繁被某个线程调用，造成其他线程无法获取到这个对象的锁
+      >
+      > 解决方案：
+      >
+      > 1. 公平分配策略
 
    3. 活跃锁
 
@@ -132,8 +118,24 @@ Questions：
    >   } 
    > }
    > ```
-   >
-   > 
+
+6. 不可变对象
+
+   > 不可变对象可以帮助我们在高并发开发中写出更加简单、可靠的代码，因为其状态不会改变。频繁的创建对象对系统开销并不会有太大影响，此外不可变对象带来的便利和高效能够覆盖其增加的系统开销；垃圾收集可以减少频繁创建对象的系统开销（为什么？），因为不可变对象减少的保护可变对象的代码带来的系统开销。
+
+### 三、高级并发对象
+
+> 充分利用多处理器、多核；完成更高级的任务；
+
+1. Lock
+
+   > Lock 与 隐式的内部锁的区别是：当T1线程拿了O1对象的内部锁，T2再去拿O1对象的内部锁，则T2会被阻塞知道T1释放O1的锁；如果内部锁换成Lock的话，T2再去拿O1的lock就会告知失败，而不会阻塞该线程
+
+2. Excutors
+
+   > Excutors是用来干什么的？**在较小的应用中，我们通过手动new一个Thread来开启一个线程是合适的，但是在大的应用中最好把线程的创建和管理分离开来，而Excutors所代表的对象就封装了这样的一系列方法。**
+
+   
 
 几个关键接口：
 
@@ -160,3 +162,25 @@ Questions：
 4. Runable
 
    > run方法中定义要run什么
+
+
+
+
+
+Questions：
+
+1. 什么是多线程？
+
+   > 多线程就是多个线程，与其问什么是多线程不如问什么是线程，线程解释如上所示
+
+2. 什么是多进程？
+
+   > 多进程同理，就是多个进程
+
+3. 什么是并发？
+
+4. 什么是串行
+
+5. 什么是异步？
+
+6. 什么是同步？

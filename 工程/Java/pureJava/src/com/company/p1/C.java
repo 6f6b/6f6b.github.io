@@ -15,13 +15,15 @@ public class C {
         try {
             hel();
         }catch (Exception e){
-            e.getStackTrace()
         }
 //        System.out.println("hello1");
 //        if (true){
 //            throw new FileNotFoundException();
 //        }
 //        System.out.println("hello2");
+        Thread.interrupted();
+        Thread t = new Thread();
+        t.interrupt();
     }
 
 
