@@ -85,7 +85,7 @@ public class ThreadB implements Runnable {
             @Override
             public void run() {
                 List<CallableTask> callableTasks = new ArrayList<>();
-                for (int i=0;i<10;i++){
+                for (int i=0;i<5;i++){
                     try {
                         Thread.sleep(10);
                         CallableTask task = new CallableTask(String.format("任务-%d",i));
@@ -98,16 +98,6 @@ public class ThreadB implements Runnable {
                     System.out.println("开始invoke all - "+new Date());
                     List<Future<String>> futures = executorService.invokeAll(callableTasks);
                     System.out.println("开始invoke success - "+new Date());
-//                    for (Future future: futures) {
-//                        try {
-//                            System.out.println("开始获取"+new Date());
-//                            System.out.println(future.get());
-//                            System.out.println("获取成功"+new Date());
-//                        }catch (Exception e){
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    System.out.println("获取结束"+new Date());
                 }catch (Exception e){
                     System.out.println("被打断------------------------------");
                 }

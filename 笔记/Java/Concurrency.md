@@ -135,6 +135,19 @@
 
    > Excutors是用来干什么的？**在较小的应用中，我们通过手动new一个Thread来开启一个线程是合适的，但是在大的应用中最好把线程的创建和管理分离开来，而Excutors所代表的对象就封装了这样的一系列方法。**
 
+   1. 几个关键类和接口
+
+      > * Executor
+      > * ExecutorService
+      > * ScheduledExecutorService
+      > * Executors 一个工厂类，提供了一些工厂方法用来直接生成上面三个接口的实现类的实例
+
+   2. Thread Pools 线程池
+
+      > **Using worker threads minimizes the overhead due to thread creation. Thread objects use a significant amount of memory, and in a large-scale application, allocating and deallocating many thread objects creates a significant memory management overhead.**
+      >
+      > 线程的创建和销毁需要巨大的内存管理开销
+
    
 
 几个关键接口：
@@ -146,14 +159,6 @@
 2. Executor
 
    > void execute(Runnable command);其实现类实现了怎么execute
-
-   1. ExecutorService
-
-      > <T> Future<T> submit(Callable<T> task);其实现类实现了提交execute的内容，并返回一个Future
-
-   2. gf
-
-      > public ScheduledFuture<?> schedule(Runnable command,long delay, TimeUnit unit);其实现类实现了可延迟execute提交的内容，并返回一个ScheduledFuture
 
 3. Future
 
