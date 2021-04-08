@@ -4,6 +4,8 @@
 
 2. 异常分类
 
+   <img src="../../images/Xnip2021-04-08_09-26-20.jpg" alt="Xnip2021-04-08_09-26-20" style="zoom:50%;" />
+
    1. Checked Exception
    2. Error （不受约束的异常）
    3. Runtime Exception （不收约束的异常）
