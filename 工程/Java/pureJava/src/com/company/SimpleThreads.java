@@ -57,46 +57,96 @@ public class SimpleThreads {
     public static void main(String args[])
             throws InterruptedException {
 
-        // Delay, in milliseconds before
-        // we interrupt MessageLoop
-        // thread (default one hour).
-        long patience = 1000 * 3;
-
-        // If command line argument
-        // present, gives patience
-        // in seconds.
-        if (args.length > 0) {
-            try {
-                patience = Long.parseLong(args[0]) * 1000;
-            } catch (NumberFormatException e) {
-                System.err.println("Argument must be an integer.");
-                System.exit(1);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                    System.out.println("t1结束");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        });
 
-        threadMessage("Starting MessageLoop thread");
-        long startTime = System.currentTimeMillis();
-        Thread t = new Thread(new MessageLoop());
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    synchronized (t){
+                        System.out.println("t2取锁成功");
+                        //Thread.sleep(2000);
+                        t.wait();
+                        System.out.println("t2取锁结束");
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("t2结束");
+            }
+        });
+
+        Thread t3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    synchronized (t){
+                        System.out.println("t3取锁成功");
+                        //Thread.sleep(2000);
+                        t.wait();
+                        t.notify();
+                        System.out.println("t3取锁结束");
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("t3结束");
+            }
+        });
+
         t.start();
-
-        threadMessage("Waiting for MessageLoop thread to finish");
-        // loop until MessageLoop
-        // thread exits
-        while (t.isAlive()) {
-            threadMessage("Still waiting...");
-            // Wait maximum of 1 second
-            // for MessageLoop thread
-            // to finish.
-            t.join(1000);
-            if (((System.currentTimeMillis() - startTime) > patience)
-                    && t.isAlive()) {
-                threadMessage("Tired of waiting!");
-                t.interrupt();
-                // Shouldn't be long now
-                // -- wait indefinitely
-                t.join();
-            }
-        }
-        threadMessage("Finally!");
+        t2.start();
+        t3.start();
+//
+//        // Delay, in milliseconds before
+//        // we interrupt MessageLoop
+//        // thread (default one hour).
+//        long patience = 1000 * 3;
+//
+//        // If command line argument
+//        // present, gives patience
+//        // in seconds.
+//        if (args.length > 0) {
+//            try {
+//                patience = Long.parseLong(args[0]) * 1000;
+//            } catch (NumberFormatException e) {
+//                System.err.println("Argument must be an integer.");
+//                System.exit(1);
+//            }
+//        }
+//
+//        threadMessage("Starting MessageLoop thread");
+//        long startTime = System.currentTimeMillis();
+//        Thread t = new Thread(new MessageLoop());
+//        t.start();
+//
+//        threadMessage("Waiting for MessageLoop thread to finish");
+//        // loop until MessageLoop
+//        // thread exits
+//        while (t.isAlive()) {
+//            threadMessage("Still waiting...");
+//            // Wait maximum of 1 second
+//            // for MessageLoop thread
+//            // to finish.
+//            if (((System.currentTimeMillis() - startTime) > patience)
+//                    && t.isAlive()) {
+//                threadMessage("Tired of waiting!");
+//                t.interrupt();
+//                // Shouldn't be long now
+//                // -- wait indefinitely
+//                t.join();
+//            }
+//        }
+//        threadMessage("Finally!");
     }
 }
