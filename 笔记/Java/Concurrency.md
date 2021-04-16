@@ -94,7 +94,11 @@
 3. 原子操作：顾名思义原子操作即为不可分割的操作，根据线程干扰的原理可以推出原子操作能够避免线程干扰，但是并**不能消除内存一致性问题**，通过`volatile`关键字修饰的变量可以**减少**内存一致性问题，因为任何对volatile变量的写操作都会对后续的读操作建立一个happens-before关系（为什么是减少而不是避免？）。下面的操作可以认为其是原子操作
 
    1. 对引用的读写操作以及大多数基础数据类型的读写操作（除了long和double）
+
    2. 对所有加了volatile关键字的变量的读写操作
+
+      > volatile使得赋值操作被立即写回系统内存，并由MESI协议保证通知到其他处理器将相应工作内存中的变量失效处理
+
    3. 更多的原子性操作方法详见[`java.util.concurrent`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html) 
 
    > 使用原子操作相比于使用synchronized效率更高、性能更好，但是需要开发人员更加小心以避免内存一致性错误
@@ -233,3 +237,5 @@ Questions：
 扩展：
 
 1. CAS（Compare and Swap）
+2. MESI缓存一致性协议
+3. <img src="../../images/Xnip2021-04-15_15-39-29.jpg" alt="Xnip2021-04-15_15-39-29" style="zoom:30%;" />

@@ -1,10 +1,13 @@
 package com.company;
 
+import java.util.concurrent.FutureTask;
+
 /**
  * @author LiuFeng
  */
 public class SimpleThreads {
-
+//    volatile
+//    public
     // Display a message, preceded by
     // the name of the current thread
     static void threadMessage(String message) {
@@ -57,11 +60,19 @@ public class SimpleThreads {
     public static void main(String args[])
             throws InterruptedException {
 
+        Object o = new Object();
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    System.out.println("t1开始休息6秒");
+                    Thread.sleep(8000);
+//                    System.out.println("notify");
+//                    synchronized (this){
+//                        notifyAll();
+//                    }
+//                    System.out.println("休息4秒");
+//                    Thread.sleep(4000);
                     System.out.println("t1结束");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -75,7 +86,6 @@ public class SimpleThreads {
                 try {
                     synchronized (t){
                         System.out.println("t2取锁成功");
-                        //Thread.sleep(2000);
                         t.wait();
                         System.out.println("t2取锁结束");
                     }
@@ -92,9 +102,7 @@ public class SimpleThreads {
                 try {
                     synchronized (t){
                         System.out.println("t3取锁成功");
-                        //Thread.sleep(2000);
                         t.wait();
-                        t.notify();
                         System.out.println("t3取锁结束");
                     }
                 } catch (InterruptedException e) {
@@ -104,10 +112,35 @@ public class SimpleThreads {
             }
         });
 
+        Thread t4 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("t4开始休息2秒");
+                    Thread.sleep(2000);
+                    System.out.println("notify");
+                    synchronized (t){
+                        t.notifyAll();
+                        System.out.println("通知了先休息2秒");
+                        Thread.sleep(2000);
+                        System.out.println("休息结束");
+                    }
+                    System.out.println("休息4秒");
+                    Thread.sleep(4000);
+                    System.out.println("t4结束");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         t.start();
         t2.start();
         t3.start();
-//
+        t4.start();
+
+        t.interrupt();
+        //
 //        // Delay, in milliseconds before
 //        // we interrupt MessageLoop
 //        // thread (default one hour).
