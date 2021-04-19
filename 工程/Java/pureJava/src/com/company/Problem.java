@@ -12,4 +12,9 @@ public class Problem implements InterfaceTest{
         }
     }
 
+    public static void main(String[] args) {
+        int[] ar = new int[]{1,2,3,4};
+        
+    }
+
 }
