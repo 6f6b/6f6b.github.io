@@ -1,19 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>产品组各类原型图</title></head><body><center>
-	<SCRIPT>
-	function ShowFolderList(folderspec)
-	{
-	var fso, f, fc, s;
-	fso = new ActiveXObject("Scripting.FileSystemObject");
-	f = fso.GetFolder(folderspec);
-	fc = new Enumerator(f.Files);
-	s = "";
-	for (; !fc.atEnd(); fc.moveNext())
-	{
-	s += fc.item();
-	s += "<br/>";
-	}
-
-	document.write(s);
-	}
-	</SCRIPT>
-</center></body></html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>产品组各类原型图</title></head><body><center><h1>产品组各类原型图</h1><ul>
+<li><a href="TodoList.md">TodoList.md</a></li>
+<li><a href="_config.yml">_config.yml</a></li>
+<li><a href="images">images</a></li>
+<li><a href="t.sh">t.sh</a></li>
+<li><a href="工程">工程</a></li>
+<li><a href="笔记">笔记</a></li>
+<li><a href="学习资料">学习资料</a></li>
+<li><a href="听课笔记.md">听课笔记.md</a></li>
+<li><a href="运维检查.md">运维检查.md</a></li>
+<li><a href="互联网装逼词汇.md">互联网装逼词汇.md</a></li>
+<li><a href="互联网技术相关的问题.md">互联网技术相关的问题.md</a></li>
+</ul></center></body></html>
