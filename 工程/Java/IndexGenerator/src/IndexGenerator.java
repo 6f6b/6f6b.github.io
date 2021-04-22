@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author LiuFeng
@@ -12,6 +13,7 @@ public class IndexGenerator {
     public static void main(String[] args) {
         folderMethod2(".");
         System.out.println("success!");
+        ReentrantLock
     }
 
     public static void folderMethod2(String path) {
