@@ -26,7 +26,7 @@ public class IndexGenerator {
                 }
 
                 if (subFile.isDirectory()) {
-                    String e = String.format("<h2><li><a href=\"%s\">%s >></a></li></h2>\n",file.getPath()+"/"+subFile.getName(),subFile.getName());
+                    String e = String.format("<h2><li><a href=\"%s\">%s >></a></li></h2>\n",subFile.getName(),subFile.getName());
                     html += e;
                     folderMethod2(subFile.getPath());
                 } else {
