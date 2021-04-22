@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
@@ -7,7 +10,8 @@ import java.util.ArrayList;
  */
 public class IndexGenerator {
     public static void main(String[] args) {
-        folderMethod2("./");
+        folderMethod2(".");
+        System.out.println("success!");
     }
 
     public static void folderMethod2(String path) {
@@ -15,32 +19,57 @@ public class IndexGenerator {
         if (file.isDirectory() && file.exists()){
             File[] files = file.listFiles();
             String title = file.getName();
-            String html = String.format("<!DOCTYPE html><html lang=\"zh-CN\"><head><meta charset=\"UTF-8\"><title>%s</title></head><body><h1>%s</h1><ul>\n",title,title);
+            String html = String.format("<!DOCTYPE html><html lang=\"zh-CN\"><head><meta charset=\"UTF-8\"><title>%s</title></head><body><ul>\n",title,title);
             for (File subFile : files) {
-                if (!validFile(file)){
+                if (!validFile(subFile)){
                     continue;
                 }
 
                 if (subFile.isDirectory()) {
-                    System.out.println("文件夹:" + file.getPath()+subFile.getName());
-                    String e = String.format("<li><a href=\"%s\">%s</a></li>\n",subFile.getName(),file.getPath()+subFile.getName());
+                    String e = String.format("<h2><li><a href=\"%s\">%s >></a></li></h2>\n",file.getPath()+"/"+subFile.getName(),subFile.getName());
                     html += e;
                     folderMethod2(subFile.getPath());
                 } else {
-                    System.out.println("文件:" +file.getPath()+ subFile.getName());
                     String name = subFile.getName().replace(".md","");
-                    String e = String.format("<li><a href=\"%s\">%s</a></li>\n",name,file.getPath()+name);
+                    String e = String.format("<h2><li><a href=\"%s\">%s</a></li></h2>\n",name,name);
                     html += e;
                 }
             }
             html += "</ul></body></html>";
+            FileWriter fileWriter = null;
+            try {
+                // true表示不覆盖原来的内容，而是加到文件的后面。若要覆盖原来的内容，直接省略这个参数就好
+                fileWriter = new FileWriter(file.getPath()+"/index.html");
+                fileWriter.write(html);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    fileWriter.flush();
+                    fileWriter.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
     public static boolean validFile(File file){
-        String c = file.getName().substring(0,0);
-        if (c.equals(".")){
-            return false;
+        String fileName = file.getName();
+        if (fileName.length() >= 2){
+            char c = file.getName().charAt(0);
+            if (c == '.'){
+                return false;
+            }
+            if (fileName.contains("工程")){
+                return false;
+            }
+            if (fileName.contains(".class")){
+                return false;
+            }
+            if (fileName.contains("_config.yml")){
+                return false;
+            }
         }
         if (file.getName().equals("index.html")){
             return false;
