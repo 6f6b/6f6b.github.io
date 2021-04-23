@@ -13,7 +13,6 @@ public class IndexGenerator {
     public static void main(String[] args) {
         folderMethod2(".");
         System.out.println("success!");
-        ReentrantLock
     }
 
     public static void folderMethod2(String path) {
