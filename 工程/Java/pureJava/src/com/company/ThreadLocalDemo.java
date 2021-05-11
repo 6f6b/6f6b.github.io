@@ -1,6 +1,10 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author LiuFeng
@@ -16,6 +20,7 @@ public class ThreadLocalDemo {
 
     public static void main(String[] args) {
 
+        AtomicReference
         new Thread(new Runnable() {
             @Override
             public void run() {

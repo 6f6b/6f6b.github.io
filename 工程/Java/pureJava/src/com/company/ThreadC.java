@@ -1,5 +1,11 @@
 package com.company;
 
+import sun.misc.Unsafe;
+
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.LockSupport;
+
 public class ThreadC {
     public static void main(String[] args) {
 
@@ -19,6 +25,8 @@ public class ThreadC {
                 t2.start();
                 try {
                     t2.join();
+                    Unsafe unsafe = Unsafe.getUnsafe();
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
