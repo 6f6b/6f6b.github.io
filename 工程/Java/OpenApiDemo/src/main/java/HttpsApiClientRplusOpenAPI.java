@@ -204,12 +204,16 @@ public class HttpsApiClientRplusOpenAPI extends ApacheHttpClient{
 
     public void 获取随访配置Async(String regionCode , String mobile, ApiCallback callback) {
         //String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNDM4ODk1Njc1OTg1MTAwOCIsImlpcyI6Imh0dHA6Ly9vYXV0aC5ycGx1c2hlYWx0aC5jbi9pZGVudGl0eS9vYXV0aC90b2tlbiIsInNjb3BlIjpbInVzZXJuYW1lIl0sImV4cCI6MTYyODU3OTQ3NCwianRpIjoiMDhhMGE1NjUtODdiOS00ZWY4LTlmNDgtMjgzNGRlMTEwNDYxIiwiY2xpZW50X2lkIjoicnBsdXMtZG9jdG9yLWNsaWVudCIsInVzZXJuYW1lIjoiMTM4MDAwMDAwMDIifQ.hWOKpf4Z0LagpzNIoeh1txg6Km1eoxkwUK-aie9p9ukDnjz9DW_ST-LnQTVCsHyBU0jVaeT_OA-e-pZ984vvbhwvVyjShwQ7cFp1VlEX-IB16bAghtp-6oJd7HSpdCCWIhb7J8F5GPVSlmMAlMMcd3ymPovHjaFMq9nOtO4nCT4";
-        String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjYzMDE2NDE3MjM0NjUzNTg1IiwiaWlzIjoiaHR0cDovL29hdXRoLnJwbHVzaGVhbHRoLmNuL2lkZW50aXR5L29hdXRoL3Rva2VuIiwic2NvcGUiOlsidXNlcm5hbWUiXSwiZXhwIjoxNjI5Njg4ODMwLCJqdGkiOiIxMDYwY2ZhNy1lMjcxLTQwOTItODgzOS04ZDMzNmEwODlmZjAiLCJjbGllbnRfaWQiOiJycGx1cy1kb2N0b3ItY2xpZW50IiwidXNlcm5hbWUiOiIxMzkwMDAwMDAwMSJ9.qZ1wPXw2oMwkbU9l9WufwVe4fbOMz50iCm5wd9RustAVeC1DnucSnQrkouROaRpuyarOSyMbMhDnjSQPzRUt0_26TmUyFC_xQw5N4bYK-IwsHHWqYTtyvChEUHEMH3rMvu3BlStln6MXjzF9iSS2LdWcvliXUTbM9wu9JYRCf98";
-        ApiRequest request = new ApiRequest(HttpMethod.GET, "/task/questionnaire/answer/81905374232027139");
+        //String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjYzMDE2NDE3MjM0NjUzNTg1IiwiaWlzIjoiaHR0cDovL29hdXRoLnJwbHVzaGVhbHRoLmNuL2lkZW50aXR5L29hdXRoL3Rva2VuIiwic2NvcGUiOlsidXNlcm5hbWUiXSwiZXhwIjoxNjI5Njg4ODMwLCJqdGkiOiIxMDYwY2ZhNy1lMjcxLTQwOTItODgzOS04ZDMzNmEwODlmZjAiLCJjbGllbnRfaWQiOiJycGx1cy1kb2N0b3ItY2xpZW50IiwidXNlcm5hbWUiOiIxMzkwMDAwMDAwMSJ9.qZ1wPXw2oMwkbU9l9WufwVe4fbOMz50iCm5wd9RustAVeC1DnucSnQrkouROaRpuyarOSyMbMhDnjSQPzRUt0_26TmUyFC_xQw5N4bYK-IwsHHWqYTtyvChEUHEMH3rMvu3BlStln6MXjzF9iSS2LdWcvliXUTbM9wu9JYRCf98";
+        String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NjAwMjUxMjkxNDExMjUxMiIsImlpcyI6Imh0dHA6Ly9vYXV0aC5ycGx1c2hlYWx0aC5jbi9pZGVudGl0eS9vYXV0aC90b2tlbiIsInNjb3BlIjpbInVzZXJuYW1lIl0sImV4cCI6MTYyOTg4MzE0NywianRpIjoiNzc4OWIyOTItOGMyMS00NTExLWIxN2UtOTFmOTE3ZjU2NjY4IiwiY2xpZW50X2lkIjoicnBsdXMtZG9jdG9yLWNsaWVudCIsInVzZXJuYW1lIjoiMTk5NTU2MzMyMjkifQ.P1OQdz3DDpJ2MTYK3TVHVRpFFHvsRszI-tLBIC7l3M3lSeFrbgnJhyyYsxsshMArusOItA7h9GmC_PIj1gj7zul-H1sXkK4sjJBUqCxzrsdLFzfwKiuqrcEIDN_fwoN_76s4HVYKGl8EKSVoUleha0DYJJ2s1mlGF8-if-gHfW8";
+        //ApiRequest request = new ApiRequest(HttpMethod.GET, "/followup/78048963898556416/configs");
+        ApiRequest request = new ApiRequest(HttpMethod.GET, "/patient/list");
         request.addParam("X-Ca-Stage", "RELEASE", ParamPosition.HEAD, false);
         request.addParam("pageNumber", "0", ParamPosition.QUERY, false);
-        request.addParam("pageSize", "20", ParamPosition.QUERY, false);
+        request.addParam("pageSize", "500", ParamPosition.QUERY, false);
+        request.addParam("keyword", "", ParamPosition.QUERY, false);
         request.addParam("Authorization", authorization, ParamPosition.HEAD, true);
+        request.addParam("patientId", "78048963898556416", ParamPosition.QUERY, false);
         sendAsyncRequest(request,callback);
     }
 }
