@@ -18,7 +18,9 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 public class HttpsApiClientRplusOpenAPI extends ApacheHttpClient{
-    public final static String HOST = "openapi.rplushealth.cn";
+    public final static String HOST = "doctor-openapi.rplushealth.cn";
+    //public final static String HOST = "doctor.rplushealth.cn";
+
     static HttpsApiClientRplusOpenAPI instance = new HttpsApiClientRplusOpenAPI();
     public static HttpsApiClientRplusOpenAPI getInstance(){return instance;}
 
@@ -190,4 +192,24 @@ public class HttpsApiClientRplusOpenAPI extends ApacheHttpClient{
         return sendSyncRequest(request);
     }
 
+    public ApiResponse 获取随访配置(String regionCode , String mobile) {
+        String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNDM4ODk1Njc1OTg1MTAwOCIsImlpcyI6Imh0dHA6Ly9vYXV0aC5ycGx1c2hlYWx0aC5jbi9pZGVudGl0eS9vYXV0aC90b2tlbiIsInNjb3BlIjpbInVzZXJuYW1lIl0sImV4cCI6MTYyODU3OTQ3NCwianRpIjoiMDhhMGE1NjUtODdiOS00ZWY4LTlmNDgtMjgzNGRlMTEwNDYxIiwiY2xpZW50X2lkIjoicnBsdXMtZG9jdG9yLWNsaWVudCIsInVzZXJuYW1lIjoiMTM4MDAwMDAwMDIifQ.hWOKpf4Z0LagpzNIoeh1txg6Km1eoxkwUK-aie9p9ukDnjz9DW_ST-LnQTVCsHyBU0jVaeT_OA-e-pZ984vvbhwvVyjShwQ7cFp1VlEX-IB16bAghtp-6oJd7HSpdCCWIhb7J8F5GPVSlmMAlMMcd3ymPovHjaFMq9nOtO4nCT4";
+        ApiRequest request = new ApiRequest(HttpMethod.GET, "/followup/19021757320478720/configs");
+        request.addParam("X-Ca-Stage", "RELEASE", ParamPosition.HEAD, false);
+        request.addParam("pageNumber", "0", ParamPosition.QUERY, false);
+        request.addParam("pageSize", "20", ParamPosition.QUERY, false);
+        request.addParam("Authorization", authorization, ParamPosition.HEAD, true);
+        return sendSyncRequest(request);
+    }
+
+    public void 获取随访配置Async(String regionCode , String mobile, ApiCallback callback) {
+        //String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNDM4ODk1Njc1OTg1MTAwOCIsImlpcyI6Imh0dHA6Ly9vYXV0aC5ycGx1c2hlYWx0aC5jbi9pZGVudGl0eS9vYXV0aC90b2tlbiIsInNjb3BlIjpbInVzZXJuYW1lIl0sImV4cCI6MTYyODU3OTQ3NCwianRpIjoiMDhhMGE1NjUtODdiOS00ZWY4LTlmNDgtMjgzNGRlMTEwNDYxIiwiY2xpZW50X2lkIjoicnBsdXMtZG9jdG9yLWNsaWVudCIsInVzZXJuYW1lIjoiMTM4MDAwMDAwMDIifQ.hWOKpf4Z0LagpzNIoeh1txg6Km1eoxkwUK-aie9p9ukDnjz9DW_ST-LnQTVCsHyBU0jVaeT_OA-e-pZ984vvbhwvVyjShwQ7cFp1VlEX-IB16bAghtp-6oJd7HSpdCCWIhb7J8F5GPVSlmMAlMMcd3ymPovHjaFMq9nOtO4nCT4";
+        String authorization = "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjYzMDE2NDE3MjM0NjUzNTg1IiwiaWlzIjoiaHR0cDovL29hdXRoLnJwbHVzaGVhbHRoLmNuL2lkZW50aXR5L29hdXRoL3Rva2VuIiwic2NvcGUiOlsidXNlcm5hbWUiXSwiZXhwIjoxNjI5Njg4ODMwLCJqdGkiOiIxMDYwY2ZhNy1lMjcxLTQwOTItODgzOS04ZDMzNmEwODlmZjAiLCJjbGllbnRfaWQiOiJycGx1cy1kb2N0b3ItY2xpZW50IiwidXNlcm5hbWUiOiIxMzkwMDAwMDAwMSJ9.qZ1wPXw2oMwkbU9l9WufwVe4fbOMz50iCm5wd9RustAVeC1DnucSnQrkouROaRpuyarOSyMbMhDnjSQPzRUt0_26TmUyFC_xQw5N4bYK-IwsHHWqYTtyvChEUHEMH3rMvu3BlStln6MXjzF9iSS2LdWcvliXUTbM9wu9JYRCf98";
+        ApiRequest request = new ApiRequest(HttpMethod.GET, "/task/questionnaire/answer/81905374232027139");
+        request.addParam("X-Ca-Stage", "RELEASE", ParamPosition.HEAD, false);
+        request.addParam("pageNumber", "0", ParamPosition.QUERY, false);
+        request.addParam("pageSize", "20", ParamPosition.QUERY, false);
+        request.addParam("Authorization", authorization, ParamPosition.HEAD, true);
+        sendAsyncRequest(request,callback);
+    }
 }

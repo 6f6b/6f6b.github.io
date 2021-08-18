@@ -54,7 +54,8 @@ public class DemoRplusOpenAPI {
     }
 
     public static void main(String[] args) {
-        获取手机验证码HttpsSyncTest();
+        //获取手机验证码HttpsTest();
+        获取随访配置HttpsASyncTest();
     }
 
     public static void 手机号登录HttpsTest(){
@@ -258,7 +259,34 @@ public class DemoRplusOpenAPI {
         }
     }
 
+    public static void 获取随访配置HttpsSyncTest(){
+        ApiResponse response = HttpsApiClientRplusOpenAPI.getInstance().获取随访配置("86" , "15708456403");
+        try {
+            System.out.println(getResultString(response));
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
+    public static void 获取随访配置HttpsASyncTest(){
+        HttpsApiClientRplusOpenAPI.getInstance().获取随访配置Async("86" , "15708456403" , new ApiCallback() {
+            @Override
+            public void onFailure(ApiRequest request, Exception e) {
+                System.out.println("发生错误");
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(ApiRequest request, ApiResponse response) {
+                System.out.println("回调");
+                try {
+                    System.out.println(getResultString(response));
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
 
     private static String getResultString(ApiResponse response) throws IOException {
         StringBuilder result = new StringBuilder();
