@@ -1,13 +1,15 @@
 package com.company;
 
+import sun.applet.AppletClassLoader;
+import sun.misc.Launcher;
+
 public class LocalClassExample {
 
     static String regularExpression = "[^0-9]";
 
     public static void validatePhoneNumber(
             String phoneNumber1, String phoneNumber2) {
-
-        final int numberLength = 10;
+            final int numberLength = 10;
 
         // Valid in JDK 8 and later:
 

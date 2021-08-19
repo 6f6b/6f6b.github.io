@@ -12,4 +12,12 @@ public class Person extends AbstractPerson{
 
     void sayHello() {
     }
+
+    public static void main(String[] args) throws Exception{
+        String a = new String("abc");
+        new String("bcd");
+        Person person = new Person();
+        Thread.sleep(1000000);
+    }
+
 }
