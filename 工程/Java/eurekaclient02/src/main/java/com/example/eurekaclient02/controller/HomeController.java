@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class HomeController {
@@ -63,8 +64,10 @@ public class HomeController {
                 clientAddress = request.getRemoteAddr();
             }
             String finalClientAddress = clientAddress;
-            ServiceInstance temIns = instances.stream().filter((ins)->{return ins.getHost().equals(finalClientAddress);}).findFirst().get();
-            instance = (temIns == null) ? instance : temIns;
+            Optional<ServiceInstance> optionalServiceInstance = instances.stream().filter((ins)->{return ins.getHost().equals(finalClientAddress);}).findFirst();
+            if (optionalServiceInstance.isPresent()){
+                instance = optionalServiceInstance.get();
+            }
         }
         return instance;
     }
