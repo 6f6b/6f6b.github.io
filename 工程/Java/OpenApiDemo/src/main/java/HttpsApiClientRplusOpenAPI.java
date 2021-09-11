@@ -216,4 +216,5 @@ public class HttpsApiClientRplusOpenAPI extends ApacheHttpClient{
         request.addParam("patientId", "78048963898556416", ParamPosition.QUERY, false);
         sendAsyncRequest(request,callback);
     }
+
 }

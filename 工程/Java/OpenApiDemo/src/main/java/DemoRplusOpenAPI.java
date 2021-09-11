@@ -58,24 +58,6 @@ public class DemoRplusOpenAPI {
         获取随访配置HttpsASyncTest();
     }
 
-    public static void 手机号登录HttpsTest(){
-        HttpsApiClientRplusOpenAPI.getInstance().手机号登录("default" , "default" , "default" , new ApiCallback() {
-            @Override
-            public void onFailure(ApiRequest request, Exception e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(ApiRequest request, ApiResponse response) {
-                try {
-                    System.out.println(getResultString(response));
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
-        });
-    }
-
     public static void 手机号登录HttpsSyncTest(){
         ApiResponse response = HttpsApiClientRplusOpenAPI.getInstance().手机号登录SyncMode("default" , "default" , "default");
         try {
